@@ -19,6 +19,8 @@ Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('
 
 Route::get('tasks', [TaskController::class,'index']);
 Route::post('tasks/', [TaskController::class, 'store']);
+Route::put('tasks/update/{id}',[TaskController::class, 'update']);
+Route::delete('tasks/{id}',[TaskController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);

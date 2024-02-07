@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('descripcion');
             $table->dateTime('date_open');
-            $table->dateTime('date_close');
+            $table->dateTime('date_close')->nullable();
             $table->timestamps();
         });
     }
