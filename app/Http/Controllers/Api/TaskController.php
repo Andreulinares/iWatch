@@ -20,6 +20,6 @@ class TaskController extends Controller
         $task = $request->all();
         $tarea = Task::create($task);
 
-        return response()->json(['success' => true, 'data']);
+        return response()->json(['success' => true, 'data' => $tarea]);
     }
 }
