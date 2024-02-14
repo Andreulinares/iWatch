@@ -12,6 +12,7 @@ const ExercisesCreate  = ()  => import('../views/admin/exercises/Create.vue');
 const ExercisesEdit  = ()  => import('../views/admin/exercises/Edit.vue');
 const TasksList  = ()  => import('../views/admin/tasks/index.vue');
 const TasksCreate = ()  => import('../views/admin/tasks/Create.vue');
+const TasksUpdate = () => import('../views/admin/tasks/Update.vue');
 
 function requireLogin(to, from, next) {
     let isLogin = false;
@@ -144,6 +145,12 @@ export default [
                         path: 'create',
                         component: TasksCreate,
                         meta: {breadCrumb: 'Crear tarea'}
+                    },
+                    {
+                        name: 'tasks.update',
+                        path: 'update/:id',
+                        component: TasksUpdate,
+                        meta: {breadCrumb: 'Actualizar tarea'}
                     }
                 ]
             },

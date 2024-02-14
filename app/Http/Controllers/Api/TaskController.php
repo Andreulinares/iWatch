@@ -28,6 +28,11 @@ class TaskController extends Controller
         return response()->json(['success' => true, 'data' => $tarea]);
     }
 
+    public function show($id){
+        $task = Task::find($id);
+        return response()->json($task);
+    }
+
     public function update($id, Request $request){
         $task = Task::find($id);
 
