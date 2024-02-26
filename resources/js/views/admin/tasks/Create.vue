@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <strong>{{ strSuccess }}</strong>
             </div>
-
+<!-- CREAR TAREAS-->
 
             <div v-if="strError" class="alert alert-danger alert-dismissible fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
