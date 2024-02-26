@@ -31,14 +31,31 @@ const model = ref([
         ]
     },
     {
-        label: 'Ejercicios',
+        label: 'Películas',
         items: [
-            { label: 'Ejercicios', icon: 'pi pi-fw pi-id-card', to: '/admin/exercises', permision: 'exercise-list' },
-            { label: 'Categorias', icon: 'pi pi-fw pi-id-card', to: '/admin/categories', permision: 'category-list' }
+            { label: 'Posts', icon: 'pi pi-fw pi-id-card', to: '/admin/posts', permision: 'post-list' }
         ]
     },
     {
-        label: 'Posts',
+        label: 'Series',
+        items: [
+            { label: 'Posts', icon: 'pi pi-fw pi-id-card', to: '/admin/posts', permision: 'post-list' }
+        ]
+    },
+    {
+        label: 'Suscripciones',
+        items: [
+            { label: 'Posts', icon: 'pi pi-fw pi-id-card', to: '/admin/posts', permision: 'post-list' }
+        ]
+    },
+    {
+        label: 'Categorías',
+        items: [
+            { label: 'Posts', icon: 'pi pi-fw pi-id-card', to: '/admin/posts', permision: 'post-list' }
+        ]
+    },
+    {
+        label: 'Salas',
         items: [
             { label: 'Posts', icon: 'pi pi-fw pi-id-card', to: '/admin/posts', permision: 'post-list' }
         ]
