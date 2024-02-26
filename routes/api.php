@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ExerciseController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TaskController;
+use App\Http\Controllers\Api\FilmsController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
