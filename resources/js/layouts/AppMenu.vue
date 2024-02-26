@@ -16,7 +16,7 @@ const {can} = useAbility();
 
 const vela = "pepe";
 
-
+// Opciones menu lateral
 const model = ref([
     {
         label: 'Home',
