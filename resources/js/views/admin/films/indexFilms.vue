@@ -4,9 +4,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h5 class="card-title">Todas las peliculas</h5>
+                        <h5 class="card-title">Todas las películas</h5>
                         <div>
-                            <router-link :to="{name: 'tasks.create'}" class="btn btn-success">Nueva película</router-link>
+                            <router-link :to="{ name: 'tasks.create' }" class="btn btn-success">Nueva película</router-link>
                         </div>
                     </div>
 
@@ -14,27 +14,25 @@
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
-                                <th width="50" class="text-center">#</th>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Synopsis</th>
+                                <th width="50" class="text-center">Id</th>
+                                <th>Nombre</th>
+                                <th>Sinopsis</th>
                                 <th>Director</th>
-                                <th>Punctuation</th>
-                                <th>Duration</th>
-                                <th class="text-center" width="200">Acciones</th>
+                                <th>Puntuación</th>
+                                <th>Duración</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(film, index) in films">
-                                <td class="text-center">{{ film.id }}</td>
-                                <td>{{film.name}}</td>
-                                <td>{{film.synopsis}}</td>
-                                <td>{{film.director}}</td>
-                                <th>{{film.punctuation}}</th>
-                                <th>{{film.duration}}</th>
+                            <tr v-for="(film, index) in films" :key="film.id">
+                                <td class="text-center">{{ index + 1 }}</td>
+                                <td>{{ film.name }}</td>
+                                <td>{{ film.synopsis }}</td>
+                                <td>{{ film.director }}</td>
+                                <td>{{ film.punctuation }}</td>
+                                <td>{{ film.duration }}</td>
                                 <td class="text-center">
-                                    <router-link :to="{name: 'tasks.update', params: {id:task.id}}" class="btn btn-warning mr-1">Edit</router-link>
-                                    <button class="btn btn-danger" @click="deleteTask(task.id, index)">Delete</button>
+                                    <router-link :to="{ name: 'tasks.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
+                                    <button class="btn btn-danger" @click="deleteFilm(film.id, index)">Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -45,29 +43,31 @@
     </div>
 </template>
 
-
 <script setup>
 import axios from "axios";
-import {ref, inject, onMounted} from "vue";
-const film = ref();
+import { ref, inject, onMounted } from "vue";
+
+const films = ref([]);
 const swal = inject('$swal');
 
-    onMounted(()=>{
-        //console.log('Mi vista esta montada');
-        axios.get('/api/films')
+onMounted(() => {
+    axios.get('/api/films')
         .then(response => {
             films.value = response.data;
             console.log(response.data);
         })
-    });
+        .catch(error => {
+            console.error('Error fetching films:', error);
+        });
+});
 
-    const deleteTask = (id, index) =>{
-        axios.delete('/api/tasks/'+id)
-        .then(response =>{
-            tasks.value.splice(index,1)
+const deleteFilm = (id, index) => {
+    axios.delete(`/api/films/${id}`)
+        .then(response => {
+            films.value.splice(index, 1);
             swal({
-                title: 'Quieres eliminar la tarea?',
-                text: 'Esta acción no es reversible!',
+                title: '¿Quieres eliminar la película?',
+                text: '¡Esta acción no se puede deshacer!',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Sí, eliminar',
@@ -76,23 +76,22 @@ const swal = inject('$swal');
                 timerProgressBar: true,
                 reverseButtons: true
             })
-        .then(result => {
-            if (result.isConfirmed) {
-                
-            }
+            .then(result => {
+                if (result.isConfirmed) {
+                    // Realizar acciones adicionales si es necesario después de confirmar la eliminación
+                }
+            });
         })
-
-        }).catch(error =>{
+        .catch(error => {
+            console.error('Error deleting film:', error);
             swal({
                 icon: 'error',
-                title: 'No se ha podido eliminar la tarea'
-            })
+                title: 'No se ha podido eliminar la película'
+            });
         });
-    }
+}
 </script>
 
-
 <style>
-
-
+/* Estilos CSS aquí si es necesario */
 </style>
