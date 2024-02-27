@@ -61,6 +61,7 @@ onMounted(() => {
         });
 });
 
+/*
 const deleteFilm = (id, index) => {
     axios.delete(`/api/films/${id}`)
         .then(response => {
@@ -89,6 +90,36 @@ const deleteFilm = (id, index) => {
                 title: 'No se ha podido eliminar la película'
             });
         });
+}
+*/
+
+
+const deleteFilm = (id, index) => {
+    swal({
+        title: '¿Quieres eliminar la película?',
+        text: '¡Esta acción no se puede deshacer!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        confirmButtonColor: '#ef4444',
+        timer: 20000,
+        timerProgressBar: true,
+        reverseButtons: true
+    })
+    .then(result => {
+        if (result.isConfirmed) {
+            films.value.splice(index, 1);
+            axios.delete(`/api/films/${id}`)
+            .then( response => {
+                swal({
+                    title: 'Película eliminada',
+                    icon: 'success',
+                    timer: 10000,
+                    timerProgressBar: true,
+                })
+            })
+        }
+    });
 }
 </script>
 
