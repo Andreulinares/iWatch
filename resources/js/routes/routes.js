@@ -14,6 +14,10 @@ const TasksList  = ()  => import('../views/admin/tasks/index.vue');
 const TasksCreate = ()  => import('../views/admin/tasks/Create.vue');
 const TasksUpdate = () => import('../views/admin/tasks/Update.vue');
 
+
+// Lista de peliculas
+const FilmsList  = ()  => import('../views/admin/films/indexFilms.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -152,6 +156,20 @@ export default [
                         component: TasksUpdate,
                         meta: {breadCrumb: 'Actualizar tarea'}
                     }
+                ]
+            },
+            {
+                name: 'films',
+                path: 'films',
+                meta: { breadCrumb: 'Peliculas'},
+                children: [
+                    {
+                        name: 'films.indexFilms',
+                        path: '',
+                        component: FilmsList,
+                        meta: {breadCrumb: 'Listado peliculas'}
+
+                    },
                 ]
             },
             {

@@ -9,7 +9,6 @@ use App\Models\Task;
 class TaskController extends Controller
 {
     public function index(){
-        // return "Hola";
         $tasks = Task::all()->toArray();
 
         return $tasks;

@@ -10,25 +10,28 @@
                         </div>
                     </div>
 
-                    {{ tasks }}
+                    {{ films }}
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
                                 <th width="50" class="text-center">#</th>
+                                <th>Id</th>
                                 <th>Name</th>
-                                <th>description</th>
-                                <th>date_open</th>
-                                <th>date_close</th>
+                                <th>Synopsis</th>
+                                <th>Director</th>
+                                <th>Punctuation</th>
+                                <th>Duration</th>
                                 <th class="text-center" width="200">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(task, index) in tasks">
-                                <td class="text-center">{{ task.id }}</td>
-                                <td>{{task.name}}</td>
-                                <td>{{task.descripcion}}</td>
-                                <td>{{task.date_open}}</td>
-                                <th>{{task.date_close}}</th>
+                            <tr v-for="(film, index) in films">
+                                <td class="text-center">{{ film.id }}</td>
+                                <td>{{film.name}}</td>
+                                <td>{{film.synopsis}}</td>
+                                <td>{{film.director}}</td>
+                                <th>{{film.punctuation}}</th>
+                                <th>{{film.duration}}</th>
                                 <td class="text-center">
                                     <router-link :to="{name: 'tasks.update', params: {id:task.id}}" class="btn btn-warning mr-1">Edit</router-link>
                                     <button class="btn btn-danger" @click="deleteTask(task.id, index)">Delete</button>
@@ -46,14 +49,14 @@
 <script setup>
 import axios from "axios";
 import {ref, inject, onMounted} from "vue";
-const tasks = ref();
+const film = ref();
 const swal = inject('$swal');
 
     onMounted(()=>{
         //console.log('Mi vista esta montada');
-        axios.get('/api/tasks')
+        axios.get('/api/films')
         .then(response => {
-            tasks.value = response.data;
+            films.value = response.data;
             console.log(response.data);
         })
     });

@@ -23,6 +23,12 @@ Route::post('tasks/', [TaskController::class, 'store']);
 Route::put('tasks/update/{id}',[TaskController::class, 'update']);
 Route::delete('tasks/{id}',[TaskController::class, 'destroy']);
 
+// Acciones admin peliculas
+Route::get('films', [FilmsController::class,'index']);
+Route::post('films/', [FilmsController::class, 'store']);
+Route::put('films/update/{id}',[FilmsController::class, 'update']);
+Route::delete('films/{id}',[FilmsController::class, 'destroy']);
+
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);
     Route::apiResource('posts', PostController::class);
