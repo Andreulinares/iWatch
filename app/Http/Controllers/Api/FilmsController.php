@@ -13,20 +13,24 @@ class FilmsController extends Controller
         return $films;
     }
 
-    /*
+    
     public function store(Request $request){
 
         $request->validate([
-            'name' => 'required|max:5',
-            'descripcion' => 'required'
+            'name' => 'required',
+            'synopsis' => 'required',
+            'director' => 'required',
+            'duration' => 'required',
         ]);
 
-        $task = $request->all();
-        $tarea = Task::create($task);
+        $filmData = $request->all();
+        $filmData['punctuation'] = 0;
+        $peli = Film::create($filmData);
 
-        return response()->json(['success' => true, 'data' => $tarea]);
+        return response()->json(['success' => true, 'data' => $peli]);
     }
 
+    /*
     public function show($id){
         $task = Task::find($id);
         return response()->json($task);

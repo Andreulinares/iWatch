@@ -15,8 +15,9 @@ const TasksCreate = ()  => import('../views/admin/tasks/Create.vue');
 const TasksUpdate = () => import('../views/admin/tasks/Update.vue');
 
 
-// Lista de peliculas
+// Peliculas admin
 const FilmsList  = ()  => import('../views/admin/films/indexFilms.vue');
+const FilmsCreate = ()  => import('../views/admin/films/Create.vue');
 
 function requireLogin(to, from, next) {
     let isLogin = false;
@@ -170,6 +171,12 @@ export default [
                         meta: {breadCrumb: 'Listado peliculas'}
 
                     },
+                    {
+                        name: 'films.create',
+                        path: 'createFilm',
+                        component: FilmsCreate,
+                        meta: {breadCrumb: 'Crear pelicula'}
+                    }
                 ]
             },
             {
