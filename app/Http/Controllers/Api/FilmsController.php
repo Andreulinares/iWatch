@@ -39,6 +39,24 @@ class FilmsController extends Controller
         return response()->json(['success' => true, 'data' => 'Tarea eliminada correctamente']);
     }
 
+    public function update($id, Request $request){
+        $film = Film::find($id);
+
+        $request->validate([
+            'name' => 'required',
+            'synopsis' => 'required',
+            'director' => 'required',
+            'punctuation' => 'required',
+            'duration' => 'required'
+
+        ]);
+
+        $dataToUpdate = $request->all();
+        $film->update($dataToUpdate);
+
+        return response()->json(['success' => true, 'data' => $film]);
+    }
+
     /*
     public function show($id){
         $task = Task::find($id);
@@ -57,12 +75,6 @@ class FilmsController extends Controller
         $task->update($dataToUpdate);
 
         return response()->json(['success' => true, 'data' => $task]);
-    }
-
-    public function destroy($id){
-        $task = Task::find($id);
-        $task->delete();
-        return response()->json(['success' => true, 'data' => 'Tarea eliminada correctamente']);
     }
     */
 }

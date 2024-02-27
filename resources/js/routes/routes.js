@@ -18,6 +18,7 @@ const TasksUpdate = () => import('../views/admin/tasks/Update.vue');
 // Peliculas admin
 const FilmsList  = ()  => import('../views/admin/films/indexFilms.vue');
 const FilmsCreate = ()  => import('../views/admin/films/Create.vue');
+const FilmsUpdate = () => import('../views/admin/films/Update.vue');
 
 function requireLogin(to, from, next) {
     let isLogin = false;
@@ -176,6 +177,12 @@ export default [
                         path: 'createFilm',
                         component: FilmsCreate,
                         meta: {breadCrumb: 'Crear pelicula'}
+                    },
+                    {
+                        name: 'films.update',
+                        path: 'update/:id',
+                        component: FilmsUpdate,
+                        meta: {breadCrumb: 'Actualizar pelicula'}
                     }
                 ]
             },

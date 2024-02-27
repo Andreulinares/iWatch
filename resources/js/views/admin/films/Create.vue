@@ -33,7 +33,7 @@
 
                 <div class="form-gorup mb-2">
                     <label>Duración</label><span class="text-danger">*</span>
-                    <input v-model="film.duration" class="form-control" type="datetime-local" name="date_open"/>
+                    <input v-model="film.duration" class="form-control" type="time" step="1" name="date_open"/>
                 </div>
 
 

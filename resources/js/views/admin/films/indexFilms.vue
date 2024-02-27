@@ -31,7 +31,7 @@
                                 <td>{{ film.punctuation }}</td>
                                 <td>{{ film.duration }}</td>
                                 <td class="text-center">
-                                    <router-link :to="{ name: 'tasks.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
+                                    <router-link :to="{ name: 'films.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
                                     <button class="btn btn-danger" @click="deleteFilm(film.id, index)">Eliminar</button>
                                 </td>
                             </tr>
@@ -60,39 +60,6 @@ onMounted(() => {
             console.error('Error fetching films:', error);
         });
 });
-
-/*
-const deleteFilm = (id, index) => {
-    axios.delete(`/api/films/${id}`)
-        .then(response => {
-            films.value.splice(index, 1);
-            swal({
-                title: '¿Quieres eliminar la película?',
-                text: '¡Esta acción no se puede deshacer!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Sí, eliminar',
-                confirmButtonColor: '#ef4444',
-                timer: 20000,
-                timerProgressBar: true,
-                reverseButtons: true
-            })
-            .then(result => {
-                if (result.isConfirmed) {
-                    // Realizar acciones adicionales si es necesario después de confirmar la eliminación
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Error deleting film:', error);
-            swal({
-                icon: 'error',
-                title: 'No se ha podido eliminar la película'
-            });
-        });
-}
-*/
-
 
 const deleteFilm = (id, index) => {
     swal({
