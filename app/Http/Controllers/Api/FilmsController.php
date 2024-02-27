@@ -8,12 +8,14 @@ use App\Models\Film;
 
 class FilmsController extends Controller
 {
+    // Listar peliculas
     public function index(){
         $films = Film::all()->toArray();
         return $films;
     }
 
     
+    // Crear pelicula
     public function store(Request $request){
 
         $request->validate([
@@ -28,6 +30,13 @@ class FilmsController extends Controller
         $peli = Film::create($filmData);
 
         return response()->json(['success' => true, 'data' => $peli]);
+    }
+
+    // Eliminar pelicula
+    public function destroy($id){
+        $filmDelete = Film::find($id);
+        $filmDelete->delete();
+        return response()->json(['success' => true, 'data' => 'Tarea eliminada correctamente']);
     }
 
     /*

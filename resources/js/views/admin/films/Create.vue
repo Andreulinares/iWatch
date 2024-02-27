@@ -31,11 +31,6 @@
                     <textarea v-model="film.director" class="form-control" rows="3" placeholder="Director"></textarea>
                 </div>
 
-                <div class="form-group mb-2">
-                    <label>Puntuación</label><span class="text-danger"> *</span>
-                    <textarea v-model="film.punctuation" class="form-control" rows="3" placeholder="Puntuación"></textarea>
-                </div>
-
                 <div class="form-gorup mb-2">
                     <label>Duración</label><span class="text-danger">*</span>
                     <input v-model="film.duration" class="form-control" type="datetime-local" name="date_open"/>
