@@ -28,7 +28,7 @@
                                 <td>{{ suscripcion.duration }}</td>
                                 <td class="text-center">
                                     <router-link :to="{ name: 'suscripciones.update', params: { id: suscripcion.id } }" class="btn btn-warning mr-1">Editar</router-link>
-                                    <button class="btn btn-danger" @click="deleteSerie(suscripcion.id, index)">Eliminar</button>
+                                    <button class="btn btn-danger" @click="deleteSuscripcion(suscripcion.id, index)">Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -57,7 +57,7 @@ onMounted(() => {
         });
 });
 
-const deleteSerie = (id, index) => {
+const deleteSuscripcion = (id, index) => {
     swal({
         title: '¿Quieres eliminar esta suscripcion?',
         text: '¡Esta acción no se puede deshacer!',
@@ -72,7 +72,7 @@ const deleteSerie = (id, index) => {
     .then(result => {
         if (result.isConfirmed) {
             series.value.splice(index, 1);
-            axios.delete(`/api/series/${id}`)
+            axios.delete(`/api/suscripciones/${id}`)
             .then( response => {
                 swal({
                     title: 'Suscripcion eliminada',

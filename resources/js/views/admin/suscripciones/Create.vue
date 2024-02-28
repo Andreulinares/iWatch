@@ -18,17 +18,17 @@
             <form @submit.prevent="addfilm">
                 <div class="form-group mb-2">
                     <label>Nombre</label><span class="text-danger"> *</span>
-                    <input v-model="film.name" type="text" class="form-control" placeholder="Nombre">
+                    <input v-model="suscripcion.name" type="text" class="form-control" placeholder="Nombre">
                 </div>
 
                 <div class="form-gorup mb-2">
                     <label>Precio</label><span class="text-danger">*</span>
-                    <input v-model="film.price" class="form-control" type="decimal">
+                    <input v-model="suscripcion.price" class="form-control" type="decimal">
                 </div>
 
                 <div class="form-gorup mb-2">
                     <label>Duración</label><span class="text-danger">*</span>
-                    <input v-model="film.duration" class="form-control" type="time" step="1" name="date_open"/>
+                    <input v-model="suscripcion.duration" class="form-control" type="time" step="1" name="date_open"/>
                 </div>
 
 
