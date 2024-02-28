@@ -31,10 +31,10 @@ Route::put('films/update/{id}',[FilmsController::class, 'update']);
 Route::delete('films/{id}',[FilmsController::class, 'destroy']);
 
 // Acciones admin series
-Route::get('series', [FilmsController::class,'index']);
-Route::post('series/', [FilmsController::class, 'store']);
-Route::put('series/update/{id}',[FilmsController::class, 'update']);
-Route::delete('series/{id}',[FilmsController::class, 'destroy']);
+Route::get('series', [SeriesController::class,'index']);
+Route::post('series/', [SeriesController::class, 'store']);
+Route::put('series/update/{id}',[SeriesController::class, 'update']);
+Route::delete('series/{id}',[SeriesController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);

@@ -71,6 +71,25 @@
                                 </th>
                                 <th class="px-6 py-3 text-left">
                                     <div class="flex flex-row"
+                                         @click="updateOrdering('apellido')">
+                                        <div class="font-medium text-uppercase"
+                                             :class="{ 'font-bold text-blue-600': orderColumn === 'apellido' }">
+                                            Apellido
+                                        </div>
+                                        <div class="select-none">
+                                <span :class="{
+                                  'text-blue-600': orderDirection === 'asc' && orderColumn === 'apellido',
+                                  'hidden': orderDirection !== '' && orderDirection !== 'asc' && orderColumn === 'apellido',
+                                }">&uarr;</span>
+                                            <span :class="{
+                                  'text-blue-600': orderDirection === 'desc' && orderColumn === 'apellido',
+                                  'hidden': orderDirection !== '' && orderDirection !== 'desc' && orderColumn === 'apellido',
+                                }">&darr;</span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th class="px-6 py-3 text-left">
+                                    <div class="flex flex-row"
                                          @click="updateOrdering('email')">
                                         <div class="font-medium text-uppercase"
                                              :class="{ 'font-bold text-blue-600': orderColumn === 'email' }">

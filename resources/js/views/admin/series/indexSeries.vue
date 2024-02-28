@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h5 class="card-title">Todas las películas</h5>
+                        <h5 class="card-title">Todas las series</h5>
                         <div>
                             <router-link :to="{ name: 'series.create' }" class="btn btn-success">Nueva serie</router-link>
                         </div>
@@ -25,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(serie, index) in series" :key="film.id">
+                            <tr v-for="(serie, index) in series" :key="serie.id">
                                 <td class="text-center">{{ index + 1 }}</td>
                                 <td>{{ serie.name }}</td>
                                 <td>{{ serie.synopsis }}</td>

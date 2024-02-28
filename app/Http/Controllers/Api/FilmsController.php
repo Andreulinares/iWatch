@@ -36,9 +36,10 @@ class FilmsController extends Controller
     public function destroy($id){
         $filmDelete = Film::find($id);
         $filmDelete->delete();
-        return response()->json(['success' => true, 'data' => 'Tarea eliminada correctamente']);
+        return response()->json(['success' => true, 'data' => 'Serie eliminada correctamente']);
     }
 
+    // Actualizar pelicula
     public function update($id, Request $request){
         $film = Film::find($id);
 
@@ -48,7 +49,6 @@ class FilmsController extends Controller
             'director' => 'required',
             'punctuation' => 'required',
             'duration' => 'required'
-
         ]);
 
         $dataToUpdate = $request->all();
@@ -61,20 +61,6 @@ class FilmsController extends Controller
     public function show($id){
         $task = Task::find($id);
         return response()->json($task);
-    }
-
-    public function update($id, Request $request){
-        $task = Task::find($id);
-
-        $request->validate([
-            'name' => 'required|max:5',
-            'descripcion' => 'required'
-        ]);
-
-        $dataToUpdate = $request->all();
-        $task->update($dataToUpdate);
-
-        return response()->json(['success' => true, 'data' => $task]);
     }
     */
 }
