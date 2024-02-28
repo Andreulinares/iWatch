@@ -71,7 +71,7 @@ const deleteSuscripcion = (id, index) => {
     })
     .then(result => {
         if (result.isConfirmed) {
-            series.value.splice(index, 1);
+            suscripciones.value.splice(index, 1);
             axios.delete(`/api/suscripciones/${id}`)
             .then( response => {
                 swal({
