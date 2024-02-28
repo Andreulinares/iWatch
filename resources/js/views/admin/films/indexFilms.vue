@@ -14,7 +14,7 @@
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
-                                <th width="50" class="text-center">Id</th>
+                                <th width="50" class="text-center">#</th>
                                 <th>Nombre</th>
                                 <th>Sinopsis</th>
                                 <th>Director</th>

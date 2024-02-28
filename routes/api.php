@@ -29,6 +29,12 @@ Route::post('films/', [FilmsController::class, 'store']);
 Route::put('films/update/{id}',[FilmsController::class, 'update']);
 Route::delete('films/{id}',[FilmsController::class, 'destroy']);
 
+// Acciones admin peliculas
+Route::get('series', [FilmsController::class,'index']);
+Route::post('series/', [FilmsController::class, 'store']);
+Route::put('series/update/{id}',[FilmsController::class, 'update']);
+Route::delete('series/{id}',[FilmsController::class, 'destroy']);
+
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);
     Route::apiResource('posts', PostController::class);

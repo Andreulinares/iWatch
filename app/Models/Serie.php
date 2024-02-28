@@ -15,6 +15,8 @@ class Serie extends Model
         "synopsis",
         "director",
         "punctuation",
-        "duration"
+        "episodes",
+        "duration",
+        "seasons"
     ];
 }

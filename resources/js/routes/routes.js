@@ -20,6 +20,11 @@ const FilmsList  = ()  => import('../views/admin/films/indexFilms.vue');
 const FilmsCreate = ()  => import('../views/admin/films/Create.vue');
 const FilmsUpdate = () => import('../views/admin/films/Update.vue');
 
+// Series admin
+const SeriesList  = ()  => import('../views/admin/series/indexSeries.vue');
+const SeriesCreate = ()  => import('../views/admin/series/Create.vue');
+const SeriesUpdate = () => import('../views/admin/series/Update.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -183,6 +188,32 @@ export default [
                         path: 'update/:id',
                         component: FilmsUpdate,
                         meta: {breadCrumb: 'Actualizar pelicula'}
+                    }
+                ]
+            },
+            {
+                name: 'series',
+                path: 'series',
+                meta: { breadCrumb: 'Series'},
+                children: [
+                    {
+                        name: 'series.indexSeries',
+                        path: '',
+                        component: SeriesList,
+                        meta: {breadCrumb: 'Listado de series'}
+
+                    },
+                    {
+                        name: 'series.create',
+                        path: 'createFilm',
+                        component: SeriesCreate,
+                        meta: {breadCrumb: 'Crear series'}
+                    },
+                    {
+                        name: 'series.update',
+                        path: 'update/:id',
+                        component: SeriesUpdate,
+                        meta: {breadCrumb: 'Actualizar serie'}
                     }
                 ]
             },

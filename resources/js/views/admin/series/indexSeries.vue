@@ -6,33 +6,37 @@
                     <div class="d-flex justify-content-between pb-2 mb-2">
                         <h5 class="card-title">Todas las películas</h5>
                         <div>
-                            <router-link :to="{ name: 'films.create' }" class="btn btn-success">Nueva película</router-link>
+                            <router-link :to="{ name: 'series.create' }" class="btn btn-success">Nueva serie</router-link>
                         </div>
                     </div>
 
-                    {{ films }}
+                    {{ series }}
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
-                                <th width="50" class="text-center">Id</th>
+                                <th width="50" class="text-center">#</th>
                                 <th>Nombre</th>
                                 <th>Sinopsis</th>
                                 <th>Director</th>
                                 <th>Puntuación</th>
+                                <th>Nº de episodios</th>
                                 <th>Duración</th>
+                                <th>Nº de temporadas</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(film, index) in films" :key="film.id">
+                            <tr v-for="(serie, index) in series" :key="film.id">
                                 <td class="text-center">{{ index + 1 }}</td>
-                                <td>{{ film.name }}</td>
-                                <td>{{ film.synopsis }}</td>
-                                <td>{{ film.director }}</td>
-                                <td>{{ film.punctuation }}</td>
-                                <td>{{ film.duration }}</td>
+                                <td>{{ serie.name }}</td>
+                                <td>{{ serie.synopsis }}</td>
+                                <td>{{ serie.director }}</td>
+                                <td>{{ serie.punctuation }}</td>
+                                <td>{{ serie.episodes }}</td>
+                                <td>{{ serie.duration }}</td>
+                                <td>{{ serie.seasons }}</td>
                                 <td class="text-center">
-                                    <router-link :to="{ name: 'films.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
-                                    <button class="btn btn-danger" @click="deleteFilm(film.id, index)">Eliminar</button>
+                                    <router-link :to="{ name: 'series.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
+                                    <button class="btn btn-danger" @click="deleteSerie(serie.id, index)">Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -47,23 +51,23 @@
 import axios from "axios";
 import { ref, inject, onMounted } from "vue";
 
-const films = ref([]);
+const series = ref([]);
 const swal = inject('$swal');
 
 onMounted(() => {
-    axios.get('/api/films')
+    axios.get('/api/series')
         .then(response => {
-            films.value = response.data;
+            series.value = response.data;
             console.log(response.data);
         })
         .catch(error => {
-            console.error('Error fetching films:', error);
+            console.error('Error fetching series:', error);
         });
 });
 
-const deleteFilm = (id, index) => {
+const deleteSerie = (id, index) => {
     swal({
-        title: '¿Quieres eliminar la película?',
+        title: '¿Quieres eliminar esta serie?',
         text: '¡Esta acción no se puede deshacer!',
         icon: 'warning',
         showCancelButton: true,
@@ -75,11 +79,11 @@ const deleteFilm = (id, index) => {
     })
     .then(result => {
         if (result.isConfirmed) {
-            films.value.splice(index, 1);
-            axios.delete(`/api/films/${id}`)
+            series.value.splice(index, 1);
+            axios.delete(`/api/series/${id}`)
             .then( response => {
                 swal({
-                    title: 'Película eliminada',
+                    title: 'Serie eliminada',
                     icon: 'success',
                     timer: 10000,
                     timerProgressBar: true,
