@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\FilmsController;
+use App\Http\Controllers\Api\SeriesController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ Route::post('films/', [FilmsController::class, 'store']);
 Route::put('films/update/{id}',[FilmsController::class, 'update']);
 Route::delete('films/{id}',[FilmsController::class, 'destroy']);
 
-// Acciones admin peliculas
+// Acciones admin series
 Route::get('series', [FilmsController::class,'index']);
 Route::post('series/', [FilmsController::class, 'store']);
 Route::put('series/update/{id}',[FilmsController::class, 'update']);

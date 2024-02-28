@@ -35,7 +35,7 @@
                                 <td>{{ serie.duration }}</td>
                                 <td>{{ serie.seasons }}</td>
                                 <td class="text-center">
-                                    <router-link :to="{ name: 'series.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
+                                    <router-link :to="{ name: 'series.update', params: { id: serie.id } }" class="btn btn-warning mr-1">Editar</router-link>
                                     <button class="btn btn-danger" @click="deleteSerie(serie.id, index)">Eliminar</button>
                                 </td>
                             </tr>
