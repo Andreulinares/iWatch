@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
         $orderColumn = request('order_column', 'created_at');
-        if (!in_array($orderColumn, ['id', 'name', 'created_at'])) {
+        if (!in_array($orderColumn, ['id', 'name', 'apellido', 'phone', 'created_at'])) {
             $orderColumn = 'created_at';
         }
         $orderDirection = request('order_direction', 'desc');
@@ -59,6 +59,7 @@ class UserController extends Controller
         $role = Role::find($request->role_id);
         $user = new User();
         $user->name = $request->name;
+        $user->apellido = $request->apellido;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
 

@@ -55,7 +55,7 @@
                                          @click="updateOrdering('title')">
                                         <div class="font-medium text-uppercase"
                                              :class="{ 'font-bold text-blue-600': orderColumn === 'title' }">
-                                            Name
+                                            Nombre
                                         </div>
                                         <div class="select-none">
                                 <span :class="{
@@ -71,19 +71,19 @@
                                 </th>
                                 <th class="px-6 py-3 text-left">
                                     <div class="flex flex-row"
-                                         @click="updateOrdering('apellido')">
+                                         @click="updateOrdering('title')">
                                         <div class="font-medium text-uppercase"
-                                             :class="{ 'font-bold text-blue-600': orderColumn === 'apellido' }">
+                                             :class="{ 'font-bold text-blue-600': orderColumn === 'title' }">
                                             Apellido
                                         </div>
                                         <div class="select-none">
                                 <span :class="{
-                                  'text-blue-600': orderDirection === 'asc' && orderColumn === 'apellido',
-                                  'hidden': orderDirection !== '' && orderDirection !== 'asc' && orderColumn === 'apellido',
+                                  'text-blue-600': orderDirection === 'asc' && orderColumn === 'title',
+                                  'hidden': orderDirection !== '' && orderDirection !== 'asc' && orderColumn === 'title',
                                 }">&uarr;</span>
                                             <span :class="{
-                                  'text-blue-600': orderDirection === 'desc' && orderColumn === 'apellido',
-                                  'hidden': orderDirection !== '' && orderDirection !== 'desc' && orderColumn === 'apellido',
+                                  'text-blue-600': orderDirection === 'desc' && orderColumn === 'title',
+                                  'hidden': orderDirection !== '' && orderDirection !== 'desc' && orderColumn === 'title',
                                 }">&darr;</span>
                                         </div>
                                     </div>
@@ -94,6 +94,25 @@
                                         <div class="font-medium text-uppercase"
                                              :class="{ 'font-bold text-blue-600': orderColumn === 'email' }">
                                             Email
+                                        </div>
+                                        <div class="select-none">
+                                <span :class="{
+                                  'text-blue-600': orderDirection === 'asc' && orderColumn === 'email',
+                                  'hidden': orderDirection !== '' && orderDirection !== 'asc' && orderColumn === 'email',
+                                }">&uarr;</span>
+                                            <span :class="{
+                                  'text-blue-600': orderDirection === 'desc' && orderColumn === 'email',
+                                  'hidden': orderDirection !== '' && orderDirection !== 'desc' && orderColumn === 'email',
+                                }">&darr;</span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th class="px-6 py-3 text-left">
+                                    <div class="flex flex-row"
+                                         @click="updateOrdering('email')">
+                                        <div class="font-medium text-uppercase"
+                                             :class="{ 'font-bold text-blue-600': orderColumn === 'email' }">
+                                            Teléfono
                                         </div>
                                         <div class="select-none">
                                 <span :class="{
@@ -140,7 +159,13 @@
                                     {{ post.name }}
                                 </td>
                                 <td class="px-6 py-4 text-sm">
+                                    {{ post.apellido }}
+                                </td>
+                                <td class="px-6 py-4 text-sm">
                                     {{ post.email }}
+                                </td>
+                                <td class="px-6 py-4 text-sm">
+                                    {{ post.phone }}
                                 </td>
                                 <td class="px-6 py-4 text-sm">
                                     {{ post.created_at }}
