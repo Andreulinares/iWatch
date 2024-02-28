@@ -14,30 +14,39 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <strong>{{ strError }}</strong>
             </div>
-                  {{ film }} 
-            <form @submit.prevent="addfilm">
+                  {{ serie }} 
+            <form @submit.prevent="addserie">
                 <div class="form-group mb-2">
                     <label>Nombre</label><span class="text-danger"> *</span>
-                    <input v-model="film.name" type="text" class="form-control" placeholder="Nombre">
+                    <input v-model="serie.name" type="text" class="form-control" placeholder="Nombre">
                 </div>
 
                 <div class="form-group mb-2">
                     <label>Sinopsis</label><span class="text-danger"> *</span>
-                    <textarea v-model="film.synopsis" class="form-control" rows="3" placeholder="Sinopsis"></textarea>
+                    <textarea v-model="serie.synopsis" class="form-control" rows="3" placeholder="Sinopsis"></textarea>
                 </div>
 
                 <div class="form-group mb-2">
                     <label>Director</label><span class="text-danger"> *</span>
-                    <textarea v-model="film.director" class="form-control" rows="3" placeholder="Director"></textarea>
+                    <textarea v-model="serie.director" class="form-control" rows="3" placeholder="Director"></textarea>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Episodios</label><span class="text-danger"> *</span>
+                    <input v-model="serie.episodes" type="number" class="form-control" min="0" placeholder="Episodios">
                 </div>
 
                 <div class="form-gorup mb-2">
                     <label>Duración</label><span class="text-danger">*</span>
-                    <input v-model="film.duration" class="form-control" type="time" step="1" name="date_open"/>
+                    <input v-model="serie.duration" class="form-control" type="time" step="1" name="date_open"/>
                 </div>
 
+                <div class="form-group mb-2">
+                    <label>Temporadas</label><span class="text-danger"> *</span>
+                    <input v-model="serie.seasons" type="number" class="form-control" min="0" placeholder="Temporadas">
+                </div>
 
-                <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir película</button>
+                <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir serie</button>
 
 
             </form>
@@ -51,13 +60,13 @@
 <script setup>
     import { ref } from "vue";
 
-    const film = ref({});
+    const serie = ref({});
 
     const strError = ref();
     const strSuccess = ref();
 
-    function addfilm(){
-        axios.post('/api/films', film.value)
+    function addserie(){
+        axios.post('/api/series', serie.value)
         .then(response =>{
             console.log(response);
             strSuccess.value = response.data.success;

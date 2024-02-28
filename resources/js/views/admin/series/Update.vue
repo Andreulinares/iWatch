@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between pb-2 mb-2">
-                <h5 class="card-title">Actualiza la película</h5>
+                <h5 class="card-title">Actualiza la serie</h5>
             </div>
 
 
@@ -18,12 +18,12 @@
             </div>
 
 
-            <form @submit.prevent="saveFilm">
+            <form @submit.prevent="saveSerie">
 
 
                 <div class="form-group mb-2">
                     <label>Nombre</label><span class="text-danger"> *</span>
-                    <input type="text" class="form-control" v-model="film.name" placeholder="Nombre película">
+                    <input type="text" class="form-control" v-model="serie.name" placeholder="Nombre película">
                     <div class="text-danger mt-1">
                         {{ errors.name }}
                     </div>
@@ -31,26 +31,36 @@
 
                 <div class="form-group mb-2">
                     <label>Sinopsis</label><span class="text-danger"> *</span>
-                    <textarea class="form-control" rows="3" v-model="film.synopsis" placeholder="Sinopsis"></textarea>
+                    <textarea class="form-control" rows="3" v-model="serie.synopsis" placeholder="Sinopsis"></textarea>
                 </div>
 
                 <div class="form-group mb-2">
                     <label>Director</label><span class="text-danger"> *</span>
-                    <textarea class="form-control" rows="3" v-model="film.director" placeholder="Director"></textarea>
+                    <textarea class="form-control" rows="3" v-model="serie.director" placeholder="Director"></textarea>
                 </div>
 
                 <div class="form-group mb-2">
                     <label>Puntuación</label><span class="text-danger"> *</span>
-                    <textarea class="form-control" rows="3" v-model="film.punctuation" placeholder="Puntuación"></textarea>
+                    <input v-model="serie.punctuation" type="number" class="form-control" min="0" placeholder="Puntuación">
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Episodios</label><span class="text-danger"> *</span>
+                    <input v-model="serie.episodes" type="number" class="form-control" min="0" placeholder="Episodios">
                 </div>
 
                 <div class="form-gorup mb-2">
                     <label>Duración</label><span class="text-danger">*</span>
-                    <input class="form-control" type="time" step="1" v-model="film.duration" name="date_open" />
+                    <input v-model="serie.duration" class="form-control" type="time" step="1" name="date_open"/>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Temporadas</label><span class="text-danger"> *</span>
+                    <input v-model="serie.seasons" type="number" class="form-control" min="0" placeholder="Temporadas">
                 </div>
 
 
-                <button type="submit" class="btn btn-primary mt-4 mb-4">Actualizar película</button>
+                <button type="submit" class="btn btn-primary mt-4 mb-4">Actualizar serie</button>
 
 
             </form>
@@ -88,15 +98,19 @@ const { value: name } = useField('name', null, { initialValue: '' });
 const { value: synopsis } = useField('synopsis', null, { initialValue: '' });
 const { value: director } = useField('director', null, { initialValue: '' });
 const { value: punctuation } = useField('punctuation', null, { initialValue: '' });
+const { value: episodes } = useField('episodes', null, { initialValue: '' });
 const { value: duration } = useField('duration', null, { initialValue: '' });
+const { value: seasons } = useField('seasons', null, { initialValue: '' });
 
 
-const film = reactive({
+const serie = reactive({
     name,
     synopsis,
     director,
     punctuation,
-    duration
+    episodes,
+    duration,
+    seasons
 })
 
 
@@ -105,13 +119,15 @@ const strError = ref();
 
 
 onMounted(() => {
-    axios.get('/api/films/' + route.params.id)
+    axios.get('/api/series/' + route.params.id)
     .then(response => {
-        film.name = response.data.name;
-        film.synopsis = response.data.synopsis;
-        film.director = response.data.director;
-        film.punctuation = response.data.punctuation;
-        film.duration = response.data.duration;
+        serie.name = response.data.name;
+        serie.synopsis = response.data.synopsis;
+        serie.director = response.data.director;
+        serie.punctuation = response.data.punctuation;
+        serie.episodes = response.data.episodes;
+        serie.duration = response.data.duration;
+        serie.seasons = response.data.seasons;
     })
     .catch(function(error) {
         console.log(error);
@@ -119,11 +135,11 @@ onMounted(() => {
 })
 
 
-function saveFilm() {
+function saveSerie() {
     validate().then(form => {
         console.log('validate');
         if (form.valid){
-            axios.put('/api/films/update/'+route.params.id, film)
+            axios.put('/api/series/update/'+route.params.id, serie)
             .then(response => {
                 strError.value = ""
                 strSuccess.value = response.data.success

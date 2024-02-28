@@ -210,7 +210,7 @@ export default [
                     },
                     {
                         name: 'series.create',
-                        path: 'createFilm',
+                        path: 'createSerie',
                         component: SeriesCreate,
                         meta: {breadCrumb: 'Crear series'}
                     },
