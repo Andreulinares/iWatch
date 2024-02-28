@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\FilmsController;
 use App\Http\Controllers\Api\SeriesController;
+use App\Http\Controllers\Api\SuscripcionController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
@@ -31,10 +32,16 @@ Route::put('films/update/{id}',[FilmsController::class, 'update']);
 Route::delete('films/{id}',[FilmsController::class, 'destroy']);
 
 // Acciones admin series
-Route::get('series', [FilmsController::class,'index']);
-Route::post('series/', [FilmsController::class, 'store']);
-Route::put('series/update/{id}',[FilmsController::class, 'update']);
-Route::delete('series/{id}',[FilmsController::class, 'destroy']);
+Route::get('series', [SeriesController::class,'index']);
+Route::post('series/', [SeriesController::class, 'store']);
+Route::put('series/update/{id}',[SeriesController::class, 'update']);
+Route::delete('series/{id}',[SeriesController::class, 'destroy']);
+
+// Acciones admin suscripciones
+Route::get('suscripciones', [SuscripcionController::class,'index']);
+Route::post('suscripciones/', [SuscripcionController::class, 'store']);
+Route::put('suscripciones/update/{id}',[SuscripcionController::class, 'update']);
+Route::delete('suscripciones/{id}',[SuscripcionController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);

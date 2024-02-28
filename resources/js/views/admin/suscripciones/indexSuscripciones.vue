@@ -4,39 +4,31 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h5 class="card-title">Todas las películas</h5>
+                        <h5 class="card-title">Todas las suscripciones</h5>
                         <div>
-                            <router-link :to="{ name: 'series.create' }" class="btn btn-success">Nueva serie</router-link>
+                            <router-link :to="{ name: 'suscripciones.create' }" class="btn btn-success">Nueva suscripcion</router-link>
                         </div>
                     </div>
 
-                    {{ series }}
+                    {{ suscripciones }}
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
                                 <th width="50" class="text-center">#</th>
                                 <th>Nombre</th>
-                                <th>Sinopsis</th>
-                                <th>Director</th>
-                                <th>Puntuación</th>
-                                <th>Nº de episodios</th>
-                                <th>Duración</th>
-                                <th>Nº de temporadas</th>
+                                <th>Precio</th>
+                                <th>Duracion</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(serie, index) in series" :key="serie.id">
+                            <tr v-for="(suscripcion, index) in suscripciones" :key="suscripcion.id">
                                 <td class="text-center">{{ index + 1 }}</td>
-                                <td>{{ serie.name }}</td>
-                                <td>{{ serie.synopsis }}</td>
-                                <td>{{ serie.director }}</td>
-                                <td>{{ serie.punctuation }}</td>
-                                <td>{{ serie.episodes }}</td>
-                                <td>{{ serie.duration }}</td>
-                                <td>{{ serie.seasons }}</td>
+                                <td>{{ suscripcion.name }}</td>
+                                <td>{{ suscripcion.price }}</td>
+                                <td>{{ suscripcion.duration }}</td>
                                 <td class="text-center">
-                                    <router-link :to="{ name: 'series.update', params: { id: serie.id } }" class="btn btn-warning mr-1">Editar</router-link>
-                                    <button class="btn btn-danger" @click="deleteSerie(serie.id, index)">Eliminar</button>
+                                    <router-link :to="{ name: 'suscripciones.update', params: { id: suscripcion.id } }" class="btn btn-warning mr-1">Editar</router-link>
+                                    <button class="btn btn-danger" @click="deleteSerie(suscripcion.id, index)">Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -51,13 +43,13 @@
 import axios from "axios";
 import { ref, inject, onMounted } from "vue";
 
-const series = ref([]);
+const suscripciones = ref([]);
 const swal = inject('$swal');
 
 onMounted(() => {
-    axios.get('/api/series')
+    axios.get('/api/suscripciones')
         .then(response => {
-            series.value = response.data;
+            suscripciones.value = response.data;
             console.log(response.data);
         })
         .catch(error => {
@@ -67,7 +59,7 @@ onMounted(() => {
 
 const deleteSerie = (id, index) => {
     swal({
-        title: '¿Quieres eliminar esta serie?',
+        title: '¿Quieres eliminar esta suscripcion?',
         text: '¡Esta acción no se puede deshacer!',
         icon: 'warning',
         showCancelButton: true,
@@ -83,7 +75,7 @@ const deleteSerie = (id, index) => {
             axios.delete(`/api/series/${id}`)
             .then( response => {
                 swal({
-                    title: 'Serie eliminada',
+                    title: 'Suscripcion eliminada',
                     icon: 'success',
                     timer: 10000,
                     timerProgressBar: true,

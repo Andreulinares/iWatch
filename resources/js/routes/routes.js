@@ -25,6 +25,11 @@ const SeriesList  = ()  => import('../views/admin/series/indexSeries.vue');
 const SeriesCreate = ()  => import('../views/admin/series/Create.vue');
 const SeriesUpdate = () => import('../views/admin/series/Update.vue');
 
+// Suscripciones admin
+const SuscripcionesList  = ()  => import('../views/admin/suscripciones/indexSuscripciones.vue');
+const SuscripcionesCreate = ()  => import('../views/admin/suscripciones/Create.vue');
+const SuscripcionesUpdate = () => import('../views/admin/suscripciones/Update.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -214,6 +219,32 @@ export default [
                         path: 'update/:id',
                         component: SeriesUpdate,
                         meta: {breadCrumb: 'Actualizar serie'}
+                    }
+                ]
+            },
+            {
+                name: 'suscripciones',
+                path: 'suscripciones',
+                meta: { breadCrumb: 'Suscripciones'},
+                children: [
+                    {
+                        name: 'suscripciones.indexSuscripciones',
+                        path: '',
+                        component: SuscripcionesList,
+                        meta: {breadCrumb: 'Listado de suscripciones'}
+
+                    },
+                    {
+                        name: 'suscripciones.create',
+                        path: 'createSuscripcion',
+                        component: SuscripcionesCreate,
+                        meta: {breadCrumb: 'Crear suscripciones'}
+                    },
+                    {
+                        name: 'suscripciones.update',
+                        path: 'update/:id',
+                        component: SuscripcionesUpdate,
+                        meta: {breadCrumb: 'Actualizar suscripcion'}
                     }
                 ]
             },
