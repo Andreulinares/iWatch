@@ -42,10 +42,6 @@ Route::get('suscripciones', [SuscripcionController::class,'index']);
 Route::post('suscripciones/', [SuscripcionController::class, 'store']);
 Route::put('suscripciones/update/{id}',[SuscripcionController::class, 'update']);
 Route::delete('suscripciones/{id}',[SuscripcionController::class, 'destroy']);
-Route::get('series', [SeriesController::class,'index']);
-Route::post('series/', [SeriesController::class, 'store']);
-Route::put('series/update/{id}',[SeriesController::class, 'update']);
-Route::delete('series/{id}',[SeriesController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);
