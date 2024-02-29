@@ -84,6 +84,8 @@ class AuthenticatedSessionController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'name' => $request['name'],
+            'apellido' => $request['apellido'],
+            'phone' => $request['phone'],
         ]);
 
         return $this->successResponse($user, 'Registration Successfully');

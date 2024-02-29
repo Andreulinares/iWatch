@@ -62,6 +62,7 @@ class UserController extends Controller
         $user->apellido = $request->apellido;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $phone->phone = $request->phone;
 
         if ($user->save()) {
             if ($role) {
