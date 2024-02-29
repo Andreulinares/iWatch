@@ -18,17 +18,17 @@
             <form @submit.prevent="addfilm">
                 <div class="form-group mb-2">
                     <label>Nombre</label><span class="text-danger"> *</span>
-                    <input v-model="suscripcion.name" type="text" class="form-control" placeholder="Nombre">
+                    <input v-model="subscription.name" type="text" class="form-control" placeholder="Nombre">
                 </div>
 
                 <div class="form-gorup mb-2">
                     <label>Precio</label><span class="text-danger">*</span>
-                    <input v-model="suscripcion.price" class="form-control" type="decimal">
+                    <input v-model="subscription.price" class="form-control" type="decimal">
                 </div>
 
                 <div class="form-gorup mb-2">
                     <label>Duración</label><span class="text-danger">*</span>
-                    <input v-model="suscripcion.duration" class="form-control" type="time" step="1" name="date_open"/>
+                    <input v-model="subscription.duration" class="form-control" type="time" step="1" name="date_open"/>
                 </div>
 
 
@@ -46,13 +46,13 @@
 <script setup>
     import { ref } from "vue";
 
-    const suscripcion = ref({});
+    const subscription = ref({});
 
     const strError = ref();
     const strSuccess = ref();
 
     function addfilm(){
-        axios.post('/api/suscripciones', suscripcion.value)
+        axios.post('/api/subscriptions', subscription.value)
         .then(response =>{
             console.log(response);
             strSuccess.value = response.data.success;
