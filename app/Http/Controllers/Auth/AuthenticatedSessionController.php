@@ -84,7 +84,7 @@ class AuthenticatedSessionController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'name' => $request['name'],
-            'apellido' => $request['apellido'],
+            'surname' => $request['surname'],
             'phone' => $request['phone'],
         ]);
 
