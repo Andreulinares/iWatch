@@ -30,6 +30,11 @@ const SuscripcionesList  = ()  => import('../views/admin/suscripciones/indexSusc
 const SuscripcionesCreate = ()  => import('../views/admin/suscripciones/Create.vue');
 const SuscripcionesUpdate = () => import('../views/admin/suscripciones/Update.vue');
 
+// Reseñas admin
+const ReviewsList  = ()  => import('../views/admin/reviews/indexReviews.vue');
+const ReviewsCreate = ()  => import('../views/admin/reviews/Create.vue');
+const ReviewsUpdate = () => import('../views/admin/reviews/Update.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -245,6 +250,32 @@ export default [
                         path: 'update/:id',
                         component: SuscripcionesUpdate,
                         meta: {breadCrumb: 'Actualizar suscripcion'}
+                    }
+                ]
+            },
+            {
+                name: 'reviews',
+                path: 'reviews',
+                meta: { breadCrumb: 'Reseñas'},
+                children: [
+                    {
+                        name: 'reviews.indexReviews',
+                        path: '',
+                        component: ReviewsList,
+                        meta: {breadCrumb: 'Listado de reseñas'}
+
+                    },
+                    {
+                        name: 'reviews.create',
+                        path: 'createReview',
+                        component: ReviewsCreate,
+                        meta: {breadCrumb: 'Crear reseñas'}
+                    },
+                    {
+                        name: 'reviews.update',
+                        path: 'update/:id',
+                        component: ReviewsUpdate,
+                        meta: {breadCrumb: 'Actualizar reseña'}
                     }
                 ]
             },

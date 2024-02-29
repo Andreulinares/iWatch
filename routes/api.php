@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\FilmsController;
 use App\Http\Controllers\Api\SeriesController;
 use App\Http\Controllers\Api\SuscripcionController;
+use App\http\Controllers\Api\ReviewsController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
@@ -42,6 +43,12 @@ Route::get('suscripciones', [SuscripcionController::class,'index']);
 Route::post('suscripciones/', [SuscripcionController::class, 'store']);
 Route::put('suscripciones/update/{id}',[SuscripcionController::class, 'update']);
 Route::delete('suscripciones/{id}',[SuscripcionController::class, 'destroy']);
+
+// Acciones admin reseñas
+Route::get('reviews', [ReviewsController::class,'index']);
+Route::post('reviews/', [ReviewsController::class, 'store']);
+Route::put('reviews/update/{id}',[ReviewsController::class, 'update']);
+Route::delete('reviews/{id}',[ReviewsController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);
