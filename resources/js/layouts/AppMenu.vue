@@ -43,7 +43,7 @@ const model = ref([
         ]
     },
     {
-        label: 'suscripciones',
+        label: 'Suscripciones',
         items: [
             { label: 'Posts', icon: 'pi pi-fw pi-id-card', to: '/admin/posts', permision: 'post-list' }
         ]

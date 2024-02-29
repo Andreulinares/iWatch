@@ -35,7 +35,7 @@ export default function useAuth() {
 
     const registerForm = reactive({
         name: '',
-        surname: '',
+        apellido: '',
         email: '',
         password: '',
         password_confirmation: ''

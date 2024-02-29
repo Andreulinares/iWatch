@@ -6,31 +6,7 @@
         <div class="card-body">
             <form @submit.prevent="submitForm">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" v-model="profile.name" class="form-control" id="name">
-                    <div class="text-danger mt-1">
-                        {{ errors.name }}
-                    </div>
-                    <div class="text-danger mt-1">
-                        <div v-for="message in validationErrors?.name">
-                            {{ message }}
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Apellido</label>
-                    <input type="text" v-model="profile.name" class="form-control" id="name">
-                    <div class="text-danger mt-1">
-                        {{ errors.name }}
-                    </div>
-                    <div class="text-danger mt-1">
-                        <div v-for="message in validationErrors?.name">
-                            {{ message }}
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Telefono</label>
+                    <label for="name" class="form-label">Name</label>
                     <input type="text" v-model="profile.name" class="form-control" id="name">
                     <div class="text-danger mt-1">
                         {{ errors.name }}

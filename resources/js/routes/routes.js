@@ -25,10 +25,10 @@ const SeriesList  = ()  => import('../views/admin/series/indexSeries.vue');
 const SeriesCreate = ()  => import('../views/admin/series/Create.vue');
 const SeriesUpdate = () => import('../views/admin/series/Update.vue');
 
-// subscriptions admin
-const subscriptionsList  = ()  => import('../views/admin/subscriptions/indexSubscriptions.vue');
-const subscriptionsCreate = ()  => import('../views/admin/subscriptions/Create.vue');
-const subscriptionsUpdate = () => import('../views/admin/subscriptions/Update.vue');
+// Suscripciones admin
+const SuscripcionesList  = ()  => import('../views/admin/suscripciones/indexSuscripciones.vue');
+const SuscripcionesCreate = ()  => import('../views/admin/suscripciones/Create.vue');
+const SuscripcionesUpdate = () => import('../views/admin/suscripciones/Update.vue');
 
 function requireLogin(to, from, next) {
     let isLogin = false;
@@ -223,28 +223,28 @@ export default [
                 ]
             },
             {
-                name: 'subscriptions',
-                path: 'subscriptions',
-                meta: { breadCrumb: 'subscriptions'},
+                name: 'suscripciones',
+                path: 'suscripciones',
+                meta: { breadCrumb: 'Suscripciones'},
                 children: [
                     {
-                        name: 'subscriptions.indexSubscriptions',
+                        name: 'suscripciones.indexSuscripciones',
                         path: '',
-                        component: subscriptionsList,
-                        meta: {breadCrumb: 'Listado de subscriptions'}
+                        component: SuscripcionesList,
+                        meta: {breadCrumb: 'Listado de suscripciones'}
 
                     },
                     {
-                        name: 'subscriptions.create',
-                        path: 'createSubscription',
-                        component: subscriptionsCreate,
-                        meta: {breadCrumb: 'Crear subscriptions'}
+                        name: 'suscripciones.create',
+                        path: 'createSuscripcion',
+                        component: SuscripcionesCreate,
+                        meta: {breadCrumb: 'Crear suscripciones'}
                     },
                     {
-                        name: 'subscriptions.update',
+                        name: 'suscripciones.update',
                         path: 'update/:id',
-                        component: subscriptionsUpdate,
-                        meta: {breadCrumb: 'Actualizar subscription'}
+                        component: SuscripcionesUpdate,
+                        meta: {breadCrumb: 'Actualizar suscripcion'}
                     }
                 ]
             },
