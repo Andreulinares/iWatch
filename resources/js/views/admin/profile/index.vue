@@ -6,7 +6,11 @@
         <div class="card-body">
             <form @submit.prevent="submitForm">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
+                    <label for="profile_image" class="form-label">Foto de perfil</label>
+                    <input type="file" class="form-control" id="profile_image">
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre</label>
                     <input type="text" v-model="profile.name" class="form-control" id="name">
                     <div class="text-danger mt-1">
                         {{ errors.name }}
@@ -18,7 +22,31 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="name" class="form-label">Apellido</label>
+                    <input type="text" v-model="profile.name" class="form-control" id="surname">
+                    <div class="text-danger mt-1">
+                        {{ errors.surname }}
+                    </div>
+                    <div class="text-danger mt-1">
+                        <div v-for="message in validationErrors?.surname">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Teléfono</label>
+                    <input type="text" v-model="profile.name" class="form-control" id="phone">
+                    <div class="text-danger mt-1">
+                        {{ errors.phone }}
+                    </div>
+                    <div class="text-danger mt-1">
+                        <div v-for="message in validationErrors?.phone">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo</label>
                     <input type="email" v-model="profile.email" class="form-control" id="email">
                     <div class="text-danger mt-1">
                         {{ errors.email }}
@@ -32,8 +60,8 @@
                 <div class="mb-3">
                     <button :disabled="isLoading" class="btn btn-primary">
                         <div v-show="isLoading" class=""></div>
-                        <span v-if="isLoading">Processing...</span>
-                        <span v-else>Update</span>
+                        <span v-if="isLoading">Procesando...</span>
+                        <span v-else>Actualizar datos</span>
                     </button>
                 </div>
             </form>

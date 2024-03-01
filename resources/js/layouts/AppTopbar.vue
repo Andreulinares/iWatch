@@ -13,34 +13,57 @@
             <i class="pi pi-ellipsis-v"></i>
         </button>
 
+
+        <div class="dropdown">
+            <i class="pi pi-user"></i>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hola, {{ user.name }}
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">Preferencias</a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
+                        href="javascript:void(0)" @click="logout">Cerrar sessión</a>
+                </li>
+            </ul>
+        </div>
+
+        <!--ANTIGUO DROP DOWN BUTTON DEL PERFIL-->
+        
+        <!--
         <div class="layout-topbar-menu" :class="topbarMenuClasses">
 
-            <button class="p-link layout-topbar-button layout-topbar-button-c nav-item dropdown " role="button"
-                data-bs-toggle="dropdown">
-
-                <i class="pi pi-user"></i>
-                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
-                    <li>
-                        <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Preferencias</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
-                            href="javascript:void(0)" @click="logout">Cerrar sessión</a>
-                    </li>
-                </ul>
-
-                <span class="nav-link dropdown-toggle ms-3 me-2" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Hola, {{ user.name }}
-                </span>
+            <div class="dropdown">
+            <i class="pi pi-user"></i>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hola, {{ user.name }}
             </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">Preferencias</a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
+                        href="javascript:void(0)" @click="logout">Cerrar sessión</a>
+                </li>
+            </ul>
         </div>
+        </div>
+        -->
     </div>
 </template>
 
