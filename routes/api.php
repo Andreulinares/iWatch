@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\SeriesController;
 use App\Http\Controllers\Api\SuscripcionController;
 use App\http\Controllers\Api\ReviewsController;
 use App\http\Controllers\Api\MessagesController;
+use App\Http\Controllers\Api\RoomsController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
@@ -56,6 +57,12 @@ Route::get('messages', [MessagesController::class,'index']);
 Route::post('messages/', [MessagesController::class, 'store']);
 Route::put('messages/update/{id}',[MessagesController::class, 'update']);
 Route::delete('messages/{id}',[MessagesController::class, 'destroy']);
+
+// Acciones admin mensajes
+Route::get('rooms', [RoomsController::class,'index']);
+Route::post('rooms/', [RoomsController::class, 'store']);
+Route::put('rooms/update/{id}',[RoomsController::class, 'update']);
+Route::delete('rooms/{id}',[RoomsController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);

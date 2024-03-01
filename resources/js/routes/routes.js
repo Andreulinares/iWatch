@@ -40,6 +40,11 @@ const MessagesList  = ()  => import('../views/admin/messages/indexMessages.vue')
 const MessagesCreate = ()  => import('../views/admin/messages/Create.vue');
 const MessagesUpdate = () => import('../views/admin/messages/Update.vue');
 
+// Salas admin
+const RoomsList  = ()  => import('../views/admin/rooms/indexRooms.vue');
+const RoomsCreate = ()  => import('../views/admin/rooms/Create.vue');
+const RoomsUpdate = () => import('../views/admin/rooms/Update.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -307,6 +312,32 @@ export default [
                         path: 'update/:id',
                         component: MessagesUpdate,
                         meta: {breadCrumb: 'Actualizar mensaje'}
+                    }
+                ]
+            },
+            {
+                name: 'rooms',
+                path: 'rooms',
+                meta: { breadCrumb: 'Salas'},
+                children: [
+                    {
+                        name: 'rooms.indexRooms',
+                        path: '',
+                        component: RoomsList,
+                        meta: {breadCrumb: 'Listado de salas'}
+
+                    },
+                    {
+                        name: 'rooms.create',
+                        path: 'createRoom',
+                        component: RoomsCreate,
+                        meta: {breadCrumb: 'Crear sala'}
+                    },
+                    {
+                        name: 'rooms.update',
+                        path: 'update/:id',
+                        component: RoomsUpdate,
+                        meta: {breadCrumb: 'Actualizar sala'}
                     }
                 ]
             },
