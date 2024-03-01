@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\SuscripcionController;
 use App\http\Controllers\Api\ReviewsController;
 use App\http\Controllers\Api\MessagesController;
 use App\Http\Controllers\Api\RoomsController;
+use App\Http\Controllers\Api\CategoriasController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
@@ -58,11 +59,17 @@ Route::post('messages/', [MessagesController::class, 'store']);
 Route::put('messages/update/{id}',[MessagesController::class, 'update']);
 Route::delete('messages/{id}',[MessagesController::class, 'destroy']);
 
-// Acciones admin mensajes
+// Acciones admin salas
 Route::get('rooms', [RoomsController::class,'index']);
 Route::post('rooms/', [RoomsController::class, 'store']);
 Route::put('rooms/update/{id}',[RoomsController::class, 'update']);
 Route::delete('rooms/{id}',[RoomsController::class, 'destroy']);
+
+// Acciones admin categorias
+Route::get('categorias', [CategoriasController::class,'index']);
+Route::post('categorias/', [CategoriasController::class, 'store']);
+Route::put('categorias/update/{id}',[CategoriasController::class, 'update']);
+Route::delete('categorias/{id}',[CategoriasController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);

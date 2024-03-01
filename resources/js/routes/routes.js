@@ -45,6 +45,11 @@ const RoomsList  = ()  => import('../views/admin/rooms/indexRooms.vue');
 const RoomsCreate = ()  => import('../views/admin/rooms/Create.vue');
 const RoomsUpdate = () => import('../views/admin/rooms/Update.vue');
 
+// Categorias admin
+const CategoriasList  = ()  => import('../views/admin/categorias/indexCategorias.vue');
+const CategoriasCreate = ()  => import('../views/admin/categorias/Create.vue');
+const CategoriasUpdate = () => import('../views/admin/categorias/Update.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -338,6 +343,32 @@ export default [
                         path: 'update/:id',
                         component: RoomsUpdate,
                         meta: {breadCrumb: 'Actualizar sala'}
+                    }
+                ]
+            },
+            {
+                name: 'categorias',
+                path: 'categorias',
+                meta: { breadCrumb: 'Categorias'},
+                children: [
+                    {
+                        name: 'categorias.indexCategorias',
+                        path: '',
+                        component: CategoriasList,
+                        meta: {breadCrumb: 'Listado de categorias'}
+
+                    },
+                    {
+                        name: 'categorias.create',
+                        path: 'createCategoria',
+                        component: CategoriasCreate,
+                        meta: {breadCrumb: 'Crear categoria'}
+                    },
+                    {
+                        name: 'categorias.update',
+                        path: 'update/:id',
+                        component: CategoriasUpdate,
+                        meta: {breadCrumb: 'Actualizar categoria'}
                     }
                 ]
             },
