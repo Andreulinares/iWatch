@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\FilmsController;
 use App\Http\Controllers\Api\SeriesController;
 use App\Http\Controllers\Api\SuscripcionController;
 use App\http\Controllers\Api\ReviewsController;
+use App\http\Controllers\Api\MessagesController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
@@ -49,6 +50,12 @@ Route::get('reviews', [ReviewsController::class,'index']);
 Route::post('reviews/', [ReviewsController::class, 'store']);
 Route::put('reviews/update/{id}',[ReviewsController::class, 'update']);
 Route::delete('reviews/{id}',[ReviewsController::class, 'destroy']);
+
+// Acciones admin mensajes
+Route::get('messages', [MessagesController::class,'index']);
+Route::post('messages/', [MessagesController::class, 'store']);
+Route::put('messages/update/{id}',[MessagesController::class, 'update']);
+Route::delete('messages/{id}',[MessagesController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);

@@ -35,6 +35,11 @@ const ReviewsList  = ()  => import('../views/admin/reviews/indexReviews.vue');
 const ReviewsCreate = ()  => import('../views/admin/reviews/Create.vue');
 const ReviewsUpdate = () => import('../views/admin/reviews/Update.vue');
 
+// Mensajes admin
+const MessagesList  = ()  => import('../views/admin/messages/indexMessages.vue');
+const MessagesCreate = ()  => import('../views/admin/messages/Create.vue');
+const MessagesUpdate = () => import('../views/admin/messages/Update.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -276,6 +281,32 @@ export default [
                         path: 'update/:id',
                         component: ReviewsUpdate,
                         meta: {breadCrumb: 'Actualizar reseña'}
+                    }
+                ]
+            },
+            {
+                name: 'messages',
+                path: 'messages',
+                meta: { breadCrumb: 'Mensajes'},
+                children: [
+                    {
+                        name: 'messages.indexMessages',
+                        path: '',
+                        component: MessagesList,
+                        meta: {breadCrumb: 'Listado de mensajes'}
+
+                    },
+                    {
+                        name: 'messages.create',
+                        path: 'createMessage',
+                        component: MessagesCreate,
+                        meta: {breadCrumb: 'Crear mensaje'}
+                    },
+                    {
+                        name: 'messages.update',
+                        path: 'update/:id',
+                        component: MessagesUpdate,
+                        meta: {breadCrumb: 'Actualizar mensaje'}
                     }
                 ]
             },
