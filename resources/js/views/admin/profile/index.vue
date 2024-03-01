@@ -23,7 +23,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Apellido</label>
-                    <input type="text" v-model="profile.name" class="form-control" id="surname">
+                    <input type="text" v-model="profile.surname" class="form-control" id="surname">
                     <div class="text-danger mt-1">
                         {{ errors.surname }}
                     </div>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Teléfono</label>
-                    <input type="text" v-model="profile.name" class="form-control" id="phone">
+                    <input type="text" v-model="profile.phone" class="form-control" id="phone">
                     <div class="text-danger mt-1">
                         {{ errors.phone }}
                     </div>
@@ -87,10 +87,16 @@ defineRule('min', min);
     // Define actual fields for validation
     const { value: name } = useField('name', null, { initialValue: '' });
     const { value: email } = useField('email', null, { initialValue: '' });
+    const { value: surname } = useField('surname', null, { initialValue: '' });
+    const { value: phone } = useField('phone', null, { initialValue: '' });
+    const { value: profile_image } = useField('profile_image', null, { initialValue: '' });
     const { profile: profileData, getProfile, updateProfile, validationErrors, isLoading } = useProfile()
     const profile = reactive({
         name,
-        email
+        email,
+        surname,
+        phone,
+        profile_image
     })
     function submitForm() {
         validate().then(form => { if (form.valid) updateProfile(profile) })
@@ -102,5 +108,8 @@ defineRule('min', min);
     watchEffect(() => {
         profile.name = profileData.value.name
         profile.email = profileData.value.email
+        profile.surname = profileData.value.surname
+        profile.phone = profileData.value.phone
+        profile.profile_image = profileData.value.profile_image
     })
 </script>
