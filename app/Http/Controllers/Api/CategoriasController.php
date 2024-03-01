@@ -15,7 +15,7 @@ class CategoriasController extends Controller
         return $categorias;
     }
 
-    // Crear reseña
+    // Crear categoria
     public function store(Request $request){
 
         $request->validate([
@@ -28,14 +28,14 @@ class CategoriasController extends Controller
         return response()->json(['success' => true, 'data' => $categorias]);
     }
 
-    // Eliminar reseña
+    // Eliminar categoria
     public function destroy($id){
         $categoriaDelete = Categoria::find($id);
         $categoriaDelete->delete();
         return response()->json(['success' => true, 'data' => 'categoria eliminada correctamente']);
     }
 
-    // Actualizar reseña
+    // Actualizar categoria
     public function update($id, Request $request){
         $categoria = Categoria::find($id);
 

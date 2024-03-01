@@ -15,7 +15,7 @@ class RoomsController extends Controller
         return $rooms;
     }
 
-    // Crear reseña
+    // Crear sala
     public function store(Request $request){
 
         $request->validate([
@@ -30,14 +30,14 @@ class RoomsController extends Controller
         return response()->json(['success' => true, 'data' => $rooms]);
     }
 
-    // Eliminar reseña
+    // Eliminar sala
     public function destroy($id){
         $roomDelete = Room::find($id);
         $roomDelete->delete();
         return response()->json(['success' => true, 'data' => 'sala eliminada correctamente']);
     }
 
-    // Actualizar reseña
+    // Actualizar sala
     public function update($id, Request $request){
         $room = Room::find($id);
 
