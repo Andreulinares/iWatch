@@ -8,13 +8,31 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mt-2 mt-lg-0 me-auto mb-2 mb-lg-0">
                     <LocaleSwitcher />
+                    <li class="nav-item">
+                        <router-link to="/" class="nav-link" aria-current="page">{{ $t('home') }}</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/" class="nav-link" aria-current="page">Películas</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/" class="nav-link" aria-current="page">Series</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/" class="nav-link" aria-current="page">Novedades</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/" class="nav-link" aria-current="page">Salas</router-link>
+                    </li>
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0 ms-auto">
-                        <li class="nav-item">
-                            <router-link to="/" class="nav-link" aria-current="page">{{ $t('home') }}</router-link>
+                        <li>
+                            <input v-model="search_global" type="search" placeholder="Search..."
+                               class="form-control w-100">
                         </li>
-                        <li class="nav-item">
-                            <router-link :to="{ name : 'public-posts.index'}" class="nav-link">Blog</router-link>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                            </svg>
                         </li>
                     <template v-if="!user?.name">
                         <li class="nav-item">

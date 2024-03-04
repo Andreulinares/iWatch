@@ -19,6 +19,8 @@ class ProfileController extends Controller
         $profile->name = $request->name;
         $profile->email = $request->email;
         $profile->phone = $request->phone;
+        $profile->apellido = $request->apellido;
+        $profile->profile_image = $request->profile_image;
 
         if ($profile->save()) {
             return $this->successResponse($profile, 'User updated');;
