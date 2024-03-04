@@ -18,6 +18,7 @@ class ProfileController extends Controller
         $profile = Auth::user();
         $profile->name = $request->name;
         $profile->email = $request->email;
+        $profile->phone = $request->phone;
 
         if ($profile->save()) {
             return $this->successResponse($profile, 'User updated');;
