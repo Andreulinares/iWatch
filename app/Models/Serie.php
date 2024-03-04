@@ -17,6 +17,8 @@ class Serie extends Model
         "punctuation",
         "episodes",
         "duration",
-        "seasons"
+        "seasons",
+        "video",
+        "poster"
     ];
 }

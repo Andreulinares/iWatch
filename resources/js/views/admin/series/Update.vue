@@ -59,6 +59,16 @@
                     <input v-model="serie.seasons" type="number" class="form-control" min="0" placeholder="Temporadas">
                 </div>
 
+                <div class="form-group mb-2">
+                    <label>Video</label>
+                    <input v-model="serie.video" type="text" class="form-control" placeholder="Ruta de Video">
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Poster</label>
+                    <input v-model="serie.poster" type="text" class="form-control" placeholder="Imagen del poster">
+                </div>
+
 
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Actualizar serie</button>
 
@@ -101,6 +111,8 @@ const { value: punctuation } = useField('punctuation', null, { initialValue: '' 
 const { value: episodes } = useField('episodes', null, { initialValue: '' });
 const { value: duration } = useField('duration', null, { initialValue: '' });
 const { value: seasons } = useField('seasons', null, { initialValue: '' });
+const { value: video } = useField('video', null, { initialValue: '' });
+const { value: poster } = useField('poster', null, { initialValue: '' });
 
 
 const serie = reactive({
@@ -110,7 +122,9 @@ const serie = reactive({
     punctuation,
     episodes,
     duration,
-    seasons
+    seasons,
+    video,
+    poster
 })
 
 
@@ -128,6 +142,8 @@ onMounted(() => {
         serie.episodes = response.data.episodes;
         serie.duration = response.data.duration;
         serie.seasons = response.data.seasons;
+        serie.video = response.data.video;
+        serie.poster = response.data.poster;
     })
     .catch(function(error) {
         console.log(error);

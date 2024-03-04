@@ -20,6 +20,8 @@
                                 <th>Director</th>
                                 <th>Puntuación</th>
                                 <th>Duración</th>
+                                <th>Video</th>
+                                <th>Poster</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +32,8 @@
                                 <td>{{ film.director }}</td>
                                 <td>{{ film.punctuation }}</td>
                                 <td>{{ film.duration }}</td>
+                                <td>{{ film.video }}</td>
+                                <td>{{ film.poster }}</td>
                                 <td class="text-center">
                                     <router-link :to="{ name: 'films.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
                                     <button class="btn btn-danger" @click="deleteFilm(film.id, index)">Eliminar</button>
