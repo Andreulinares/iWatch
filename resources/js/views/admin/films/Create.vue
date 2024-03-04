@@ -36,6 +36,16 @@
                     <input v-model="film.duration" class="form-control" type="time" step="1" name="date_open"/>
                 </div>
 
+                <div class="form-group mb-2">
+                    <label>Video</label>
+                    <input v-model="film.video" type="text" class="form-control" placeholder="Ruta de Video">
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Poster</label>
+                    <input v-model="film.poster" type="text" class="form-control" placeholder="Imagen del poster">
+                </div>
+
 
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir película</button>
 

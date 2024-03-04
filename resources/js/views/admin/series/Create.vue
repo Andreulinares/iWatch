@@ -46,6 +46,16 @@
                     <input v-model="serie.seasons" type="number" class="form-control" min="0" placeholder="Temporadas">
                 </div>
 
+                <div class="form-group mb-2">
+                    <label>Video</label>
+                    <input v-model="serie.video" type="text" class="form-control" placeholder="Ruta de Video">
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Poster</label>
+                    <input v-model="serie.poster" type="text" class="form-control" placeholder="Imagen del poster">
+                </div>
+
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir serie</button>
 
 

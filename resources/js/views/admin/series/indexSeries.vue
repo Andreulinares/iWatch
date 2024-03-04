@@ -22,6 +22,8 @@
                                 <th>Nº de episodios</th>
                                 <th>Duración</th>
                                 <th>Nº de temporadas</th>
+                                <th>Video</th>
+                                <th>Poster</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,6 +36,8 @@
                                 <td>{{ serie.episodes }}</td>
                                 <td>{{ serie.duration }}</td>
                                 <td>{{ serie.seasons }}</td>
+                                <td>{{ serie.video }}</td>
+                                <td>{{ serie.poster }}</td>
                                 <td class="text-center">
                                     <router-link :to="{ name: 'series.update', params: { id: serie.id } }" class="btn btn-warning mr-1">Editar</router-link>
                                     <button class="btn btn-danger" @click="deleteSerie(serie.id, index)">Eliminar</button>

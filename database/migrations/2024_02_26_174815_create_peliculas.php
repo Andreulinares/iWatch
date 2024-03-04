@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('director');
             $table->integer('punctuation')->nullable();
             $table->time('duration');
+            $table->string('video');
+            $table->string('poster');
         });
     }
 

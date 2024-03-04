@@ -23,6 +23,8 @@ class FilmsController extends Controller
             'synopsis' => 'required',
             'director' => 'required',
             'duration' => 'required',
+            'video' => 'video',
+            'poster' => 'poster'
         ]);
 
         $filmData = $request->all();
@@ -48,7 +50,9 @@ class FilmsController extends Controller
             'synopsis' => 'required',
             'director' => 'required',
             'punctuation' => 'required',
-            'duration' => 'required'
+            'duration' => 'required',
+            'video' => 'video',
+            'poster' => 'poster'
         ]);
 
         $dataToUpdate = $request->all();

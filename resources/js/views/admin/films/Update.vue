@@ -49,6 +49,15 @@
                     <input class="form-control" type="time" step="1" v-model="film.duration" name="date_open" />
                 </div>
 
+                <div class="form-group mb-2">
+                    <label>Video</label>
+                    <input v-model="film.video" type="text" class="form-control" placeholder="Ruta de Video">
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Poster</label>
+                    <input v-model="film.poster" type="text" class="form-control" placeholder="Imagen del poster">
+                </div>
 
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Actualizar película</button>
 
@@ -89,6 +98,8 @@ const { value: synopsis } = useField('synopsis', null, { initialValue: '' });
 const { value: director } = useField('director', null, { initialValue: '' });
 const { value: punctuation } = useField('punctuation', null, { initialValue: '' });
 const { value: duration } = useField('duration', null, { initialValue: '' });
+const { value: video } = useField('video', null, { initialValue: '' });
+const { value: poster } = useField('poster', null, { initialValue: '' });
 
 
 const film = reactive({
@@ -96,7 +107,9 @@ const film = reactive({
     synopsis,
     director,
     punctuation,
-    duration
+    duration,
+    video,
+    poster
 })
 
 
@@ -112,6 +125,8 @@ onMounted(() => {
         film.director = response.data.director;
         film.punctuation = response.data.punctuation;
         film.duration = response.data.duration;
+        film.video = response.data.video;
+        film.poster = response.data.poster;
     })
     .catch(function(error) {
         console.log(error);

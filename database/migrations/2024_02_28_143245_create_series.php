@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('episodes');
             $table->time('duration');
             $table->integer('seasons');
+            $table->string('video');
+            $table->string('poster');
         });
     }
 

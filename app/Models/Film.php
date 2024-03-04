@@ -15,6 +15,8 @@ class Film extends Model
         "synopsis",
         "director",
         "punctuation",
-        "duration"
+        "duration",
+        "video",
+        "poster"
     ];
 }
