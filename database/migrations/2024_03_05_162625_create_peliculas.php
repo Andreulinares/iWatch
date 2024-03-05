@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('director');
             $table->integer('punctuation')->nullable();
             $table->time('duration');
-            $table->string('video');
-            $table->string('poster');
+            $table->string('episodes');
+            $table->string('seasons');
+            $table->string('type');
             $table->unsignedBigInteger('categoria_id')->nullable();
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
         });
