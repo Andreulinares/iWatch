@@ -50,6 +50,10 @@ const CategoriasList  = ()  => import('../views/admin/categorias/indexCategorias
 const CategoriasCreate = ()  => import('../views/admin/categorias/Create.vue');
 const CategoriasUpdate = () => import('../views/admin/categorias/Update.vue');
 
+
+// Peliculas home
+const HomeFilmsList  = ()  => import('../views/home/index.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -83,6 +87,11 @@ export default [
                 path: '/',
                 name: 'home',
                 component: () => import('../views/home/index.vue'),
+            },
+            {
+                path: '/filmsHome',
+                name: 'home-films',
+                component: HomeFilmsList,
             },
             {
                 path: 'posts',

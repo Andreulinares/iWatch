@@ -20,6 +20,11 @@ return new class extends Migration
             $table->time('duration');
             $table->string('video');
             $table->string('poster');
+            //$table->integer('category_id')->unsigned();
+            //$table->foreign('category_id')->references('id')->on('categorias');
+
+            //$table->unsignedBigInteger('categoria_id');
+            //$table->foreign('categoria_id')->references('id')->on('categorias');
         });
     }
 

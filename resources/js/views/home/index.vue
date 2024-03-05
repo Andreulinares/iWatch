@@ -126,9 +126,41 @@
 </div>
 
 
+
+    {{ films }}
+    <table class="table table-hover table-sm">
+        <tbody>
+            <tr>
+              <td v-for="(film, index) in films" :key="film.id">
+                  <img width="300" :src="film.poster" alt="">
+            </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
 </template>
 
 <script setup>
+import axios from "axios";
+import { ref, inject, onMounted } from "vue";
+
+const films = ref([]);
+const swal = inject('$swal');
+
+onMounted(() => {
+    axios.get('/api/films')
+        .then(response => {
+            films.value = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.error('Error fetching films:', error);
+        });
+});
+
 </script>
 
 <style>
