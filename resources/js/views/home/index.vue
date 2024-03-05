@@ -50,14 +50,6 @@
         </tbody>
     </table>
     -->
-    <!--
-    <vueper-slides>
-      <vueper-slide
-      v-for="(film, index) in films" :key="film.id"
-        :content="film.poster">
-      </vueper-slide>
-    </vueper-slides>
-    -->
     
 </template>
 
@@ -78,15 +70,6 @@ onMounted(() => {
             console.error('Error fetching films:', error);
         });
 });
-</script>
-
-<script>
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
-
-export default {
-  components: { VueperSlides, VueperSlide },
-}
 </script>
 
 <style>
