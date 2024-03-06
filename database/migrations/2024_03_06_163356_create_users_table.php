@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('profile_image')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->unsignedBigInteger('suscripcion_id')->nullable();
+            $table->foreign('suscripcion_id')->references('id')->on('suscripcions')->onDelete('cascade');
         });
     }
 

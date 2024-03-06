@@ -22,6 +22,10 @@ return new class extends Migration
             $table->integer('seasons');
             $table->string('video');
             $table->string('poster');
+            $table->unsignedBigInteger('categoria_id')->nullable();
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->unsignedBigInteger('sala_id')->nullable();
+            $table->foreign('sala_id')->references('id')->on('rooms')->onDelete('cascade');
         });
     }
 

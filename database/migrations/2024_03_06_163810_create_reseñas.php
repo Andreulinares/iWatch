@@ -16,6 +16,12 @@ return new class extends Migration
             $table->string('description');
             $table->integer('punctuation')->nullable();
             $table->dateTime('creation_date');
+            $table->unsignedBigInteger('usuario_id')->nullable();
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('pelicula_id')->nullable();
+            $table->foreign('pelicula_id')->references('id')->on('films')->onDelete('cascade');
+            $table->unsignedBigInteger('serie_id')->nullable();
+            $table->foreign('serie_id')->references('id')->on('series')->onDelete('cascade');
         });
     }
 
