@@ -20,8 +20,11 @@
                                 <th>Director</th>
                                 <th>Puntuación</th>
                                 <th>Duración</th>
-                                <th>Video</th>
+                                <th>Episodios</th>
+                                <th>Temporadas</th>
+                                <th>Tipo</th>
                                 <th>Poster</th>
+                                <th>Video</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +35,9 @@
                                 <td>{{ film.director }}</td>
                                 <td>{{ film.punctuation }}</td>
                                 <td>{{ film.duration }}</td>
+                                <td>{{ film.episodes }}</td>
+                                <td>{{ film.seasons }}</td>
+                                <td>{{ film.type }}</td>
                                 <td>{{ film.video }}</td>
                                 <td>{{ film.poster }}</td>
                                 <td class="text-center">

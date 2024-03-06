@@ -23,13 +23,18 @@ class FilmsController extends Controller
             'synopsis' => 'required',
             'director' => 'required',
             'duration' => 'required',
-            'video' => 'video',
-            'poster' => 'poster'
+            'episodes' => 'required',
+            'seasons' => 'required',
+            'type' => 'required',
         ]);
 
         $filmData = $request->all();
         $filmData['punctuation'] = 0;
         $peli = Film::create($filmData);
+
+        if ($request->hasFile('thumbnail')) {
+            $peli->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-films');
+        }
 
         return response()->json(['success' => true, 'data' => $peli]);
     }
