@@ -75,63 +75,92 @@
 
 
 <script setup>
-    import { ref,inject } from "vue";
+    import { ref } from "vue";
+    import axios from 'axios';
     import DropZone from "@/components/DropZone.vue";
-    import { useRouter } from 'vue-router'
+    import { useRouter } from 'vue-router';
+    import {useForm, useField, defineRule} from "vee-validate";
+    import {required, min} from "@/validation/rules"
 
     const film = ref({});
-
     const strError = ref();
     const strSuccess = ref();
+    const router = useRouter();
 
-    function addfilm(){
+    const schema = {
+        name: 'required',
+        synopsis: 'required',
+        director: 'required',
+        duration: 'required',
+        episodes: 'required|numeric',
+        seasons: 'required|numeric',
+        type: 'required',
+        thumbnail: 'required'
+    };
 
+    const { validate, errors } = useForm();
+const { value: name } = useField('name', null, { initialValue: '' });
+const { value: synopsis } = useField('synopsis', null, { initialValue: '' });
+const { value: director } = useField('director', null, { initialValue: '' });
+const { value: duration } = useField('duration', null, { initialValue: '' });
+const { value: episodes } = useField('episodes', null, { initialValue: '' });
+const { value: seasons } = useField('seasons', null, { initialValue: '' });
+const { value: type } = useField('type', null, { initialValue: '' });
+const isLoading = ref(false); // Agregar esta línea
+const validationErrors = ref({}); // Agregar esta línea
+
+
+
+    function addfilm() {
         axios.post('/api/films', film.value)
-        .then(response =>{
-            console.log(response);
-            strSuccess.value = response.data.success;
-            strError.value = "";
-        }).catch(error =>{
-            console.log(error);
-            strSuccess.value = "";
-            strError.value = error.response.data.message;
-        });
+            .then(response => {
+                console.log(response);
+                strSuccess.value = response.data.success;
+                strError.value = "";
+            }).catch(error => {
+                console.log(error);
+                strSuccess.value = "";
+                strError.value = error.response.data.message;
+            });
+
+            validate().then((success) => {
+        if (success) {
+            storeFilm(film.value);
+        }
+    });
     }
 
+    const storeFilm = async (film) => {
+        if (isLoading.value) return;
 
-const storeExercise = async (film) => {
-    if (isLoading.value) return;
+        isLoading.value = true;
+        validationErrors.value = {};
 
-    isLoading.value = true
-    validationErrors.value = {}
-
-    let serializedFilm = new FormData()
-    for (let item in film) {
-        if (film.hasOwnProperty(item)) {
-            serializedExercise.append(item, film[item])
+        let serializedFilm = new FormData();
+        for (let item in film) {
+            if (film.hasOwnProperty(item)) {
+                serializedFilm.append(item, film[item]);
+            }
         }
-    }
 
-    axios.post('/api/films', serializedFilm, {
-        headers: {
-            "content-type": "multipart/form-data"
-        }
-    })
-        .then(response => {
-            router.push({ name: 'films.indexFilms' })
+        axios.post('/api/films', serializedFilm, {
+            headers: {
+                "content-type": "multipart/form-data"
+            }
+        }).then(response => {
+            router.push({ name: 'films.indexFilms' });
             swal({
                 icon: 'success',
                 title: 'Exercise saved successfully'
-            })
-        })
-        .catch(error => {
+            });
+        }).catch(error => {
             if (error.response?.data) {
-                validationErrors.value = error.response.data.errors
+                validationErrors.value = error.response.data.errors;
             }
-        })
-        .finally(() => isLoading.value = false)
-}
+        }).finally(() => isLoading.value = false);
+    }
 </script>
+
 
 
 <style>
