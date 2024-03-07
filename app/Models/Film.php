@@ -22,7 +22,8 @@ class Film extends Model implements HasMedia
         "duration",
         "episodes",
         "seasons",
-        "type"
+        "type",
+        "categoria_id"
     ];
 
     public function registerMediaCollections(): void

@@ -52,23 +52,23 @@
                 </div>
 
                 <h6 class="mt-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-                </svg> Category
-            </h6>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                    </svg> Category
+                </h6>
 
-            <div class="mb-3">
-                <v-select multiple v-model="film.categoria_id" :options="categoryList"
-                            :reduce="category => film.categoria_id" label="name" class="form-control" placeholder="Selecciona una categoría"/>
-                <div class="text-danger mt-1">
-                    {{ errors.categoria_id }}
-                </div>
-                <div class="text-danger mt-1">
-                    <div v-for="message in validationErrors?.categoria_id">
-                        {{ message }}
+                <div class="mb-3">
+                    <v-select multiple v-model="film.categoria_id" :options="categoryList"
+                                :reduce="category => category.id" label="name" class="form-control" placeholder="Select category"/>
+                    <div class="text-danger mt-1">
+                        {{ errors.categories }}
+                    </div>
+                    <div class="text-danger mt-1">
+                        <div v-for="message in validationErrors?.categories">
+                            {{ message }}
+                        </div>
                     </div>
                 </div>
-            </div>
 
                 <h6 class="mt-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
@@ -94,17 +94,19 @@
 
 
 <script setup>
-    import { ref } from "vue";
+    import { onMounted, ref } from "vue";
     import axios from 'axios';
     import DropZone from "@/components/DropZone.vue";
     import { useRouter } from 'vue-router';
+    import useCategories from "@/composables/categories";
     import {useForm, useField, defineRule} from "vee-validate";
-    import {required, min} from "@/validation/rules"
+    import {required, min} from "@/validation/rules";
 
     const film = ref({});
     const strError = ref();
     const strSuccess = ref();
     const router = useRouter();
+    const {categoryList, getCategoryList} = useCategories()
 
     const schema = {
         name: 'required',
@@ -114,6 +116,7 @@
         episodes: 'required|numeric',
         seasons: 'required|numeric',
         type: 'required',
+        categoria_id: 'required',
         thumbnail: 'required'
     };
 
@@ -125,6 +128,7 @@ const { value: duration } = useField('duration', null, { initialValue: '' });
 const { value: episodes } = useField('episodes', null, { initialValue: '' });
 const { value: seasons } = useField('seasons', null, { initialValue: '' });
 const { value: type } = useField('type', null, { initialValue: '' });
+const { value: categoria_id } = useField('categoria_id', null, { initialValue: '' });
 const isLoading = ref(false); // Agregar esta línea
 const validationErrors = ref({}); // Agregar esta línea
 
@@ -178,6 +182,10 @@ const validationErrors = ref({}); // Agregar esta línea
             }
         }).finally(() => isLoading.value = false);
     }
+
+    onMounted(() => {
+        getCategoryList()
+    })
 </script>
 
 

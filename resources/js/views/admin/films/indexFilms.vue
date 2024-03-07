@@ -22,6 +22,7 @@
                                 <th>Duración</th>
                                 <th>Episodios</th>
                                 <th>Temporadas</th>
+                                <th>Categoría</th>
                                 <th>Tipo</th>
                                 <th>Poster</th>
                                 <th>Video</th>
@@ -37,6 +38,7 @@
                                 <td>{{ film.duration }}</td>
                                 <td>{{ film.episodes }}</td>
                                 <td>{{ film.seasons }}</td>
+                                <td>{{ film.categoria_id }}</td>
                                 <td>{{ film.type }}</td>
                                 <td><img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;"></td>
                                 <td>{{ film.video }}</td>

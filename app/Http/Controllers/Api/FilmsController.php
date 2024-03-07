@@ -15,6 +15,12 @@ class FilmsController extends Controller
         return $films;
     }
 
+    /*
+    public function getFilmByCat($id){
+        $filmByCat = Film::where('categoria_id', $id)->get();
+        return $filmByCat;
+    }
+    */
     
     // Crear pelicula
     public function store(Request $request){
