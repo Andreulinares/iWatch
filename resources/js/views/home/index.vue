@@ -9,9 +9,7 @@
     <section id="section1">
       <a href="#section3" class="arrow__btn left-arrow">‹</a>
       <div class="item" v-for="film in films" :key="film.id">
-        <a href="#">
-          <img width="300" :src="film.poster" alt="Describe Image">
-        </a>
+        <img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
       </div>
       <a href="#section2" class="arrow__btn right-arrow">›</a>
     </section>
@@ -19,9 +17,7 @@
     <section id="section2">
       <a href="#section1" class="arrow__btn left-arrow">‹</a>
       <div class="item" v-for="film in films" :key="film.id">
-        <a href="#">
-          <img width="300" :src="film.poster" alt="Describe Image">
-        </a>
+        <img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
       </div>
       <a href="#section3" class="arrow__btn right-arrow">›</a>
     </section>
@@ -29,9 +25,7 @@
     <section id="section3">
       <a href="#section2" class="arrow__btn left-arrow">‹</a>
       <div class="item" v-for="film in films" :key="film.id">
-        <a href="#">
-          <img width="300" :src="film.poster" alt="Describe Image">
-        </a>
+        <img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
       </div>
       <a href="#section1" class="arrow__btn right-arrow">›</a>
     </section>
@@ -70,6 +64,34 @@ onMounted(() => {
             console.error('Error fetching films:', error);
         });
 });
+
+const deleteFilm = (id, index) => {
+    swal({
+        title: '¿Quieres eliminar la película?',
+        text: '¡Esta acción no se puede deshacer!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        confirmButtonColor: '#ef4444',
+        timer: 20000,
+        timerProgressBar: true,
+        reverseButtons: true
+    })
+    .then(result => {
+        if (result.isConfirmed) {
+            films.value.splice(index, 1);
+            axios.delete(`/api/films/${id}`)
+            .then( response => {
+                swal({
+                    title: 'Película eliminada',
+                    icon: 'success',
+                    timer: 10000,
+                    timerProgressBar: true,
+                })
+            })
+        }
+    });
+}
 </script>
 
 <style>
