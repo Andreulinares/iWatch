@@ -35,6 +35,9 @@ Route::post('films/', [FilmsController::class, 'store']);
 Route::put('films/update/{id}',[FilmsController::class, 'update']);
 Route::delete('films/{id}',[FilmsController::class, 'destroy']);
 
+// Mostrar pelicula por ID
+Route::get('films/{filmId}', [FilmsController::class,'show']); 
+
 // Acciones admin series
 Route::get('series', [SeriesController::class,'index']);
 Route::post('series/', [SeriesController::class, 'store']);

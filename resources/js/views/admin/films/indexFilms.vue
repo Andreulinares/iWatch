@@ -10,7 +10,7 @@
                         </div>
                     </div>
 
-                    {{ films }}
+                    <!--{{ films }}-->
                     <table class="table table-hover table-sm">
                         <thead class="bg-dark text-light">
                             <tr>
@@ -38,8 +38,8 @@
                                 <td>{{ film.episodes }}</td>
                                 <td>{{ film.seasons }}</td>
                                 <td>{{ film.type }}</td>
+                                <td><img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;"></td>
                                 <td>{{ film.video }}</td>
-                                <td>{{ film.poster }}</td>
                                 <td class="text-center">
                                     <router-link :to="{ name: 'films.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
                                     <button class="btn btn-danger" @click="deleteFilm(film.id, index)">Eliminar</button>

@@ -10,7 +10,8 @@ class FilmsController extends Controller
 {
     // Listar peliculas
     public function index(){
-        $films = Film::all()->toArray();
+        $films = Film::with('media')->get();
+
         return $films;
     }
 
@@ -64,6 +65,11 @@ class FilmsController extends Controller
         $film->update($dataToUpdate);
 
         return response()->json(['success' => true, 'data' => $film]);
+    }
+
+    public function show($id){
+        $selectedFilms = Film::find($id);
+        return response()->json($selectedFilms);
     }
 
     /*
