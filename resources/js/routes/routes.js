@@ -121,6 +121,12 @@ export default [
                 beforeEnter: guest,
             },
             {
+                path: '/home',
+                name: 'home.index',
+                component: HomeFilmsList,
+                beforeEnter: requireLogin,
+            },
+            {
                 path: 'forgot-password',
                 name: 'auth.forgot-password',
                 component: () => import('../views/auth/passwords/Email.vue'),
