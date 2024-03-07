@@ -55,7 +55,7 @@ const films = ref([]);
 const swal = inject('$swal');
 
 onMounted(() => {
-    axios.get('/api/films')
+    axios.get('/api/films/' + 1)
         .then(response => {
             films.value = response.data;
             console.log(response.data);
