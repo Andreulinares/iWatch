@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('video');
             $table->string('poster');
             $table->unsignedBigInteger('categoria_id')->nullable();
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->foreign('categoria_id')->references('id')->on('categories')->onDelete('cascade');
             $table->unsignedBigInteger('sala_id')->nullable();
             $table->foreign('sala_id')->references('id')->on('rooms')->onDelete('cascade');
         });
