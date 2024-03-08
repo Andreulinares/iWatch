@@ -5,6 +5,26 @@
   
 </video>
 -->
+
+<video
+    id="my-video"
+    class="my-video vjs-default-skin"
+    controls
+    data-setup="{}"
+    autoplay
+    muted
+  >
+    <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+    <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/webm" />
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank"
+        >supports HTML5 video</a
+      >
+    </p>
+  </video>
+
 <div class="wrapper">
     <section id="section1">
       <a href="#section3" class="arrow__btn left-arrow">‹</a>
@@ -50,6 +70,7 @@
 <script setup>
 import axios from "axios";
 import { ref, inject, onMounted } from "vue";
+import 'https://vjs.zencdn.net/8.10.0/video.min.js';
 
 const films = ref([]);
 const swal = inject('$swal');
@@ -109,6 +130,10 @@ body {
   margin: 0;
   background-color: #000;
   font-family: Arial;
+}
+
+video{
+  width: 100%;
 }
 
 h1 {
