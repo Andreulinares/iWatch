@@ -20,6 +20,11 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+
+    <!-- Bootstrap carrousel styles -->
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+    
     <script>
         window.config = @json($config);
     </script>
