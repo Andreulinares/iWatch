@@ -183,6 +183,62 @@
         </section>
         -->
     
+    <!--
+        <div class="container">
+      <div class="slider-wrapper">
+        <button id="prev-slide" class="slide-button material-symbols-rounded">
+          L
+        </button>
+        <ul class="image-list">
+            <img class="image-item" src="https://imagenes.20minutos.es/files/image_640_auto/uploads/imagenes/2023/02/07/lo-imposible-j-a-bayona-2012.jpeg" alt="img-1" />
+            <img class="image-item" src="https://www.mubis.es/media/users/12828/321885/nuevo-poster-de-the-marvels-original.jpg" alt="img-1" />
+            <img class="image-item" src="https://cdn.oldskull.net/wp-content/uploads/2015/07/Flore-Maquin-movie-posters-illustration-fight-club-.jpg" alt="img-1" />
+            <img class="image-item" src="https://www.mubis.es/media/users/2514/306037/te-gustan-las-peliculas-de-terror-poster-de-scream-la-original-l_cover.jpg" alt="img-1" />
+            <img class="image-item" src="https://www.posterscine.com/media/catalog/product/cache/1c91d037a1f0ef180108abb0973795cc/o/p/oppenheimer_poster.png" alt="img-1" />
+            <img class="image-item" src="https://www.lahiguera.net/cinemania/pelicula/10138/nop-cartel-10474.jpg" alt="img-1" />
+            <img class="image-item" src="https://www.carlosvillarin.com/wp-content/uploads/cartel-ready-player-one-2-carlos-villarin-freelance.jpg" alt="img-1" />
+            <img class="image-item" src="https://imagenes.20minutos.es/files/image_640_auto/uploads/imagenes/2023/02/07/lo-imposible-j-a-bayona-2012.jpeg" alt="img-1" />
+            <img class="image-item" src="https://imagenes.20minutos.es/files/image_640_auto/uploads/imagenes/2023/02/07/lo-imposible-j-a-bayona-2012.jpeg" alt="img-1" />
+            <img class="image-item" src="https://imagenes.20minutos.es/files/image_640_auto/uploads/imagenes/2023/02/07/lo-imposible-j-a-bayona-2012.jpeg" alt="img-1" />
+        </ul>
+        <button id="next-slide" class="slide-button material-symbols-rounded">
+          R
+        </button>
+      </div>
+      <div class="slider-scrollbar">
+        <div class="scrollbar-track">
+          <div class="scrollbar-thumb"></div>
+        </div>
+      </div>
+    </div>
+-->
+
+    <div class="scrolling-buttons-container">
+        <span id="scrolling-button-left">👈</span>
+        <span id="scrolling-button-right">👉</span>
+    </div>
+
+    <div class="scrolling-container">
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+      <div class="scrolling-card"><h2>Soy una card Feliz</h2></div>
+    </div>
+
 </template>
 
 <script setup>
@@ -205,6 +261,7 @@ onMounted(() => {
         .catch(error => {
             console.error('Error fetching films:', error);
         });
+    addScrollEventListeners();
 });
 
 const deleteFilm = (id, index) => {
@@ -234,7 +291,97 @@ const deleteFilm = (id, index) => {
         }
     });
 }
+
+const addScrollEventListeners = () => {
+  const rightBtn = document.querySelector("#scrolling-button-right");
+  const leftBtn = document.querySelector("#scrolling-button-left");
+  const content = document.querySelector(".scrolling-container");
+
+  rightBtn.addEventListener("click", () => {
+    content.scrollLeft += 800;
+  });
+
+  leftBtn.addEventListener("click", () => {
+    content.scrollLeft -= 800;
+  });
+};
+
+// Codigo para el carrusel
+// ************************************************************************************************************************************************************************************************************************************************************************
+/*
+const initSlider = () => {
+    const imageList = document.querySelector(".slider-wrapper .image-list");
+    const slideButtons = document.querySelectorAll(".slider-wrapper .slide-button");
+    const sliderScrollbar = document.querySelector(".container .slider-scrollbar");
+    const scrollbarThumb = sliderScrollbar.querySelector(".scrollbar-thumb");
+    const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
+    
+    // Handle scrollbar thumb drag
+    scrollbarThumb.addEventListener("mousedown", (e) => {
+        const startX = e.clientX;
+        const thumbPosition = scrollbarThumb.offsetLeft;
+        const maxThumbPosition = sliderScrollbar.getBoundingClientRect().width - scrollbarThumb.offsetWidth;
+        
+        // Update thumb position on mouse move
+        const handleMouseMove = (e) => {
+            const deltaX = e.clientX - startX;
+            const newThumbPosition = thumbPosition + deltaX;
+
+            // Ensure the scrollbar thumb stays within bounds
+            const boundedPosition = Math.max(0, Math.min(maxThumbPosition, newThumbPosition));
+            const scrollPosition = (boundedPosition / maxThumbPosition) * maxScrollLeft;
+            
+            scrollbarThumb.style.left = `${boundedPosition}px`;
+            imageList.scrollLeft = scrollPosition;
+        }
+
+        // Remove event listeners on mouse up
+        const handleMouseUp = () => {
+            document.removeEventListener("mousemove", handleMouseMove);
+            document.removeEventListener("mouseup", handleMouseUp);
+        }
+
+        // Add event listeners for drag interaction
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", handleMouseUp);
+    });
+
+    // Slide images according to the slide button clicks
+    slideButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const direction = button.id === "prev-slide" ? -1 : 1;
+            const scrollAmount = imageList.clientWidth * direction;
+            imageList.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        });
+    });
+
+     // Show or hide slide buttons based on scroll position
+    const handleSlideButtons = () => {
+        slideButtons[0].style.display = imageList.scrollLeft <= 0 ? "none" : "flex";
+        slideButtons[1].style.display = imageList.scrollLeft >= maxScrollLeft ? "none" : "flex";
+    }
+
+    // Update scrollbar thumb position based on image scroll
+    const updateScrollThumbPosition = () => {
+        const scrollPosition = imageList.scrollLeft;
+        const thumbPosition = (scrollPosition / maxScrollLeft) * (sliderScrollbar.clientWidth - scrollbarThumb.offsetWidth);
+        scrollbarThumb.style.left = `${thumbPosition}px`;
+    }
+
+    // Call these two functions when image list scrolls
+    imageList.addEventListener("scroll", () => {
+        updateScrollThumbPosition();
+        handleSlideButtons();
+    });
+}
+
+window.addEventListener("resize", initSlider);
+window.addEventListener("load", initSlider);
+*/
+// ************************************************************************************************************************************************************************************************************************************************************************
+
 </script>
+
 
 <style>
 
@@ -262,6 +409,36 @@ h1 {
   text-align: center;
 }
 
+
+.scrolling-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.scrolling-card {
+  flex: 0 0 auto;
+  border: solid 1px black;
+  margin: 10px;
+  width: 250px;
+  height: 150px;
+  text-align: center;
+}
+
+.scrolling-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scrolling-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+/*
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3,100%);
@@ -326,4 +503,146 @@ h1 {
 
   }
 }
+*/
+
+/* ESTILOS CARRUSEL */
+/*
+.container {
+  width: 100%;
+  margin: 0;
+}
+
+.slider-wrapper {
+  position: relative;
+}
+
+.image-list{
+    background-color: red;
+}
+
+.slider-wrapper .slide-button {
+  position: absolute;
+  top: 50%;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 50px;
+  z-index: 5;
+  color: #fff;
+  display: flex;
+  cursor: pointer;
+  font-size: 2.2rem;
+  background: #000;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.slider-wrapper .slide-button:hover {
+  background: #404040;
+}
+
+.slider-wrapper .slide-button#prev-slide {
+  left: -25px;
+  display: none;
+}
+
+.slider-wrapper .slide-button#next-slide {
+  right: -25px;
+}
+
+.slider-wrapper .image-list {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 18px;
+  font-size: 0;
+  list-style: none;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.slider-wrapper .image-list::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-wrapper .image-list .image-item {
+  width: 325px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.container .slider-scrollbar {
+  height: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.slider-scrollbar .scrollbar-track {
+  background: #ccc;
+  width: 100%;
+  height: 2px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  position: relative;
+}
+
+.slider-scrollbar:hover .scrollbar-track {
+  height: 4px;
+}
+
+.slider-scrollbar .scrollbar-thumb {
+  position: absolute;
+  background: #000;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  height: 100%;
+  cursor: grab;
+  border-radius: inherit;
+}
+
+.slider-scrollbar .scrollbar-thumb:active {
+  cursor: grabbing;
+  height: 8px;
+  top: -2px;
+}
+
+.slider-scrollbar .scrollbar-thumb::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10px;
+  bottom: -10px;
+}
+
+*/
+/* Styles for mobile and tablets */
+/*
+@media only screen and (max-width: 1023px) {
+  .slider-wrapper .slide-button {
+    display: none !important;
+  }
+
+  .slider-wrapper .image-list {
+    gap: 10px;
+    margin-bottom: 15px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .slider-wrapper .image-list .image-item {
+    width: 280px;
+    height: 380px;
+  }
+
+  .slider-scrollbar .scrollbar-thumb {
+    width: 20%;
+  }
+}
+
+*/
 </style>
