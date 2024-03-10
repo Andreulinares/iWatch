@@ -1,22 +1,11 @@
 <template>
 
-  <video
-      id="my-video"
-      class="my-video vjs-default-skin"
-      data-setup="{}"
-      autoplay
-      muted
-    >
-      <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
-      <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/webm" />
-      <p class="vjs-no-js">
-        To view this video please enable JavaScript, and consider upgrading to a
-        web browser that
-        <a href="https://videojs.com/html5-video-support/" target="_blank"
-          >supports HTML5 video</a
-        >
-      </p>
-  </video>
+    <div class="container-fluid p-0">
+        <video id="my-video" class="my-video vjs-default-skin" data-setup="{}" autoplay muted loop>
+          <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+        </video>
+
+    </div>
 
     <!--
     <div class="wrapper">
@@ -57,8 +46,7 @@
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
         <div class="scrolling-card">
-            <img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" />
-            <h3>titulo</h3>
+            <img class="image-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" />
         </div>
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
@@ -69,6 +57,34 @@
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <video id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted>
+              <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+            </video>
+            <div class="buttons d-flex">
+              <button>Reproducir</button>
+              <button>Guardar</button>
+            </div>
+            <div class="info">
+              <p>Descripción</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
     </div>
 
 </template>
@@ -181,10 +197,9 @@ const addScrollEventListeners = () => {
     }
 
     .scrolling-card:hover{
-        transform: scale(1.1);
+        transform: scale(1.05);
         transition: transform 0.6s cubic-bezier(0, 0.55, 0.45, 1);
-        height: 250px;
-        overflow: visible;
+        cursor: pointer;
     }
 
     .scrolling-card:hover h3{
