@@ -12,16 +12,16 @@
                         <router-link to="/" class="nav-link" aria-current="page">{{ $t('home') }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/" class="nav-link" aria-current="page">Películas</router-link>
+                        <router-link to="/" class="nav-link" aria-current="page">{{ $t('films') }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/" class="nav-link" aria-current="page">Series</router-link>
+                        <router-link to="/" class="nav-link" aria-current="page">{{ $t('series') }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/" class="nav-link" aria-current="page">Novedades</router-link>
+                        <router-link to="/" class="nav-link" aria-current="page">{{ $t('news') }}</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/" class="nav-link" aria-current="page">Salas</router-link>
+                        <router-link to="/" class="nav-link" aria-current="page">{{ $t('rooms') }}</router-link>
                     </li>
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0 ms-auto">
