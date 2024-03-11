@@ -15,7 +15,7 @@ class FilmsTableSeeder extends Seeder
     public function run(): void
     {
         //
-        $numFilms = 10;
+        $numFilms = 20;
 
         // Usa un bucle para crear filas aleatorias
         for ($i = 0; $i < $numFilms; $i++) {

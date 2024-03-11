@@ -23,7 +23,7 @@ class FilmFactory extends Factory
             'episodes' => $this->faker->numberBetween(1, 20),
             'seasons' => $this->faker->numberBetween(1, 10),
             'type' => $this->faker->word,
-            'categoria_id' => $this->faker->numberBetween(1, 5), 
+            'categoria_id' => $this->faker->number(1), 
             'thumbnail' => $media->original_url,
         ];
     }

@@ -54,6 +54,11 @@ const CategoriasUpdate = () => import('../views/admin/categorias/Update.vue');
 // Peliculas home
 const HomeFilmsList  = ()  => import('../views/home/index.vue');
 
+const HomeFilms = () => import('../views/films/index.vue');
+const HomeSeries = () => import('../views/series/index.vue');
+const HomeRooms = () => import('../views/rooms/index.vue');
+const HomeNews = () => import('../views/news/index.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -85,7 +90,7 @@ export default [
            
             {
                 path: '/',
-                name: 'home',
+                name: 'Home',
                 component: () => import('../views/home/index.vue'),
             },
             {
@@ -93,6 +98,26 @@ export default [
                 name: 'home-films',
                 component: HomeFilmsList,
             },
+            {
+                path: '/films',
+                name: 'Films',
+                component: HomeFilms,
+              },
+              {
+                path: '/series',
+                name: 'Series',
+                component: HomeSeries,
+              },
+              {
+                path: '/news',
+                name: 'News',
+                component: HomeNews,
+              },
+              {
+                path: '/rooms',
+                name: 'Rooms',
+                component: HomeRooms,
+              },
             {
                 path: 'posts',
                 name: 'public-posts.index',
