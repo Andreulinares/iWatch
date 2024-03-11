@@ -35,14 +35,41 @@
     </div>
     -->
 
-    {{ films }}
+    <!-- {{ films }} -->
 
+    {{ categoryList }}
+
+    <div class="row" v-for="category in categoryList" :key="category.id">
+      <h2>{{ category.name }}</h2>
+      <div class="scrolling-buttons-container p-0 m-0">
+          <span id="scrolling-button-left">👈</span>
+          <span id="scrolling-button-right">👉</span>
+      </div>
+
+      <div id="scrollCont" class="scrolling-container p-0">
+          <div class="scrolling-card" v-for="film in films" :key="film.id">
+            <img class="image-item" width="248" :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
+          </div>
+      </div>
+    </div>
+
+    <div class="row m-0">
+      
+    </div>
+    
+
+    <!--
     <div class="scrolling-buttons-container">
         <span id="scrolling-button-left">👈</span>
         <span id="scrolling-button-right">👉</span>
     </div>
 
     <div id="scrollCont" class="scrolling-container">
+        
+        <div class="scrolling-card" v-for="film in films" :key="film.id">
+          <img class="image-item" width="248" :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
+        </div>
+
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
         <div class="scrolling-card">
@@ -58,6 +85,7 @@
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
         <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
     </div>
+    -->
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -96,10 +124,14 @@ import 'https://vjs.zencdn.net/8.10.0/video.min.js';
 
 import 'https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js';
 
+import useCategories from "@/composables/categories";
+
 
 const films = ref([]);
 const swal = inject('$swal');
+const {categoryList, getCategoryList} = useCategories()
 
+// Obtener peliculas por id
 onMounted(() => {
     axios.get('/api/films/' + 1)
         .then(response => {
@@ -109,7 +141,10 @@ onMounted(() => {
         .catch(error => {
             console.error('Error fetching films:', error);
         });
+    // Añadir animacion del carrusel por cada iteracion
     addScrollEventListeners();
+    // Obtener categorias
+    getCategoryList()
 });
 
 const deleteFilm = (id, index) => {
@@ -140,6 +175,7 @@ const deleteFilm = (id, index) => {
     });
 }
 
+// Animcación scroll carrusel
 const addScrollEventListeners = () => {
   const rightBtn = document.getElementById("scrolling-button-right");
   const leftBtn = document.getElementById("scrolling-button-left");
