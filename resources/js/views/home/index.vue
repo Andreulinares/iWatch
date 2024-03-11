@@ -125,6 +125,7 @@ import 'https://vjs.zencdn.net/8.10.0/video.min.js';
 import 'https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js';
 
 import useCategories from "@/composables/categories";
+import FilmsCarousel from "../../components/FilmsCarousel.vue";
 
 
 const films = ref([]);
