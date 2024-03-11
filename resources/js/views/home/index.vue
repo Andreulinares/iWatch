@@ -39,8 +39,21 @@
 
     {{ categoryList }}
 
-    <div class="row" v-for="category in categoryList" :key="category.id">
+    <div class="row m-0" v-for="category in categoryList" :key="category.id">
       <h2>{{ category.name }}</h2>
+      <div class="scrolling-buttons-container p-0 m-0">
+          <span id="scrolling-button-left">👈</span>
+          <span id="scrolling-button-right">👉</span>
+      </div>
+      <div id="scrollCont" class="scrolling-container p-0">
+          <div class="scrolling-card" v-for="film in films" :key="film.id">
+            <img @click="handleImageClick(film.id)" :id="film.id" class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="248" :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
+          </div>
+      </div>
+    </div>
+
+    <!-- Carrusel independiente -->
+    <div class="row m-0">
       <div class="scrolling-buttons-container p-0 m-0">
           <span id="scrolling-button-left">👈</span>
           <span id="scrolling-button-right">👉</span>
@@ -51,10 +64,6 @@
             <img class="image-item" width="248" :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
           </div>
       </div>
-    </div>
-
-    <div class="row m-0">
-      
     </div>
     
 
@@ -104,7 +113,7 @@
               <button>Guardar</button>
             </div>
             <div class="info">
-              <p>Descripción</p>
+              <p id="description"></p>
             </div>
           </div>
           <div class="modal-footer">
@@ -192,6 +201,15 @@ const addScrollEventListeners = () => {
   });
 };
 
+function handleImageClick(id) {
+  addInfoModal(id);
+}
+
+// Función para mostrar la información de la imagen seleccionada en el modal
+function addInfoModal(id) {
+  const descripcion = document.getElementById("description");
+  descripcion.innerHTML = films.value[0].synopsis;
+}
 
 </script>
 
