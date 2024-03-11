@@ -30,6 +30,10 @@ class SeriesController extends Controller
         $serieData['punctuation'] = 0;
         $serie = Serie::create($serieData);
 
+        if ($request->hasFile('thumbnail')) {
+            $serie->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-films');
+        }
+
         return response()->json(['success' => true, 'data' => $serie]);
     }
 

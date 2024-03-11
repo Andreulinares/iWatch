@@ -37,7 +37,7 @@
                                 <td>{{ serie.duration }}</td>
                                 <td>{{ serie.seasons }}</td>
                                 <td>{{ serie.video }}</td>
-                                <td>{{ serie.poster }}</td>
+                                <td><img :src="serie.media.length > 0 ? serie.media[0].original_url : '/images/placeholder.jpg'" :alt="serie.name" style="max-height: 100px;"></td>
                                 <td class="text-center">
                                     <router-link :to="{ name: 'series.update', params: { id: serie.id } }" class="btn btn-warning mr-1">Editar</router-link>
                                     <button class="btn btn-danger" @click="deleteSerie(serie.id, index)">Eliminar</button>

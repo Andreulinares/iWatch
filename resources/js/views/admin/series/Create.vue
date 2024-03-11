@@ -46,14 +46,16 @@
                     <input v-model="serie.seasons" type="number" class="form-control" min="0" placeholder="Temporadas">
                 </div>
 
-                <div class="form-group mb-2">
-                    <label>Video</label>
-                    <input v-model="serie.video" type="text" class="form-control" placeholder="Ruta de Video">
-                </div>
-
-                <div class="form-group mb-2">
-                    <label>Poster</label>
-                    <input v-model="serie.poster" type="text" class="form-control" placeholder="Imagen del poster">
+                <h6 class="mt-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                    </svg> Thumbnail
+                </h6>
+                <DropZone v-model="serie.thumbnail"/>
+                <div class="text-danger mt-1">
+                    <div v-for="message in validationErrors?.thumbnail">
+                        {{ message }}
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir serie</button>
@@ -68,12 +70,38 @@
 
 
 <script setup>
-    import { ref } from "vue";
+    import { onMounted, ref } from "vue";
+    import axios from 'axios';
+    import DropZone from "@/components/DropZone.vue";
+    import { useRouter } from 'vue-router';
+    import useCategories from "@/composables/categories";
+    import {useForm, useField, defineRule} from "vee-validate";
+    import {required, min} from "@/validation/rules";
 
     const serie = ref({});
 
     const strError = ref();
     const strSuccess = ref();
+    const router = useRouter();
+    const schema = {
+        name: 'required',
+        synopsis: 'required',
+        director: 'required',
+        duration: 'required',
+        episodes: 'required|numeric',
+        seasons: 'required|numeric',
+        thumbnail: 'required'
+    };
+
+const { validate, errors } = useForm();
+const { value: name } = useField('name', null, { initialValue: '' });
+const { value: synopsis } = useField('synopsis', null, { initialValue: '' });
+const { value: director } = useField('director', null, { initialValue: '' });
+const { value: duration } = useField('duration', null, { initialValue: '' });
+const { value: episodes } = useField('episodes', null, { initialValue: '' });
+const { value: seasons } = useField('seasons', null, { initialValue: '' });
+const isLoading = ref(false); // Agregar esta línea
+const validationErrors = ref({}); // Agregar esta línea
 
     function addserie(){
         axios.post('/api/series', serie.value)
@@ -86,6 +114,36 @@
             strSuccess.value = "";
             strError.value = error.response.data.message;
         });
+    }
+
+    const storeSerie = async (serie) => {
+        if (isLoading.value) return;
+
+        isLoading.value = true;
+        validationErrors.value = {};
+
+        let serializedSerie = new FormData();
+        for (let item in film) {
+            if (serie.hasOwnProperty(item)) {
+                serializedSerie.append(item, serie[item]);
+            }
+        }
+
+        axios.post('/api/series', serializedSerie, {
+            headers: {
+                "content-type": "multipart/form-data"
+            }
+        }).then(response => {
+            router.push({ name: 'series.indexSeries' });
+            swal({
+                icon: 'success',
+                title: 'Exercise saved successfully'
+            });
+        }).catch(error => {
+            if (error.response?.data) {
+                validationErrors.value = error.response.data.errors;
+            }
+        }).finally(() => isLoading.value = false);
     }
 </script>
 

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('episodes');
             $table->time('duration');
             $table->integer('seasons');
-            $table->string('video');
-            $table->string('poster');
+            $table->string('video')->nullable();
+            $table->string('poster')->nullable();
             $table->unsignedBigInteger('categoria_id')->nullable();
             $table->foreign('categoria_id')->references('id')->on('categories')->onDelete('cascade');
             $table->unsignedBigInteger('sala_id')->nullable();
