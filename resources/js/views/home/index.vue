@@ -4,36 +4,7 @@
         <video id="my-video" class="my-video vjs-default-skin" data-setup="{}" autoplay muted loop>
           <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
         </video>
-
     </div>
-
-    <!--
-    <div class="wrapper">
-      <section id="section1">
-        <a href="#section3" class="arrow__btn left-arrow">‹</a>
-        <div class="item" v-for="film in films" :key="film.id">
-          <img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
-        </div>
-        <a href="#section2" class="arrow__btn right-arrow">›</a>
-      </section>
-
-      <section id="section2">
-        <a href="#section1" class="arrow__btn left-arrow">‹</a>
-        <div class="item" v-for="film in films" :key="film.id">
-          <img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
-        </div>
-        <a href="#section3" class="arrow__btn right-arrow">›</a>
-      </section>
-
-      <section id="section3">
-        <a href="#section2" class="arrow__btn left-arrow">‹</a>
-        <div class="item" v-for="film in films" :key="film.id">
-          <img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
-        </div>
-        <a href="#section1" class="arrow__btn right-arrow">›</a>
-      </section>
-    </div>
-    -->
 
     <!-- {{ films }} -->
 
@@ -41,7 +12,7 @@
 
     <div class="row m-0" v-for="category in categoryList" :key="category.id">
       <h2>{{ category.name }}</h2>
-     <FilmsCarousel :peliculas="films" />
+      <FilmsCarousel :peliculas="getFilmsByCategory(category.id)" />
     </div>
 
     <!-- Carrusel independiente -->
@@ -57,36 +28,6 @@
           </div>
       </div>
     </div>
-    
-
-    <!--
-    <div class="scrolling-buttons-container">
-        <span id="scrolling-button-left">👈</span>
-        <span id="scrolling-button-right">👉</span>
-    </div>
-
-    <div id="scrollCont" class="scrolling-container">
-        
-        <div class="scrolling-card" v-for="film in films" :key="film.id">
-          <img class="image-item" width="248" :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
-        </div>
-
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-        <div class="scrolling-card">
-            <img class="image-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" />
-        </div>
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-        <div class="scrolling-card"><img class="image-item" width="248" src="https://3.bp.blogspot.com/-WAh31aMjams/Vg1tYoCafmI/AAAAAAAAClo/TaeTNSsb1ww/s1600/regresion_cartel_horizontal_promociones.jpg" alt="img-1" /></div>
-    </div>
-    -->
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -136,7 +77,7 @@ const {categoryList, getCategoryList} = useCategories()
 
 // Obtener peliculas por id
 onMounted(() => {
-    axios.get('/api/films/' + 1)
+    axios.get('/api/films/')
         .then(response => {
             films.value = response.data;
             console.log(response.data);
@@ -205,6 +146,11 @@ function addInfoModal(id) {
   descripcion.innerHTML = films.value[id - 1].synopsis;
 }
 
+
+// Función para filtrar las películas por categoría
+const getFilmsByCategory = categoryId => {
+  return films.value.filter(film => film.categoria_id == categoryId);
+};
 </script>
 
 
