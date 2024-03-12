@@ -48,8 +48,5 @@
         color: white;
         font-size: 25px;
     }
-    .buscador{
-
-    }
 
 </style>
