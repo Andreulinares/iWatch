@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-dark bg-black shadow-sm">
         <div class="container">
             <router-link to="/" class="navbar-brand">DAW 2</router-link>
             <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,3 +71,14 @@ import LocaleSwitcher from "../components/LocaleSwitcher.vue";
     const user = computed(() => store.getters["auth/user"])
     const { processing, logout } = useAuth();
 </script>
+
+<style>
+    .navbar-nav .nav-link,
+    .navbar-toggler-icon {
+        color: white;
+    }
+
+    .form-control {
+        color: black; /* Cambia el color del texto del campo de búsqueda */
+    }
+</style>
