@@ -40,7 +40,8 @@
     {{ categoryList }}
 
     <div class="row m-0" v-for="category in categoryList" :key="category.id">
-     
+      <h2>{{ category.name }}</h2>
+     <FilmsCarousel :peliculas="films" />
     </div>
 
     <!-- Carrusel independiente -->
@@ -125,7 +126,8 @@ import 'https://vjs.zencdn.net/8.10.0/video.min.js';
 import 'https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js';
 
 import useCategories from "@/composables/categories";
-import FilmsCarousel from "../../components/FilmsCarousel.vue";
+import FilmsCarousel from "@/components/FilmsCarousel.vue";
+
 
 
 const films = ref([]);
