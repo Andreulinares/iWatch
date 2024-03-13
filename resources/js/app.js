@@ -21,13 +21,13 @@ import PrimeVue from "primevue/config";
 //import Badge from 'primevue/badge';
 //import BadgeDirective from 'primevue/badgedirective';
 //import BlockUI from 'primevue/blockui';
-//import Button from 'primevue/button';
+import Button from 'primevue/button';
 //import Breadcrumb from 'primevue/breadcrumb';
 //import Calendar from 'primevue/calendar';
 //import Card from 'primevue/card';
 //import Chart from 'primevue/chart';
 //import CascadeSelect from 'primevue/cascadeselect';
-//import Carousel from 'primevue/carousel';
+import Carousel from 'primevue/carousel';
 //import Checkbox from 'primevue/checkbox';
 //import Chip from 'primevue/chip';
 //import Chips from 'primevue/chips';
@@ -99,7 +99,7 @@ import ToastService from 'primevue/toastservice';
 //import Toolbar from 'primevue/toolbar';
 //import TabView from 'primevue/tabview';
 //import TabPanel from 'primevue/tabpanel';
-//import Tag from 'primevue/tag';
+import Tag from 'primevue/tag';
 //import Terminal from 'primevue/terminal';
 //import Timeline from 'primevue/timeline';
 //import ToggleButton from 'primevue/togglebutton';
@@ -117,10 +117,12 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import 'vue-select/dist/vue-select.css';
 
 import "primeflex/primeflex.css";
-import '../css/theme.css';
-//import "primevue/resources/themes/lara-light-teal/theme.css";
+
+import "primevue/resources/themes/lara-light-teal/theme.css";
 //import "primevue/resources/themes/viva-light/theme.css";
 import "primeicons/primeicons.css";
+
+import '../css/theme.css';
 
 const app = createApp({
     created() {
@@ -160,11 +162,11 @@ app.use(ConfirmationService);
 //app.component('Badge', Badge);
 //app.component('BlockUI', BlockUI);
 //app.component('Breadcrumb', Breadcrumb);
-//app.component('Button', Button);
+app.component('Button', Button);
 //app.component('Calendar', Calendar);
 //app.component('Card', Card);
 //app.component('Chart', Chart);
-//app.component('Carousel', Carousel);
+app.component('Carousel', Carousel);
 //app.component('CascadeSelect', CascadeSelect);
 //app.component('Checkbox', Checkbox);
 //app.component('Chip', Chip);
@@ -228,7 +230,7 @@ app.component('MultiSelect', MultiSelect);
 //app.component('TabMenu', TabMenu);
 //app.component('TabView', TabView);
 //app.component('TabPanel', TabPanel);
-//app.component('Tag', Tag);
+app.component('Tag', Tag);
 //app.component('Textarea', Textarea);
 //app.component('Terminal', Terminal);
 //app.component('TieredMenu', TieredMenu);

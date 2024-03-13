@@ -73,12 +73,5 @@ import LocaleSwitcher from "../components/LocaleSwitcher.vue";
 </script>
 
 <style>
-    .navbar-nav .nav-link,
-    .navbar-toggler-icon {
-        color: white;
-    }
-
-    .form-control {
-        color: black; /* Cambia el color del texto del campo de búsqueda */
-    }
+    
 </style>

@@ -12,7 +12,23 @@
 
     <div class="row m-0" v-for="category in categoryList" :key="category.id">
       <h2>{{ category.name }}</h2>
-      <FilmsCarousel :peliculas="getFilmsByCategory(category.id)" />
+      <Carousel :value="films" :numVisible="5" :numScroll="3" :responsiveOptions="responsiveOptions">
+            <template #item="slotProps">
+                <div class="border-1 surface-border border-round m-2  p-3">
+                    <div class="mb-3">
+                        <div class="relative mx-auto">
+                            <FilmsCarousel :peliculas="getFilmsByCategory(category.id)"/>
+                        </div>
+                    </div>
+                    <div class="mb-3 font-medium">{{ slotProps.data.name }}</div>
+                    <div class="flex justify-content-between align-items-center">
+                        <span>
+                            <Button icon="pi pi-heart" severity="secondary" outlined />
+                        </span>
+                    </div>
+                </div>
+            </template>
+        </Carousel>
     </div>
 
     <!-- Carrusel independiente -->
@@ -28,6 +44,8 @@
           </div>
       </div>
     </div>
+
+    
 
     
 
@@ -48,6 +66,187 @@ import FilmsCarousel from "@/components/FilmsCarousel.vue";
 const films = ref([]);
 const swal = inject('$swal');
 const {categoryList, getCategoryList} = useCategories()
+
+const responsiveOptions = ref([
+    {
+        breakpoint: '1400px',
+        numVisible: 2,
+        numScroll: 1
+    },
+    {
+        breakpoint: '1199px',
+        numVisible: 3,
+        numScroll: 1
+    },
+    {
+        breakpoint: '767px',
+        numVisible: 2,
+        numScroll: 1
+    },
+    {
+        breakpoint: '575px',
+        numVisible: 1,
+        numScroll: 1
+    }
+]);
+
+const products = ref([
+                {
+                    id: '1000',
+                    code: 'f230fh0g3',
+                    name: 'Bamboo Watch',
+                    description: 'Product Description',
+                    image: 'bamboo-watch.jpg',
+                    price: 65,
+                    category: 'Accessories',
+                    quantity: 24,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 5
+                },
+                {
+                    id: '1001',
+                    code: 'nvklal433',
+                    name: 'Black Watch',
+                    description: 'Product Description',
+                    image: 'black-watch.jpg',
+                    price: 72,
+                    category: 'Accessories',
+                    quantity: 61,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 4
+                },
+                {
+                    id: '1002',
+                    code: 'zz21cz3c1',
+                    name: 'Blue Band',
+                    description: 'Product Description',
+                    image: 'blue-band.jpg',
+                    price: 79,
+                    category: 'Fitness',
+                    quantity: 2,
+                    inventoryStatus: 'LOWSTOCK',
+                    rating: 3
+                }, 
+                {
+                    id: '1000',
+                    code: 'f230fh0g3',
+                    name: 'Bamboo Watch',
+                    description: 'Product Description',
+                    image: 'bamboo-watch.jpg',
+                    price: 65,
+                    category: 'Accessories',
+                    quantity: 24,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 5
+                },
+                {
+                    id: '1000',
+                    code: 'f230fh0g3',
+                    name: 'Bamboo Watch',
+                    description: 'Product Description',
+                    image: 'bamboo-watch.jpg',
+                    price: 65,
+                    category: 'Accessories',
+                    quantity: 24,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 5
+                },
+                {
+                    id: '1000',
+                    code: 'f230fh0g3',
+                    name: 'Bamboo Watch',
+                    description: 'Product Description',
+                    image: 'bamboo-watch.jpg',
+                    price: 65,
+                    category: 'Accessories',
+                    quantity: 24,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 5
+                },
+                {
+                    id: '1000',
+                    code: 'f230fh0g3',
+                    name: 'Bamboo Watch',
+                    description: 'Product Description',
+                    image: 'bamboo-watch.jpg',
+                    price: 65,
+                    category: 'Accessories',
+                    quantity: 24,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 5
+                },
+                {
+                    id: '1000',
+                    code: 'f230fh0g3',
+                    name: 'Bamboo Watch',
+                    description: 'Product Description',
+                    image: 'bamboo-watch.jpg',
+                    price: 65,
+                    category: 'Accessories',
+                    quantity: 24,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 5
+                },
+                {
+                    id: '1000',
+                    code: 'f230fh0g3',
+                    name: 'Bamboo Watch',
+                    description: 'Product Description',
+                    image: 'bamboo-watch.jpg',
+                    price: 65,
+                    category: 'Accessories',
+                    quantity: 24,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 5
+                },
+                {
+                    id: '1000',
+                    code: 'f230fh0g3',
+                    name: 'Bamboo Watch',
+                    description: 'Product Description',
+                    image: 'bamboo-watch.jpg',
+                    price: 65,
+                    category: 'Accessories',
+                    quantity: 24,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 5
+                },
+                {
+                    id: '1000',
+                    code: 'f230fh0g3',
+                    name: 'Bamboo Watch',
+                    description: 'Product Description',
+                    image: 'bamboo-watch.jpg',
+                    price: 65,
+                    category: 'Accessories',
+                    quantity: 24,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 5
+                },
+                {
+                    id: '1000',
+                    code: 'f230fh0g3',
+                    name: 'Bamboo Watch',
+                    description: 'Product Description',
+                    image: 'bamboo-watch.jpg',
+                    price: 65,
+                    category: 'Accessories',
+                    quantity: 24,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 5
+                },
+                {
+                    id: '1001',
+                    code: 'nvklal433',
+                    name: 'Black Watch',
+                    description: 'Product Description',
+                    image: 'black-watch.jpg',
+                    price: 72,
+                    category: 'Accessories',
+                    quantity: 61,
+                    inventoryStatus: 'INSTOCK',
+                    rating: 4
+                }])
 
 // Obtener peliculas por id
 onMounted(() => {
@@ -132,11 +331,11 @@ const getFilmsByCategory = categoryId => {
     }
 
     .scrolling-card {
-    background-color: #141414;
+    background-color: white;
     flex: 0 0 auto;
     margin: 5px;
-    width: 250px;
-    height: 150px;
+    width: 300px;
+    height: 190px;
     text-align: center;
     overflow: hidden;
     border-radius: 5px;

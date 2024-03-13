@@ -1,15 +1,14 @@
 <template>
-    <div class="container">
+    <div class="container loginPage">
         <div class="row justify-content-center my-5">
             <div class="col-md-6">
-                <div class="card border-0 shadow-sm">
+                <div class="contenedorInputs card border-0 shadow-sm">
                     <div class="card-body">
                         <form @submit.prevent="submitLogin">
                             <div class="">
                                 <!-- Email -->
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">{{ $t('email') }}</label>
-                                    <input v-model="loginForm.email" id="email" type="email" class="form-control" required autofocus autocomplete="username">
+                                    <input v-model="loginForm.email" id="email" type="email" class="form-control reqInfo" :placeholder="$t('email')" required autofocus autocomplete="username">
                                     <!-- Validation Errors -->
                                     <div class="text-danger mt-1">
                                         <div v-for="message in validationErrors?.email">
@@ -19,10 +18,7 @@
                                 </div>
                                 <!-- Password -->
                                 <div class="mb-4">
-                                    <label for="password" class="form-label">
-                                        {{ $t('password') }}
-                                    </label>
-                                    <input v-model="loginForm.password" id="password" type="password" class="form-control" required autocomplete="current-password">
+                                    <input v-model="loginForm.password" id="password" type="password" class="form-control reqInfo" :placeholder="$t('password')" required autocomplete="current-password">
                                     <!-- Validation Errors -->
                                     <div class="text-danger-600 mt-1">
                                         <div v-for="message in validationErrors?.password">
@@ -40,7 +36,7 @@
 
                                 <!-- Buttons -->
                                 <div class="flex items-center justify-end mt-4">
-                                    <button class="btn btn-primary" :class="{ 'opacity-25': processing }" :disabled="processing">
+                                    <button class="btn btn-primary accion" :class="{ 'opacity-25': processing }" :disabled="processing">
                                         {{ $t('login') }}
                                     </button>
                                 </div>
@@ -61,3 +57,26 @@ import useAuth from '@/composables/auth'
 const { loginForm, validationErrors, processing, submitLogin } = useAuth();
 
 </script>
+
+<style>
+    .loginPage {
+        position: relative; /* Añade posición relativa al cuerpo */
+    }
+
+    /* Pseudo-elemento para aplicar el filtro */
+    .loginPage::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("C:\xampp2\htdocs\Laravel\iWatch\public\images\fondoLogin.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: -1; /* Coloca el pseudo-elemento detrás del contenido */
+        filter: blur(1px) brightness(46%);
+        -webkit-filter: blur(1px) brightness(46%);
+        -moz-filter: blur(1px) brightness(46%);
+    }
+</style>
