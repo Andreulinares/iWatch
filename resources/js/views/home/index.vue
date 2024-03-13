@@ -1,320 +1,81 @@
 <template>
-
     <div class="container-fluid p-0">
-        <video id="my-video" class="my-video vjs-default-skin" data-setup="{}" autoplay muted loop>
-          <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
-        </video>
-    </div>
-
-    <!-- {{ films }} -->
-
-    {{ categoryList }}
-
-    <div class="row m-0" v-for="category in categoryList" :key="category.id">
-      <h2>{{ category.name }}</h2>
-      <Carousel :value="films" :numVisible="5" :numScroll="3" :responsiveOptions="responsiveOptions">
-            <template #item="slotProps">
-                <div class="border-1 surface-border border-round m-2  p-3">
-                    <div class="mb-3">
-                        <div class="relative mx-auto">
-                            <FilmsCarousel :peliculas="getFilmsByCategory(category.id)"/>
-                        </div>
-                    </div>
-                    <div class="mb-3 font-medium">{{ slotProps.data.name }}</div>
-                    <div class="flex justify-content-between align-items-center">
-                        <span>
-                            <Button icon="pi pi-heart" severity="secondary" outlined />
-                        </span>
-                    </div>
-                </div>
-            </template>
+      <video id="my-video" class="my-video vjs-default-skin" data-setup="{}" autoplay muted loop>
+        <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+      </video>
+      
+  
+      <!-- Iterar sobre las categorías -->
+      <div class="row m-0" v-for="category in categoryList" :key="category.id">
+        <h2>{{ category.name }}</h2>
+  
+        <!-- Utilizar el componente Carousel para mostrar las películas -->
+        <Carousel :value="getFilmsByCategory(category.id)" :numVisible="5" :numScroll="3" :responsiveOptions="responsiveOptions">
+          <template #item="slotProps">
+            <div class="border-1 surface-border border-round m-2 p-3">
+              <div class="mb-3">
+                <img class="image-item" width="248" :src="slotProps.data.media.length > 0 ? slotProps.data.media[0].original_url : '/images/placeholder.jpg'" :alt="slotProps.data.name" style="max-height: 100px;">
+              </div>
+              <div class="mb-3 font-medium">{{ slotProps.data.name }}</div>
+              <div class="flex justify-content-between align-items-center">
+                <span>
+                  <Button icon="pi pi-heart" severity="secondary" outlined />
+                </span>
+              </div>
+            </div>
+          </template>
         </Carousel>
-    </div>
-
-    <!-- Carrusel independiente -->
-    <div class="row m-0">
-      <div class="scrolling-buttons-container p-0 m-0">
-          <span id="scrolling-button-left">👈</span>
-          <span id="scrolling-button-right">👉</span>
-      </div>
-
-      <div id="scrollCont" class="scrolling-container p-0">
-          <div class="scrolling-card" v-for="film in films" :key="film.id">
-            <img class="image-item" width="248" :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
-          </div>
       </div>
     </div>
-
-    
-
-    
-
-</template>
-
-<script setup>
-import axios from "axios";
-import { ref, inject, onMounted } from "vue";
-import 'https://vjs.zencdn.net/8.10.0/video.min.js';
-
-import 'https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js';
-
-import useCategories from "@/composables/categories";
-import FilmsCarousel from "@/components/FilmsCarousel.vue";
-
-
-
-const films = ref([]);
-const swal = inject('$swal');
-const {categoryList, getCategoryList} = useCategories()
-
-const responsiveOptions = ref([
+  </template>
+  
+  <script setup>
+  import axios from "axios";
+  import { ref, onMounted } from "vue";
+  import useCategories from "@/composables/categories";
+  
+  const films = ref([]);
+  const { categoryList, getCategoryList } = useCategories();
+  
+  const responsiveOptions = ref([
     {
-        breakpoint: '1400px',
-        numVisible: 2,
-        numScroll: 1
+      breakpoint: '1400px',
+      numVisible: 2,
+      numScroll: 1
     },
     {
-        breakpoint: '1199px',
-        numVisible: 3,
-        numScroll: 1
+      breakpoint: '1199px',
+      numVisible: 3,
+      numScroll: 1
     },
     {
-        breakpoint: '767px',
-        numVisible: 2,
-        numScroll: 1
+      breakpoint: '767px',
+      numVisible: 2,
+      numScroll: 1
     },
     {
-        breakpoint: '575px',
-        numVisible: 1,
-        numScroll: 1
+      breakpoint: '575px',
+      numVisible: 1,
+      numScroll: 1
     }
-]);
-
-const products = ref([
-                {
-                    id: '1000',
-                    code: 'f230fh0g3',
-                    name: 'Bamboo Watch',
-                    description: 'Product Description',
-                    image: 'bamboo-watch.jpg',
-                    price: 65,
-                    category: 'Accessories',
-                    quantity: 24,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 5
-                },
-                {
-                    id: '1001',
-                    code: 'nvklal433',
-                    name: 'Black Watch',
-                    description: 'Product Description',
-                    image: 'black-watch.jpg',
-                    price: 72,
-                    category: 'Accessories',
-                    quantity: 61,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 4
-                },
-                {
-                    id: '1002',
-                    code: 'zz21cz3c1',
-                    name: 'Blue Band',
-                    description: 'Product Description',
-                    image: 'blue-band.jpg',
-                    price: 79,
-                    category: 'Fitness',
-                    quantity: 2,
-                    inventoryStatus: 'LOWSTOCK',
-                    rating: 3
-                }, 
-                {
-                    id: '1000',
-                    code: 'f230fh0g3',
-                    name: 'Bamboo Watch',
-                    description: 'Product Description',
-                    image: 'bamboo-watch.jpg',
-                    price: 65,
-                    category: 'Accessories',
-                    quantity: 24,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 5
-                },
-                {
-                    id: '1000',
-                    code: 'f230fh0g3',
-                    name: 'Bamboo Watch',
-                    description: 'Product Description',
-                    image: 'bamboo-watch.jpg',
-                    price: 65,
-                    category: 'Accessories',
-                    quantity: 24,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 5
-                },
-                {
-                    id: '1000',
-                    code: 'f230fh0g3',
-                    name: 'Bamboo Watch',
-                    description: 'Product Description',
-                    image: 'bamboo-watch.jpg',
-                    price: 65,
-                    category: 'Accessories',
-                    quantity: 24,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 5
-                },
-                {
-                    id: '1000',
-                    code: 'f230fh0g3',
-                    name: 'Bamboo Watch',
-                    description: 'Product Description',
-                    image: 'bamboo-watch.jpg',
-                    price: 65,
-                    category: 'Accessories',
-                    quantity: 24,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 5
-                },
-                {
-                    id: '1000',
-                    code: 'f230fh0g3',
-                    name: 'Bamboo Watch',
-                    description: 'Product Description',
-                    image: 'bamboo-watch.jpg',
-                    price: 65,
-                    category: 'Accessories',
-                    quantity: 24,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 5
-                },
-                {
-                    id: '1000',
-                    code: 'f230fh0g3',
-                    name: 'Bamboo Watch',
-                    description: 'Product Description',
-                    image: 'bamboo-watch.jpg',
-                    price: 65,
-                    category: 'Accessories',
-                    quantity: 24,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 5
-                },
-                {
-                    id: '1000',
-                    code: 'f230fh0g3',
-                    name: 'Bamboo Watch',
-                    description: 'Product Description',
-                    image: 'bamboo-watch.jpg',
-                    price: 65,
-                    category: 'Accessories',
-                    quantity: 24,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 5
-                },
-                {
-                    id: '1000',
-                    code: 'f230fh0g3',
-                    name: 'Bamboo Watch',
-                    description: 'Product Description',
-                    image: 'bamboo-watch.jpg',
-                    price: 65,
-                    category: 'Accessories',
-                    quantity: 24,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 5
-                },
-                {
-                    id: '1000',
-                    code: 'f230fh0g3',
-                    name: 'Bamboo Watch',
-                    description: 'Product Description',
-                    image: 'bamboo-watch.jpg',
-                    price: 65,
-                    category: 'Accessories',
-                    quantity: 24,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 5
-                },
-                {
-                    id: '1001',
-                    code: 'nvklal433',
-                    name: 'Black Watch',
-                    description: 'Product Description',
-                    image: 'black-watch.jpg',
-                    price: 72,
-                    category: 'Accessories',
-                    quantity: 61,
-                    inventoryStatus: 'INSTOCK',
-                    rating: 4
-                }])
-
-// Obtener peliculas por id
-onMounted(() => {
+  ]);
+  
+  onMounted(() => {
     axios.get('/api/films/')
-        .then(response => {
-            films.value = response.data;
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error('Error fetching films:', error);
-        });
-    // Añadir animacion del carrusel por cada iteracion
-    addScrollEventListeners();
-    // Obtener categorias
-    getCategoryList()
-});
-
-const deleteFilm = (id, index) => {
-    swal({
-        title: '¿Quieres eliminar la película?',
-        text: '¡Esta acción no se puede deshacer!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, eliminar',
-        confirmButtonColor: '#ef4444',
-        timer: 20000,
-        timerProgressBar: true,
-        reverseButtons: true
-    })
-    .then(result => {
-        if (result.isConfirmed) {
-            films.value.splice(index, 1);
-            axios.delete(`/api/films/${id}`)
-            .then( response => {
-                swal({
-                    title: 'Película eliminada',
-                    icon: 'success',
-                    timer: 10000,
-                    timerProgressBar: true,
-                })
-            })
-        }
-    });
-}
-
-// Animcación scroll carrusel
-const addScrollEventListeners = () => {
-  const rightBtn = document.getElementById("scrolling-button-right");
-  const leftBtn = document.getElementById("scrolling-button-left");
-  const content = document.getElementById("scrollCont");
-
-  rightBtn.addEventListener("click", () => {
-    content.scrollLeft += 800;
-    console.log("derecha");
+      .then(response => {
+        films.value = response.data;
+      })
+      .catch(error => {
+        console.error('Error fetching films:', error);
+      });
+    getCategoryList();
   });
-
-  leftBtn.addEventListener("click", () => {
-    content.scrollLeft -= 800;
-    console.log("izquierda");
-  });
-};
-
-
-// Función para filtrar las películas por categoría
-const getFilmsByCategory = categoryId => {
-  return films.value.filter(film => film.categoria_id == categoryId);
-};
-</script>
+  
+  const getFilmsByCategory = categoryId => {
+    return films.value.filter(film => film.categoria_id == categoryId);
+  };
+  </script>
+  
 
 
 <style>
