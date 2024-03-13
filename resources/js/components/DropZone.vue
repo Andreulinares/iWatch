@@ -12,20 +12,23 @@
             class="hidden-input"
             @change="onChange"
             ref="refFiles"
-            accept=".gif,.webp,.jpg,.jpeg,.png"
+            accept=".gif,.webp,.jpg,.jpeg,.png,.mp4,.mkv,.avi,.mov"
         />
 
 
         <div class="file-label text-center" v-if="thumbnail || modelValue">
             <div :key="thumbnail.name" class="preview-card">
                 <div>
-                    
-                    <img v-if="!img" class="preview-img" v-bind:src="modelValue"/>
-                    <img v-else class="preview-img" v-bind:src="img"/>
-             
-                    <p :title="thumbnail.name">
-                        {{ makeName(thumbnail.name) }}
-                    </p>
+                    <img
+                        v-if="!isVideo"
+                        class="preview-img"
+                        :src="thumbnail || modelValue"
+                    />
+                    <video v-else class="preview-img" controls>
+                        <source :src="thumbnail || modelValue" type="video/mp4" />
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <p :title="thumbnail.name">{{ makeName(thumbnail.name) }}</p>
                 </div>
                 <div>
                     <a
@@ -64,6 +67,7 @@ const props = defineProps({
 const thumbnail = ref('')
 const isDragging = ref(false)
 const refFiles = ref(null)
+const isVideo = ref(false);
 let img = ref('')
 
 const emit = defineEmits(['update:modelValue'])
@@ -71,11 +75,11 @@ const emit = defineEmits(['update:modelValue'])
 
 
 
-const onChange = (() => {
+const onChange = () => {
     thumbnail.value = refFiles.value.files;
-    img = URL.createObjectURL(refFiles.value.files[0]);
-    //console.log(img);
-})
+    const fileType = refFiles.value.files[0].type.split("/")[0];
+    isVideo.value = fileType === "video";
+};
 
 /*
 const generateThumbnail = ((file) => {

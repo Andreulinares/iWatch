@@ -31,6 +31,8 @@ class Film extends Model implements HasMedia
         $this->addMediaCollection('images/films')
             ->useFallbackUrl('/images/placeholder.jpg')
             ->useFallbackPath(public_path('/images/placeholder.jpg'));
+
+        $this->addMediaCollection('videos/films');
     }
 
     public function registerMediaConversions(Media $media = null): void

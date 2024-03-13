@@ -73,6 +73,13 @@
                 <h6 class="mt-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                    </svg> Video
+                </h6>
+                <DropZone v-model="film.video" />
+
+                <h6 class="mt-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
                     </svg> Thumbnail
                 </h6>
                 <DropZone v-model="film.thumbnail"/>
@@ -116,6 +123,7 @@
         episodes: 'required|numeric',
         seasons: 'required|numeric',
         type: 'required',
+        video: 'required',
         categoria_id: 'required',
         thumbnail: 'required'
     };
@@ -128,6 +136,7 @@ const { value: duration } = useField('duration', null, { initialValue: '' });
 const { value: episodes } = useField('episodes', null, { initialValue: '' });
 const { value: seasons } = useField('seasons', null, { initialValue: '' });
 const { value: type } = useField('type', null, { initialValue: '' });
+const { value: video} = useField('video', null, { initialValue: ''});
 const { value: categoria_id } = useField('categoria_id', null, { initialValue: '' });
 const isLoading = ref(false); // Agregar esta línea
 const validationErrors = ref({}); // Agregar esta línea
@@ -165,6 +174,8 @@ const validationErrors = ref({}); // Agregar esta línea
                 serializedFilm.append(item, film[item]);
             }
         }
+
+        serializedFilm.append('video', film.video);
 
         axios.post('/api/films', serializedFilm, {
             headers: {
