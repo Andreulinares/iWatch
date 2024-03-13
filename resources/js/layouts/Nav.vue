@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-md navbar-dark bg-black shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-dark shadow-sm d-flex justify-content-center align-items-center">
         <div class="container">
             <router-link to="/" class="navbar-brand">DAW 2</router-link>
             <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
