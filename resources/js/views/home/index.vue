@@ -14,8 +14,9 @@
                 <FilmCarousel :peliculas="getFilmsByCategory(category.id)" />
               </div>
             </div>
-            <img class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="350" :src="slotProps.data.media[0]?.original_url" :alt="A" style="max-height: 100px;">
-
+            <!-- <img class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="350" :src="slotProps.data.media[0]?.original_url" :alt="A" style="max-height: 100px;"> -->
+            <img v-click="infoModal = slotProps.data" class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="350" :src="slotProps.data.media && slotProps.data.media[0]?.original_url ? slotProps.data.media[0].original_url : '/images/placeholder.jpg'" :alt="slotProps.data.name" style="max-height: 100px;">
+            <p>{{ slotProps.data }}</p>
             <!-- <div class="flex justify-content-between align-items-center">
               <span>
                 <Button icon="pi pi-heart" severity="secondary" outlined />
@@ -30,11 +31,10 @@
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <!-- <div class="modal-header">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
+          </div> -->
+          <div class="modal-body p-0">
             <video id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted>
               <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
             </video>
@@ -43,7 +43,7 @@
               <button>Guardar</button>
             </div>
             <div class="info">
-              <p id="description"></p>
+              <p id="description">{{ infoModal }}</p>
             </div>
           </div>
           <div class="modal-footer">
@@ -65,6 +65,7 @@ import FilmsCarousel from "@/components/FilmsCarousel.vue";
 
 const films = ref([]);
 const swal = inject('$swal');
+const infoModal = ref(null);
 const { categoryList, getCategoryList } = useCategories();
 
 // ... Tu lógica existente ...

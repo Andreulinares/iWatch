@@ -45,6 +45,9 @@ h2{
     box-shadow: none;
 }
 
+/* estilos drop down */
+
+
 /* ESTILOS LOGIN Y REGISTER */
 
 .contenedorInputs{
@@ -85,6 +88,13 @@ input.reqInfo::placeholder{
     transition: 0.5s;
 }
 
-.img.item{
+.image-item{
     width: 100%;
+}
+
+/* estilo modal */
+
+.modal-content{
+    background-color: #181818 !important;
+    color: white;
 }
