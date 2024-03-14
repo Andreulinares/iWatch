@@ -41,11 +41,7 @@
                                 <td>{{ film.categoria_id }}</td>
                                 <td>{{ film.type }}</td>
                                 <td><img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;"></td>
-                                <td><video width="320" height="240" controls>
-                                        <source :src="film.media.length > 0 ? film.media[0].original_url : ''" type="video/mp4">
-                                        Tu navegador no soporta el elemento de video.
-                                    </video>
-                                </td>
+                                <td><video v-if="film.demo" controls :src="film.demo" style="max-height: 100px;"></video></td>
                                 <td class="text-center">
                                     <router-link :to="{ name: 'films.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
                                     <button class="btn btn-danger" @click="deleteFilm(film.id, index)">Eliminar</button>
