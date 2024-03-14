@@ -111,10 +111,37 @@
     import { useToast } from "primevue/usetoast";
     const toast = useToast();
 
-    const onUpload = () => {
-        toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
-    };
+    const onUpload = (event) => {
+        const formData = new FormData();
+        formData.append('file', event.files[0]);
 
+        axios.post('/api/upload', formData)
+            .then(response => {
+            // Guardar la URL del archivo subido en el estado
+            const url = response.data.url;
+            // Asignar el archivo subido a la propiedad video del objeto film
+            film.value.video = url;
+            // Llamar a la función para actualizar el registro con la URL del archivo subido
+            updateController(url);
+            // Mostrar un mensaje de éxito usando la biblioteca Toast de PrimeVue
+            toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
+            })
+            .catch(error => {
+            console.error('Error al subir el archivo:', error);
+            });
+    }
+    const updateController = (url) => {
+  // Obtener el ID del registro a actualizar
+    const id = // Obtener el ID del registro
+  // Enviar una solicitud PUT al servidor para actualizar el registro
+    axios.put(`/api/films/${id}`, { media_url: url })
+    .then(response => {
+        console.log('Registro actualizado:', response.data);
+    })
+    .catch(error => {
+        console.error('error al actualizar', error);
+    });
+    }
     const film = ref({});
     const strError = ref();
     const strSuccess = ref();
@@ -180,8 +207,6 @@ const validationErrors = ref({}); // Agregar esta línea
                 serializedFilm.append(item, film[item]);
             }
         }
-
-        serializedFilm.append('video', film.video);
 
         axios.post('/api/films', serializedFilm, {
             headers: {
