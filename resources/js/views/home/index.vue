@@ -83,6 +83,7 @@ onMounted(() => {
   getCategoryList();
 });
 
+
 // Función para filtrar las películas por categoría
 const getFilmsByCategory = categoryId => {
   return films.value.filter(film => film.categoria_id == categoryId);
