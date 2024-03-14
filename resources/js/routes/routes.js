@@ -83,6 +83,12 @@ function guest(to, from, next) {
 
 export default [
     {
+        path: '/login',
+        name: 'auth.login',
+        component: () => import('../views/login/Login.vue'),
+        beforeEnter: guest
+    },
+    {
         path: '/',
         // redirect: { name: 'login' },
         component: GuestLayout,
@@ -133,12 +139,12 @@ export default [
                 name: 'category-posts.index',
                 component: () => import('../views/category/posts.vue'),
             },
-            {
-                path: 'login',
-                name: 'auth.login',
-                component: () => import('../views/login/Login.vue'),
-                beforeEnter: guest,
-            },
+            // {
+            //     path: 'login',
+            //     name: 'auth.login',
+            //     component: () => import('../views/login/Login.vue'),
+            //     beforeEnter: guest,
+            // },
             {
                 path: 'register',
                 name: 'auth.register',

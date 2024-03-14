@@ -45,8 +45,8 @@
                         </li>
                     </template>
                     <li v-if="user?.name" class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ user.name }}
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <Avatar v-badge.danger="4" class="p-overlay-badge" image="images\Netflix-avatar.png" size="large" />
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><router-link class="dropdown-item" to="/admin">Admin</router-link></li>

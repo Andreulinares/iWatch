@@ -14,7 +14,8 @@
                 <FilmCarousel :peliculas="getFilmsByCategory(category.id)" />
               </div>
             </div>
-            <div class="mb-3 font-medium">{{ slotProps.data.name }}</div>
+            <img class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="350" :src="slotProps.data.media[0]?.original_url" :alt="A" style="max-height: 100px;">
+
             <!-- <div class="flex justify-content-between align-items-center">
               <span>
                 <Button icon="pi pi-heart" severity="secondary" outlined />
@@ -25,6 +26,34 @@
       </Carousel>
     </div>
   </div>
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <video id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted>
+              <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+            </video>
+            <div class="buttons d-flex">
+              <button>Reproducir</button>
+              <button>Guardar</button>
+            </div>
+            <div class="info">
+              <p id="description"></p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </template>
 
 <script setup>
@@ -53,8 +82,6 @@ onMounted(() => {
   // Obtener categorías
   getCategoryList();
 });
-
-// ... Tu lógica existente ...
 
 // Función para filtrar las películas por categoría
 const getFilmsByCategory = categoryId => {

@@ -1,6 +1,8 @@
 <template>
-    <div class="container loginPage">
-        <div class="row justify-content-center my-5">
+    
+    <div class="container">
+        <Navbar/>
+        <div class="row justify-content-center my-5 w-100">
             <div class="col-md-6">
                 <div class="contenedorInputs card border-0 shadow-sm">
                     <div class="card-body">
@@ -50,27 +52,31 @@
     </div>
 </template>
 
-<script setup>
 
+
+<script setup>
+import Navbar from '@/layouts/Nav.vue'
 import useAuth from '@/composables/auth'
 
 const { loginForm, validationErrors, processing, submitLogin } = useAuth();
 
 </script>
 
-<style>
-    .loginPage {
+<style scoped>
+    .container {
         position: relative; /* Añade posición relativa al cuerpo */
+        margin: 0;
     }
 
     /* Pseudo-elemento para aplicar el filtro */
-    .loginPage::after {
+    .container::after {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        /* background-color:rgb(21, 164, 54) ; */
         background-image: url("C:\xampp2\htdocs\Laravel\iWatch\public\images\fondoLogin.jpg");
         background-repeat: no-repeat;
         background-size: cover;
