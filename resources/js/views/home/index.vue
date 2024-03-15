@@ -10,8 +10,6 @@
         <template #item="slotProps">
           <div class="border-1 surface-border border-round m-2 p-3">
             <img @click="info(slotProps.data)" class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="350" :src="slotProps.data.media && slotProps.data.media[0]?.original_url ? slotProps.data.media[0].original_url : '/images/placeholder.jpg'" :alt="slotProps.data.name" style="max-height: 100px;">
-            
-            <p>{{ slotProps.data }}</p>
           </div>
         </template>
       </Carousel>
@@ -22,9 +20,6 @@
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div class="modal-content">
-          <!-- <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div> -->
           <div class="modal-body p-0">
             <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal"><i class="pi pi-times" style="color: white"></i></button>
             <video id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted loop>
@@ -39,16 +34,16 @@
                 <button class="favourite">Mi lista</button>
               </div>
               <div class="info">
-                <p>{{ film.name }}</p>
-                <h2>name</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <h2>{{ film.name }}</h2>
+                <p>{{ film.synopsis }}</p>
                 <hr>
-                <p>duracion</p>
+                <p>{{ film.duration }}h</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="modal-backdrop fade" data-bs-dismiss="modal" aria-hidden="true"></div>
     </div>
 
 </template>
