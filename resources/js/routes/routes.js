@@ -59,6 +59,8 @@ const HomeSeries = () => import('../views/series/index.vue');
 const HomeRooms = () => import('../views/rooms/index.vue');
 const HomeNews = () => import('../views/news/index.vue');
 
+const ProfileSettings = () => import('../views/profile/index.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -118,6 +120,11 @@ export default [
                 path: '/news',
                 name: 'News',
                 component: HomeNews,
+              },
+              {
+                path: '/profile',
+                name: 'edit-profile',
+                component: ProfileSettings,
               },
               {
                 path: '/rooms',

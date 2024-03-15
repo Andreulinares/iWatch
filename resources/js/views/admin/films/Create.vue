@@ -70,17 +70,24 @@
                     </div>
                 </div>
 
-                <div class="card flex justify-content-center">
-                    <Toast />
-                    <FileUpload mode="basic" name="demo[]" url="/api/upload" accept="image/*,.mp4" @upload="onUpload" />
+                <h6 class="mt-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                    </svg> Video
+                </h6>
+                <DropZone v-model="film.thumbnail1"/>
+                <div class="text-danger mt-1">
+                    <div v-for="message in validationErrors?.thumbnail">
+                        {{ message }}
+                    </div>
                 </div>
 
                 <h6 class="mt-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-                    </svg> Thumbnail
+                    </svg> Poster
                 </h6>
-                <DropZone v-model="film.thumbnail"/>
+                <DropZone v-model="film.thumbnail2"/>
                 <div class="text-danger mt-1">
                     <div v-for="message in validationErrors?.thumbnail">
                         {{ message }}
@@ -111,37 +118,6 @@
     import { useToast } from "primevue/usetoast";
     const toast = useToast();
 
-    const onUpload = (event) => {
-        const formData = new FormData();
-        formData.append('file', event.files[0]);
-
-        axios.post('/api/upload', formData)
-            .then(response => {
-            // Guardar la URL del archivo subido en el estado
-            const url = response.data.url;
-            // Asignar el archivo subido a la propiedad video del objeto film
-            film.value.video = url;
-            // Llamar a la función para actualizar el registro con la URL del archivo subido
-            updateController(url);
-            // Mostrar un mensaje de éxito usando la biblioteca Toast de PrimeVue
-            toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
-            })
-            .catch(error => {
-            console.error('Error al subir el archivo:', error);
-            });
-    }
-    const updateController = (url) => {
-  // Obtener el ID del registro a actualizar
-    const id = // Obtener el ID del registro
-  // Enviar una solicitud PUT al servidor para actualizar el registro
-    axios.put(`/api/films/${id}`, { media_url: url })
-    .then(response => {
-        console.log('Registro actualizado:', response.data);
-    })
-    .catch(error => {
-        console.error('error al actualizar', error);
-    });
-    }
     const film = ref({});
     const strError = ref();
     const strSuccess = ref();
@@ -224,6 +200,26 @@ const validationErrors = ref({}); // Agregar esta línea
             }
         }).finally(() => isLoading.value = false);
     }
+
+    const onUpload = (event) => {
+        const formData = new FormData();
+        formData.append('file', event.files[0]); // Asegúrate de que event.files[0] contiene el archivo correcto
+
+        axios.post('/api/upload', formData)
+            .then(response => {
+                // Manejar la respuesta del servidor cuando la carga es exitosa
+                const url = response.data.url; // Obtener la URL del archivo cargado desde la respuesta del servidor
+                // Actualizar el estado de tu aplicación con la URL del archivo cargado
+                // Por ejemplo, puedes asignar la URL a una propiedad en tu objeto film
+                film.value.video_url = url;
+            })
+            .catch(error => {
+                // Manejar el error si la carga falla
+                console.error('Error al subir el archivo:', error);
+                // Puedes mostrar un mensaje de error al usuario, si es necesario
+            });
+    }
+
 
     onMounted(() => {
         getCategoryList()

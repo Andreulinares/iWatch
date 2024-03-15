@@ -10,50 +10,60 @@
             name="file"
             id="fileInput"
             class="hidden-input"
-            @change="onChange"
-            ref="refFiles"
+            @change="onChange('thumbnail1')"
+            ref="refFiles1"
+            accept=".gif,.webp,.jpg,.jpeg,.png,.mp4,.mkv,.avi,.mov"
+        />
+
+        <input
+            type="file"
+            name="file"
+            id="fileInput"
+            class="hidden-input"
+            @change="onChange('thumbnail2')"
+            ref="refFiles1"
             accept=".gif,.webp,.jpg,.jpeg,.png,.mp4,.mkv,.avi,.mov"
         />
 
 
-        <div class="file-label text-center" v-if="thumbnail || modelValue">
-            <div :key="thumbnail.name" class="preview-card">
-                <div>
-                    <img
-                        v-if="!isVideo"
-                        class="preview-img"
-                        :src="thumbnail || modelValue"
-                    />
-                    <video v-else class="preview-img" controls>
-                        <source :src="thumbnail || modelValue" type="video/mp4" />
-                        Tu navegador no soporta el elemento de video.
-                    </video>
-                    <p :title="thumbnail.name">{{ makeName(thumbnail.name) }}</p>
-                </div>
-                <div>
-                    <a
-                        href="javascript:void(0)"
-                        class="ml-2"
-                        type="button"
-                        @click="remove(index)"
-                        title="Remove file"
-                    >
-                        <b>&times;</b>
-                    </a>
-                </div>
+        <div class="file-label text-center" v-if="thumbnail1 || modelValueVideo">
+            <div v-if="thumbnail1">
+                <video class="preview-img" controls>
+                    <source :src="makePreviewUrl(thumbnail1)" type="video/mp4" />
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <p>{{ makeName(thumbnail1.name) }}</p>
+            </div>
+            <div v-else>
+                <video class="preview-img" controls>
+                    <source :src="modelValueVideo" type="video/mp4" />
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <p>{{ makeName(modelValueVideo.name) }}</p>
+            </div>
+            <div>
+                <a href="javascript:void(0)" class="ml-2" type="button" @click="remove('video')" title="Remove video">
+                    <b>&times;</b>
+                </a>
             </div>
         </div>
 
-        <label for="fileInput" class="file-label text-center" v-if=" !thumbnail && !modelValue">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-image"
-                 viewBox="0 0 16 16">
-                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                <path
-                    d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
-            </svg>
-            <div v-if="isDragging">Release to drop files here.</div>
-            <div v-else>Drop files here or <u>click here</u> to upload.</div>
-        </label>
+<!-- Mostrar el segundo thumbnail para imágenes -->
+        <div class="file-label text-center" v-if="thumbnail2 || modelValueImage">
+            <div v-if="thumbnailImage">
+                <img class="preview-img" :src="makePreviewUrl(thumbnail2)" />
+                <p>{{ makeName(thumbnail2.name) }}</p>
+            </div>
+            <div v-else>
+                <img class="preview-img" :src="modelValueImage" />
+                <p>{{ makeName(modelValueImage.name) }}</p>
+            </div>
+            <div>
+                <a href="javascript:void(0)" class="ml-2" type="button" @click="remove('image')" title="Remove image">
+                    <b>&times;</b>
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
