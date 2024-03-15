@@ -110,6 +110,8 @@ import Tag from 'primevue/tag';
 //import TriStateCheckbox from 'primevue/tristatecheckbox';
 //import VirtualScroller from 'primevue/virtualscroller';
 
+import 'primeicons/primeicons.css'
+
 //import BlockViewer from '@/components/BlockViewer.vue';
 
 

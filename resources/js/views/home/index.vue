@@ -6,49 +6,46 @@
 
     <div class="row m-0" v-for="category in categoryList" :key="category.id">
       <h2>{{ category.name }}</h2>
-      <Carousel :value="getFilmsByCategory(category.id)" :numVisible="5" :numScroll="3" :responsiveOptions="responsiveOptions">
+      <Carousel :value="getFilmsByCategory(category.id)" :numVisible="5" :numScroll="3">
         <template #item="slotProps">
           <div class="border-1 surface-border border-round m-2 p-3">
-            <div class="mb-3">
-              <div class="relative mx-auto">
-                <FilmCarousel :peliculas="getFilmsByCategory(category.id)" />
-              </div>
-            </div>
-            <!-- <img class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="350" :src="slotProps.data.media[0]?.original_url" :alt="A" style="max-height: 100px;"> -->
-            <img v-click="infoModal = slotProps.data" class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="350" :src="slotProps.data.media && slotProps.data.media[0]?.original_url ? slotProps.data.media[0].original_url : '/images/placeholder.jpg'" :alt="slotProps.data.name" style="max-height: 100px;">
+            <img @click="info(slotProps.data)" class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="350" :src="slotProps.data.media && slotProps.data.media[0]?.original_url ? slotProps.data.media[0].original_url : '/images/placeholder.jpg'" :alt="slotProps.data.name" style="max-height: 100px;">
+            
             <p>{{ slotProps.data }}</p>
-            <!-- <div class="flex justify-content-between align-items-center">
-              <span>
-                <Button icon="pi pi-heart" severity="secondary" outlined />
-              </span>
-            </div> -->
           </div>
         </template>
       </Carousel>
     </div>
+    
   </div>
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div class="modal-content">
           <!-- <div class="modal-header">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div> -->
           <div class="modal-body p-0">
-            <video id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted>
+            <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal"><i class="pi pi-times" style="color: white"></i></button>
+            <video id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted loop>
               <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
             </video>
-            <div class="buttons d-flex">
-              <button>Reproducir</button>
-              <button>Guardar</button>
+            <div class="pt-4 px-4 pb-4">
+              <div class="buttons d-flex">
+                <button class="watch d-flex justify-content-center align-items-center">
+                  <img src="images\playReproductorWhite.svg" alt="">
+                  Reproducir
+                </button>
+                <button class="favourite">Mi lista</button>
+              </div>
+              <div class="info">
+                <p>{{ film.name }}</p>
+                <h2>name</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <hr>
+                <p>duracion</p>
+              </div>
             </div>
-            <div class="info">
-              <p id="description">{{ infoModal }}</p>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
           </div>
         </div>
       </div>
@@ -64,6 +61,7 @@ import useCategories from "@/composables/categories";
 import FilmsCarousel from "@/components/FilmsCarousel.vue";
 
 const films = ref([]);
+const film = ref({});
 const swal = inject('$swal');
 const infoModal = ref(null);
 const { categoryList, getCategoryList } = useCategories();
@@ -89,6 +87,11 @@ onMounted(() => {
 const getFilmsByCategory = categoryId => {
   return films.value.filter(film => film.categoria_id == categoryId);
 };
+
+const info = (selectedFilm) => {
+  console.log(selectedFilm);
+  film.value = selectedFilm;
+}
 </script>
   
 

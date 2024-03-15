@@ -26,7 +26,7 @@
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0 ms-auto">
                         <li>
-                            <input v-model="search_global" type="search" placeholder="Search..."
+                            <input type="search" placeholder="Search..."
                                class="form-control w-100">
                         </li>
                         <li>
@@ -46,7 +46,7 @@
                     </template>
                     <li v-if="user?.name" class="nav-item dropdown">
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <Avatar v-badge.danger="4" class="p-overlay-badge" image="images\Netflix-avatar.png" size="large" />
+                            <!-- <Avatar v-badge.danger="4" class="p-overlay-badge" image="images\Netflix-avatar.png" size="large" /> -->
                         </a>
                         <ul class="optionsList dropdown-menu dropdown-menu-end">
                             <li><router-link class="dropdown-item" to="/admin">Admin</router-link></li>
