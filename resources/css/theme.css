@@ -26,7 +26,7 @@ ol{
     padding-left: 0rem;
 }
 
-h2{
+h1, h2, h3{
     color: white;
     margin: 0;
 }
@@ -164,4 +164,26 @@ input.reqInfo::placeholder{
 .footerSection{
     background-color: #141414;
     color: white;
+}
+
+/* ESTILOS SUSCRIPCIONES */
+
+.suscripcion{
+    background-color: #636363;
+    border-radius: 4px;
+}
+
+.suscripcion button{
+    color: black;
+    border: none;
+    padding: 15px 25px;
+    width: 100%;
+    font-weight: 700;
+}
+
+.medal{
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border-radius: 50px;
 }

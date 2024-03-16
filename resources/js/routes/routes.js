@@ -93,6 +93,11 @@ export default [
     {
         path: '/',
         // redirect: { name: 'login' },
+        component: AuthenticatedLayout,
+        // redirect: {
+        //     name: 'admin.index'
+        // },
+        beforeEnter: requireLogin,
         component: GuestLayout,
         children: [
            
@@ -100,6 +105,11 @@ export default [
                 path: '/',
                 name: 'Home',
                 component: () => import('../views/home/index.vue'),
+            },
+            {
+                path: '/subscriptions',
+                name: 'subscriptions',
+                component: () => import('../views/subscriptions/index.vue'),
             },
             {
                 path: '/filmsHome',

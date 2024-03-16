@@ -43,7 +43,6 @@
           </div>
         </div>
       </div>
-      <div class="modal-backdrop fade" data-bs-dismiss="modal" aria-hidden="true"></div>
     </div>
 
 </template>
@@ -63,7 +62,7 @@ const { categoryList, getCategoryList } = useCategories();
 
 // ... Tu lógica existente ...
 
-// Obtener películas por id
+// Obtener películas
 onMounted(() => {
   axios.get('/api/films/')
     .then(response => {
