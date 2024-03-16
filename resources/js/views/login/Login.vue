@@ -1,55 +1,55 @@
 <template>
     
-    <div class="container d-flex justify-content-center">
-        <Navbar/>
-        <div class="row justify-content-center my-5 w-100">
-            <div class="col-md-6">
+    <section>
+        <div class="container d-flex justify-content-center align-items-center">
+            <Navbar/>
+            <div class="row justify-content-center my-5 w-100">
                 <div class="contenedorInputs card border-0 shadow-sm">
-                    <div class="card-body">
-                        <form @submit.prevent="submitLogin">
-                            <div class="">
-                                <!-- Email -->
-                                <div class="mb-3">
-                                    <input v-model="loginForm.email" id="email" type="email" class="form-control reqInfo" :placeholder="$t('email')" required autofocus autocomplete="username">
-                                    <!-- Validation Errors -->
-                                    <div class="text-danger mt-1">
-                                        <div v-for="message in validationErrors?.email">
-                                            {{ message }}
+                        <div class="card-body">
+                            <h2 class="mb-3">{{ $t('login') }}</h2>
+                            <form @submit.prevent="submitLogin">
+                                <div class="">
+                                    <!-- Email -->
+                                    <div class="mb-3">
+                                        <input v-model="loginForm.email" id="email" type="email" class="form-control reqInfo" :placeholder="$t('email')" required autofocus autocomplete="username">
+                                        <!-- Validation Errors -->
+                                        <div class="text-danger mt-1">
+                                            <div v-for="message in validationErrors?.email">
+                                                {{ message }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Password -->
-                                <div class="mb-4">
-                                    <input v-model="loginForm.password" id="password" type="password" class="form-control reqInfo" :placeholder="$t('password')" required autocomplete="current-password">
-                                    <!-- Validation Errors -->
-                                    <div class="text-danger-600 mt-1">
-                                        <div v-for="message in validationErrors?.password">
-                                            {{ message }}
+                                    <!-- Password -->
+                                    <div class="mb-4">
+                                        <input v-model="loginForm.password" id="password" type="password" class="form-control reqInfo" :placeholder="$t('password')" required autocomplete="current-password">
+                                        <!-- Validation Errors -->
+                                        <div class="text-danger-600 mt-1">
+                                            <div v-for="message in validationErrors?.password">
+                                                {{ message }}
+                                            </div>
                                         </div>
                                     </div>
+                                    <!-- Buttons -->
+                                    <div class="flex items-center justify-end mt-4">
+                                        <button class="btn btn-primary accion" :class="{ 'opacity-25': processing }" :disabled="processing">
+                                            {{ $t('login') }}
+                                        </button>
+                                    </div>
                                 </div>
+                                <router-link :to="{name: 'auth.forgot-password'}"><p class="frgtPasswd mt-2">{{ $t('forgot_password')}}</p></router-link>
                                 <!-- Remember me -->
-                                <div class="form-check">
+                                <div class="form-check mt-5 pt-5">
                                     <input class="form-check-input" type="checkbox" name="remember" v-model="loginForm.remember" id="flexCheckIndeterminate">
                                     <label class="form-check-label" for="flexCheckIndeterminate">
                                         {{ $t('remember_me') }}
                                     </label>
                                 </div>
-
-                                <!-- Buttons -->
-                                <div class="flex items-center justify-end mt-4">
-                                    <button class="btn btn-primary accion" :class="{ 'opacity-25': processing }" :disabled="processing">
-                                        {{ $t('login') }}
-                                    </button>
-                                </div>
-                            </div>
-                            <router-link :to="{name: 'auth.forgot-password'}">{{ $t('forgot_password')}}</router-link>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 
@@ -63,27 +63,17 @@ const { loginForm, validationErrors, processing, submitLogin } = useAuth();
 </script>
 
 <style scoped>
-    .container {
-        margin: 0;
-    }
-
-    /* Pseudo-elemento para aplicar el filtro */
-    .container::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        /* background-color:rgb(21, 164, 54) ; */
-        background-image: url("C:\xampp2\htdocs\Laravel\iWatch\public\images\fondoLogin.jpg");
+    .body {
+        background-image: url("C:\xampp\htdocs\Laravel\iWatch\public\images\fondoLogin.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         z-index: -1; /* Coloca el pseudo-elemento detrás del contenido */
         filter: blur(1px) brightness(46%);
         -webkit-filter: blur(1px) brightness(46%);
         -moz-filter: blur(1px) brightness(46%);
+    }
+
+    .container{
+        padding-top: 120px;
     }
 </style>
