@@ -22,12 +22,16 @@
 <script>
 import { ref, onMounted } from "vue";
 import Dialog from "primevue/dialog";
+import useProfile from "@/composables/profile";
 
 export default {
     components: {
     Dialog
     },
     setup() {
+
+        const { profile: profileData, getProfile, updateProfile, validationErrors, isLoading } = useProfile()
+
         const showGallery = ref(false);
         const photos = ref([]);
 
@@ -42,6 +46,10 @@ export default {
             photos,
             selectProfilePhoto
         };
+
+        onMounted(() => {
+            getProfile()
+        })
     }
 };
 </script>

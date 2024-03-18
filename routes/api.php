@@ -14,7 +14,6 @@ use App\http\Controllers\Api\ReviewsController;
 use App\http\Controllers\Api\MessagesController;
 use App\Http\Controllers\Api\RoomsController;
 use App\Http\Controllers\Api\CategoriasController;
-use App\Http\Controllers\Api\UploadController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
@@ -35,8 +34,6 @@ Route::get('films', [FilmsController::class,'index']);
 Route::post('films/', [FilmsController::class, 'store']);
 Route::put('films/update/{id}',[FilmsController::class, 'update']);
 Route::delete('films/{id}',[FilmsController::class, 'destroy']);
-
-Route::post('/upload', [UploadController::class, 'upload']);
 
 // Mostrar pelicula por ID
 Route::get('films/{idCat}', [FilmsController::class,'getFilmByCat']); 

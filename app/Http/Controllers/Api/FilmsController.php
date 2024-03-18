@@ -38,11 +38,11 @@ class FilmsController extends Controller
         $peli = Film::create($filmData);
 
         if ($request->hasFile('thumbnail1')) {
-            $peli->addMediaFromRequest('thumbnail1')->preservingOriginal()->toMediaCollection('images-films');
+            $peli->addMediaFromRequest('thumbnail1')->preservingOriginal()->toMediaCollection('images/films');
         }
-
+        
         if ($request->hasFile('thumbnail2')) {
-            $peli->addMediaFromRequest('thumbnail2')->preservingOriginal()->toMediaCollection('videos-films');
+            $peli->addMediaFromRequest('thumbnail2')->preservingOriginal()->toMediaCollection('videos/films');
         }
 
         return response()->json(['success' => true, 'data' => $peli]);

@@ -40,8 +40,14 @@
                                 <td>{{ film.seasons }}</td>
                                 <td>{{ film.categoria_id }}</td>
                                 <td>{{ film.type }}</td>
-                                <td><img :src="film.mediaCollections['images/films'].length > 0 ? film.mediaCollections['images/films'][0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;"></td>                                
-                                <td><video v-if="film.mediaCollections['videos/films'].length > 0" controls :src="film.mediaCollections['videos/films'][0].original_url" style="max-height: 100px;"></video></td>
+                                <td><img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;"></td>
+                                <td>
+                                    <video v-if="film.media.length > 0 && film.media[0].type.startsWith('video')" 
+                                        controls 
+                                        :src="film.media[0].original_url" 
+                                        style="max-height: 100px;">
+                                    </video> 
+                                </td>                               
                                 <td class="text-center">
                                     <router-link :to="{ name: 'films.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
                                     <button class="btn btn-danger" @click="deleteFilm(film.id, index)">Eliminar</button>

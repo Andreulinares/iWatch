@@ -20,12 +20,17 @@ class ProfileController extends Controller
         $profile->email = $request->email;
         $profile->phone = $request->phone;
         $profile->apellido = $request->apellido;
-        $profile->profile_image = $request->profile_image;
+        // Guarda la imagen en el almacenamiento de medios
+        if ($request->hasFile('profile_image')) {
+            $path = $request->file('profile_image')->store('profile_images');
+            $profile->profile_image = $path;
+        }
 
         if ($profile->save()) {
-            return $this->successResponse($profile, 'User updated');;
+            return response()->json(['success' => true, 'message' => 'Perfil actualizado exitosamente']);
         }
-        return response()->json(['status' => 403, 'success' => false]);
+
+        return response()->json(['success' => false, 'message' => 'Error al actualizar el perfil'], 500);
     }
 
     public function user(Request $request)

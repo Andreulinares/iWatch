@@ -114,7 +114,23 @@ defineRule('min', min);
 
     function onFileChange(event) {
     const file = event.target.files[0]; // Obtener el archivo seleccionado
-    alert(file);
+    const formData = new FormData();
+    formData.append('profile_image', file);
+
+    // Envía la imagen al backend utilizando Axios
+    axios.post('/api/user', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+    .then(response => {
+        // Maneja la respuesta del backend
+        console.log('Imagen cargada exitosamente:', response.data.url);
+        profile.profile_image = response.data.url; // Actualiza la URL de la imagen en el formulario
+    })
+    .catch(error => {
+        console.error('Error al cargar la imagen:', error);
+    });
 }
 
     onMounted(() => {

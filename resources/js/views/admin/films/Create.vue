@@ -151,24 +151,35 @@ const validationErrors = ref({}); // Agregar esta línea
 
 
 
-    function addfilm() {
-        axios.post('/api/films', film.value)
-            .then(response => {
-                console.log(response);
-                strSuccess.value = response.data.success;
-                strError.value = "";
-            }).catch(error => {
-                console.log(error);
-                strSuccess.value = "";
-                strError.value = error.response.data.message;
-            });
-
-            validate().then((success) => {
+function addfilm() {
+    validate().then((success) => {
         if (success) {
-            storeFilm(film.value);
+            const formData = new FormData();
+            formData.append('name', film.value.name);
+            formData.append('synopsis', film.value.synopsis);
+            formData.append('director', film.value.director);
+            formData.append('duration', film.value.duration);
+            formData.append('episodes', film.value.episodes);
+            formData.append('seasons', film.value.seasons);
+            formData.append('type', film.value.type);
+            formData.append('categoria_id', film.value.categoria_id);
+            formData.append('thumbnail1', film.value.thumbnail1);
+            formData.append('thumbnail2', film.value.thumbnail2);
+
+            axios.post('/api/films', formData)
+                .then(response => {
+                    console.log(response);
+                    strSuccess.value = response.data.success;
+                    strError.value = "";
+                })
+                .catch(error => {
+                    console.log(error);
+                    strSuccess.value = "";
+                    strError.value = error.response.data.message;
+                });
         }
     });
-    }
+}
 
     const storeFilm = async (film) => {
         if (isLoading.value) return;
