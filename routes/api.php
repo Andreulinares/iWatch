@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\FilmsController;
 use App\Http\Controllers\Api\SeriesController;
 use App\Http\Controllers\Api\SuscripcionController;
+use App\Http\Controllers\Api\UserSubscriptionController;
+use App\Http\Controllers\Api\UsuarioSuscripcionesController;
 use App\http\Controllers\Api\ReviewsController;
 use App\http\Controllers\Api\MessagesController;
 use App\Http\Controllers\Api\RoomsController;
@@ -73,6 +75,9 @@ Route::get('categorias', [CategoriasController::class,'index']);
 Route::post('categorias/', [CategoriasController::class, 'store']);
 Route::put('categorias/update/{id}',[CategoriasController::class, 'update']);
 Route::delete('categorias/{id}',[CategoriasController::class, 'destroy']);
+
+// Añadir compra de suscripciones
+Route::post('subscriptions/{subscriptionId}', [UserSubscriptionController::class, 'subscribe']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);

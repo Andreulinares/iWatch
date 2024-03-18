@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         $this->notify(new UserResetPasswordNotification($token));
     }
+
+    public function suscripcions()
+    {
+        return $this->belongsToMany(Suscripcion::class, 'user_subscriptions');
+    }
 }

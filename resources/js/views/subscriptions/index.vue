@@ -8,7 +8,7 @@
                 <h2>{{ sub.price }}€ mensuales</h2>
                 <h3>{{ sub.duration }}</h3>
                 <h3>Description</h3>
-                <button>Upgrade plan</button>
+                <button @click="comprarSuscripcion(sub.id)">Upgrade plan</button>
             </div>
         </div>
     </section>
@@ -17,9 +17,13 @@
 <script setup>
 import axios from "axios";
 import { ref, inject, onMounted } from "vue";
+import { useRouter } from 'vue-router';
+import {useForm, useField, defineRule} from "vee-validate";
+import {required, min} from "@/validation/rules";
 
 const subscriptions = ref([]);
 
+// Mostrar suscripciones 
 onMounted(() => {
   axios.get('/api/suscripciones')
     .then(response => {
@@ -30,6 +34,29 @@ onMounted(() => {
       console.error('Error fetching subscriptionss:', error);
     });
 });
+
+// Función para comprar suscripción
+function comprarSuscripcion(subscriptionId) {
+    axios.post(`/api/subscriptions/${subscriptionId}`)
+        .then(response => {
+            alert('Suscripción comprada con éxito:', response.data);
+            cargarSuscripciones();
+        })
+        .catch(error => {
+            console.error('Error al comprar suscripción:', error);
+        });
+}
+
+// Función para recargar la lista de suscripciones después de la compra
+function cargarSuscripciones() {
+    axios.get('/api/suscripciones')
+        .then(response => {
+            subscriptions.value = response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching subscriptions:', error);
+        });
+}
 
 </script>
 
