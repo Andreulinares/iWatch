@@ -91,6 +91,12 @@ export default [
         beforeEnter: guest
     },
     {
+        path: '/register',
+        name: 'auth.register',
+        component: () => import('../views/register/index.vue'),
+        beforeEnter: guest,
+    },
+    {
         path: '/',
         // redirect: { name: 'login' },
         component: AuthenticatedLayout,
@@ -162,12 +168,6 @@ export default [
             //     component: () => import('../views/login/Login.vue'),
             //     beforeEnter: guest,
             // },
-            {
-                path: 'register',
-                name: 'auth.register',
-                component: () => import('../views/register/index.vue'),
-                beforeEnter: guest,
-            },
             {
                 path: '/home',
                 name: 'home.index',
