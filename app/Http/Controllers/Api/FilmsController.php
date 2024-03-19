@@ -32,17 +32,16 @@ class FilmsController extends Controller
             'seasons' => 'required',
             'type' => 'required',
         ]);
-
         $filmData = $request->all();
         $filmData['punctuation'] = 0;
         $peli = Film::create($filmData);
 
-        if ($request->hasFile('thumbnail1')) {
-            $peli->addMediaFromRequest('thumbnail1')->preservingOriginal()->toMediaCollection('images/films');
+        if ($request->hasFile('thumbnail')) { 
+            $peli->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-films');
         }
         
-        if ($request->hasFile('thumbnail2')) {
-            $peli->addMediaFromRequest('thumbnail2')->preservingOriginal()->toMediaCollection('videos/films');
+        if ($request->hasFile('video')) { return 1;
+            $peli->addMediaFromRequest('video')->preservingOriginal()->toMediaCollection('videos-films');
         }
 
         return response()->json(['success' => true, 'data' => $peli]);

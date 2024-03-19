@@ -72,15 +72,15 @@
 
                 <div class="form-group mb-2">
                     <label>Poster</label><span class="text-danger"> *</span>
-                    <ImageDropZone v-model="film.thumbnail1" />
+                    <DropZone v-model="film.thumbnail" />
                     <div class="text-danger mt-1">
-                        <div v-for="message in validationErrors?.thumbnail1">
+                        <div v-for="message in validationErrors?.thumbnail">
                             {{ message }}
                         </div>
                     </div>
                 </div>
 
-            <!-- Input para el video -->
+            <!-- Input para el video 
                 <div class="form-group mb-2">
                     <label>Video</label><span class="text-danger"> *</span>
                     <VideoDropZone v-model="film.thumbnail2" />
@@ -90,8 +90,10 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir película</button>
+                -->
 
+                <FileUpload v-model="film.video" mode="basic" name="video" accept="video/*"/>
+                <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir película</button>
 
             </form>
 
@@ -104,7 +106,7 @@
 <script setup>
     import { onMounted, ref } from "vue";
     import axios from 'axios';
-    //import DropZone from "@/components/DropZone.vue";
+    import DropZone from "@/components/DropZone.vue";
     import ImageDropZone from '@/components/ImageDropZone.vue';
     import VideoDropZone from '@/components/VideoDropZone.vue';
     import { useRouter } from 'vue-router';
@@ -116,11 +118,14 @@
     import { useToast } from "primevue/usetoast";
     const toast = useToast();
 
-    const film = ref({});
+    const film = ref({
+        thumbnail: null,
+    });
     const strError = ref();
     const strSuccess = ref();
     const router = useRouter();
     const {categoryList, getCategoryList} = useCategories()
+    const videoFile = ref(null);
 
     const schema = {
         name: 'required',
@@ -132,8 +137,7 @@
         type: 'required',
         video: 'required',
         categoria_id: 'required',
-        thumbnail1: 'required',
-        thumbnail2: 'required'
+        thumbnail1: 'required'
     };
 
     const { validate, errors } = useForm();
@@ -163,20 +167,23 @@ function addfilm() {
             formData.append('seasons', film.value.seasons);
             formData.append('type', film.value.type);
             formData.append('categoria_id', film.value.categoria_id);
-            formData.append('thumbnail1', film.value.thumbnail1);
-            formData.append('thumbnail2', film.value.thumbnail2);
+            formData.append('thumbnail', film.value.thumbnail);
+            formData.append('video', film.value.video);
 
-            axios.post('/api/films', formData)
-                .then(response => {
-                    console.log(response);
-                    strSuccess.value = response.data.success;
-                    strError.value = "";
-                })
-                .catch(error => {
-                    console.log(error);
-                    strSuccess.value = "";
-                    strError.value = error.response.data.message;
-                });
+            axios.post('/api/films', formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }).then(response => {
+                console.log(response);
+                strSuccess.value = response.data.success;
+                strError.value = "";
+                router.push({ name: 'films.indexFilms' }); 
+            }).catch(error => {
+                console.log(error);
+                strSuccess.value = "";
+                strError.value = error.response.data.message;
+            });
         }
     });
 }
