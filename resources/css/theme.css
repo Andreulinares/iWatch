@@ -92,6 +92,18 @@ input.reqInfo::placeholder{
     font-weight: 400;
 }
 
+/* estilos secciones inferiores info */
+
+.infoRow{
+    padding: 130px 0;
+}
+
+/* estilos preguntas frecuentes */
+
+.infoQuestions h1{
+    text-align: center;
+}
+
 /* ESTILOS HOME PAGE */
 
 .surface-border{

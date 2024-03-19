@@ -54,17 +54,80 @@
     <section>
     <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
         <div class="container d-flex p-0">
-            <div class="row p-0 m-0">
-                <div class="text p-0 col-sm-12 col-md-12 col-lg-6 bg-primary">
+            <div class="row m-0 infoRow bg-primary">
+                <div class="text p-0 col-sm-12 col-md-12 col-lg-6">
                     <h1>DISFRUTA EN TU TELEVISIÓN</h1>
                     <h2>El mejor contenido para Smart TV, Playstation, Xbox, Chromecast, Apple TV, reproductores Blu-ray y muchos más.</h2>
                 </div>
-                <div class="marketingImage p-0 col-sm-12 col-md-12 col-lg-6 bg-secondary">
+                <div class="marketingImage p-0 col-sm-12 col-md-12 col-lg-6">
                     <p>ooooooooooooooooooooooooooooooooooooo</p>
                 </div>
             </div>
         </div>
     </div>
+    <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
+        <div class="container d-flex p-0">
+            <div class="row m-0 infoRow bg-secondary">
+                <div class="marketingImage p-0 col-sm-12 col-md-12 col-lg-6">
+                    <p>ooooooooooooooooooooooooooooooooooooo</p>
+                </div>
+                <div class="text p-0 col-sm-12 col-md-12 col-lg-6">
+                    <h1>USA CUALQUIER DISPOSITIVO</h1>
+                    <h2>Ve en streaming todas las películas y series en tu móvil, tableta, ordenador y televisor.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
+        <div class="container p-0">
+            <div class="row m-0 infoQuestions bg-secondary d-flex justify-content-center align-items-center">
+                <h1>Preguntas frecuentes</h1>
+                <Accordion activeIndex="0" class="w-50">
+                    <AccordionTab header="¿Qué es iWatch?">
+                        <p class="m-0">Hola</p>
+                    </AccordionTab>
+                    <AccordionTab header="¿Cuánto cuesta iWatch?">
+                        <p class="m-0">Si</p>
+                    </AccordionTab>
+                    <AccordionTab header="¿Dónde puedo ver iWatch?">
+                        <p class="m-0">No</p>
+                    </AccordionTab>
+                    <AccordionTab header="¿Cómo cancelo mi suscripción?">
+                        <p class="m-0">No</p>
+                    </AccordionTab>
+                    <AccordionTab header="¿Qué contenido puedo ver?">
+                        <p class="m-0">No</p>
+                    </AccordionTab>
+                </Accordion>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- <Accordion :multiple="true" :activeIndex="[0]">
+        <AccordionTab header="Header I">
+            <p class="m-0">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                laborum.
+            </p>
+        </AccordionTab>
+        <AccordionTab header="Header II">
+            <p class="m-0">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
+                enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+            </p>
+        </AccordionTab>
+        <AccordionTab header="Header III">
+            <p class="m-0">
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in
+                culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+            </p>
+        </AccordionTab>
+    </Accordion> -->
+
+    
 
     
     <!-- AIMACION PARA COPIAR -->
@@ -97,5 +160,11 @@ const { loginForm, validationErrors, processing, submitLogin } = useAuth();
 
     .container{
         padding-top: 120px;
+    }
+
+    /* estilos acordeon */
+
+    .p-accordion{
+        background-color: red !important;
     }
 </style>

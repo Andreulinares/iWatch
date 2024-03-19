@@ -14,8 +14,8 @@ import i18n from "./plugins/i18n";
 /*PRIMEVUE */
 import PrimeVue from "primevue/config";
 //import AutoComplete from 'primevue/autocomplete';
-//import Accordion from 'primevue/accordion';
-//import AccordionTab from 'primevue/accordiontab';
+import Accordion from 'primevue/accordion';
+import AccordionTab from 'primevue/accordiontab';
 import Avatar from 'primevue/avatar';
 import AvatarGroup from 'primevue/avatargroup';
 //import Badge from 'primevue/badge';
@@ -158,8 +158,8 @@ app.directive('animateonscroll', AnimateOnScroll);
 //
 //app.component('BlockViewer', BlockViewer);
 //
-//app.component('Accordion', Accordion);
-//app.component('AccordionTab', AccordionTab);
+app.component('Accordion', Accordion);
+app.component('AccordionTab', AccordionTab);
 //app.component('AutoComplete', AutoComplete);
 app.component('Avatar', Avatar);
 //app.component('AvatarGroup', AvatarGroup);
