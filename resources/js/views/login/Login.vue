@@ -36,6 +36,7 @@
                                         </button>
                                     </div>
                                 </div>
+                                <router-link :to="{name: 'auth.register'}"><p class="frgtPasswd mt-2">Registrate</p></router-link>
                                 <router-link :to="{name: 'auth.forgot-password'}"><p class="frgtPasswd mt-2">{{ $t('forgot_password')}}</p></router-link>
                                 <!-- Remember me -->
                                 <div class="form-check mt-5 pt-5">
@@ -55,7 +56,7 @@
 
 
 <script setup>
-import Navbar from '@/layouts/Nav.vue'
+// import Navbar from '@/layouts/Nav.vue'
 import useAuth from '@/composables/auth'
 
 const { loginForm, validationErrors, processing, submitLogin } = useAuth();
