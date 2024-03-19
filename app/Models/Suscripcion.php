@@ -15,4 +15,9 @@ class Suscripcion extends Model
         "price",
         "duration"
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_subscriptions')->withPivot('start_date', 'end_date');
+    }
 }

@@ -8,10 +8,13 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class UserSubscription extends Model
+class UserSubscription extends Pivot
 {
     use HasFactory;
+
+    protected $table = 'user_subscriptions';
 
     protected $fillable = [
         'user_id',
@@ -21,4 +24,9 @@ class UserSubscription extends Model
     ];
 
     // Falta añadir lo del WITHPIVOT para poder añadir los campos de fechas (al pivot solo se le pasa los campos que no sean ID)
+
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+    ];
 }

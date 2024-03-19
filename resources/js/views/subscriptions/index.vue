@@ -37,7 +37,13 @@ onMounted(() => {
 
 // Función para comprar suscripción
 function comprarSuscripcion(subscriptionId) {
-    axios.post(`/api/subscriptions/${subscriptionId}`)
+    let days = 30;
+    if(subscriptionId === 2){
+        days = 60
+    }else if(subscriptionId === 3){
+        days = 90
+    }
+    axios.post(`/api/subscriptions/${subscriptionId}`,{days: days})
         .then(response => {
             alert('Suscripción comprada con éxito:', response.data);
             cargarSuscripciones();
