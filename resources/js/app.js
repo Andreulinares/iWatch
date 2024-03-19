@@ -109,6 +109,7 @@ import Tag from 'primevue/tag';
 //import TreeTable from 'primevue/treetable';
 //import TriStateCheckbox from 'primevue/tristatecheckbox';
 //import VirtualScroller from 'primevue/virtualscroller';
+import AnimateOnScroll from 'primevue/animateonscroll';
 
 import 'primeicons/primeicons.css'
 
@@ -149,6 +150,7 @@ app.use(ToastService);
 app.use(DialogService);
 app.use(ConfirmationService);
 
+app.directive('animateonscroll', AnimateOnScroll);
 //app.directive('tooltip', Tooltip);
 //app.directive('badge', BadgeDirective);
 //app.directive('ripple', Ripple);

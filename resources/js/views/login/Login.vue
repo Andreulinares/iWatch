@@ -51,6 +51,27 @@
             </div>
         </div>
     </section>
+    <section>
+    <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
+        <div class="container d-flex p-0">
+            <div class="row p-0 m-0">
+                <div class="text p-0 col-sm-12 col-md-12 col-lg-6 bg-primary">
+                    <h1>DISFRUTA EN TU TELEVISIÓN</h1>
+                    <h2>El mejor contenido para Smart TV, Playstation, Xbox, Chromecast, Apple TV, reproductores Blu-ray y muchos más.</h2>
+                </div>
+                <div class="marketingImage p-0 col-sm-12 col-md-12 col-lg-6 bg-secondary">
+                    <p>ooooooooooooooooooooooooooooooooooooo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- AIMACION PARA COPIAR -->
+        <!-- <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="flex box shadow-4 justify-content-center align-items-center h-10rem w-10rem sm:h-15rem sm:w-15rem border-round animation-duration-1000">
+            <span class="text-3xl font-bold">fade-in</span>
+        </div> -->
+</section>
 </template>
 
 
