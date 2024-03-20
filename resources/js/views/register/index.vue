@@ -1,36 +1,35 @@
 <template>
     <div class="container">
         <div class="row justify-content-center my-5">
-            <div class="col-md-6">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-transparent">{{ $t('register') }}</div>
+            <div class="contenedorInputs col-md-6">
+                <div class="card registerCard border-0 shadow-sm">
                     <div class="card-body">
+                        <h2 class="mb-3">{{ $t('register') }}</h2>
                         <form @submit.prevent="submitRegister">
                             <div class="">
                                 <!-- Email -->
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">{{ $t('name') }}</label>
-                                    <input v-model="registerForm.name" id="name" type="text" class="form-control" autofocus>
-                                    <!-- Validation Errors -->
-                                    <div class="text-danger mt-1">
-                                        <div v-for="message in validationErrors?.name">
-                                            {{ message }}
+                                <div class="mb-3 d-flex">
+                                    <div class="me-3">
+                                        <input v-model="registerForm.name" id="name" type="text" class="form-control reqInfo" placeholder="Nombre" autofocus>
+                                        <!-- Validation Errors -->
+                                        <div class="text-danger mt-1">
+                                            <div v-for="message in validationErrors?.name">
+                                                {{ message }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <input v-model="registerForm.apellido" id="apellido" type="text" class="form-control reqInfo" placeholder="Apellido" autofocus>
+                                        <!-- Validation Errors -->
+                                        <div class="text-danger mt-1">
+                                            <div v-for="message in validationErrors?.apellido">
+                                                {{ message }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="apellido" class="form-label">{{ $t('apellido') }}</label>
-                                    <input v-model="registerForm.apellido" id="apellido" type="text" class="form-control" autofocus>
-                                    <!-- Validation Errors -->
-                                    <div class="text-danger mt-1">
-                                        <div v-for="message in validationErrors?.apellido">
-                                            {{ message }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">{{ $t('phone') }}</label>
-                                    <input v-model="registerForm.phone" id="phone" type="number" class="form-control" autofocus>
+                                    <input v-model="registerForm.phone" id="phone" type="number" class="form-control reqInfo" placeholder="Número de telefono" autofocus>
                                     <!-- Validation Errors -->
                                     <div class="text-danger mt-1">
                                         <div v-for="message in validationErrors?.phone">
@@ -39,8 +38,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">{{ $t('email') }}</label>
-                                    <input v-model="registerForm.email" id="email" type="email" class="form-control" autocomplete="username">
+                                    <input v-model="registerForm.email" id="email" type="email" class="form-control reqInfo" placeholder="Correo electrónico" autocomplete="username">
                                     <!-- Validation Errors -->
                                     <div class="text-danger mt-1">
                                         <div v-for="message in validationErrors?.email">
@@ -50,10 +48,7 @@
                                 </div>
                                 <!-- Password -->
                                 <div class="mb-4">
-                                    <label for="password" class="form-label">
-                                        {{ $t('password') }}
-                                    </label>
-                                    <input v-model="registerForm.password" id="password" type="password" class="form-control" autocomplete="current-password">
+                                    <input v-model="registerForm.password" id="password" type="password" class="form-control reqInfo" placeholder="Contraseña" autocomplete="current-password">
                                     <!-- Validation Errors -->
                                     <div class="text-danger-600 mt-1">
                                         <div v-for="message in validationErrors?.password">
@@ -62,10 +57,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="password_confirmation" class="form-label">
-                                        {{ $t('confirm_password') }}
-                                    </label>
-                                    <input v-model="registerForm.password_confirmation" id="password_confirmation" type="password" class="form-control" autocomplete="current-password">
+                                    <input v-model="registerForm.password_confirmation" id="password_confirmation" type="password" class="form-control reqInfo" placeholder="Confirmar contraseña" autocomplete="current-password">
                                     <!-- Validation Errors -->
                                     <div class="text-danger-600 mt-1">
                                         <div v-for="message in validationErrors?.password_confirmation">
@@ -76,7 +68,7 @@
 
                                 <!-- Buttons -->
                                 <div class="flex items-center justify-end mt-4">
-                                    <button class="btn btn-primary" :class="{ 'opacity-25': processing }" :disabled="processing">
+                                    <button class="btn btn-primary accion" :class="{ 'opacity-25': processing }" :disabled="processing">
                                         {{ $t('register') }}
                                     </button>
                                 </div>

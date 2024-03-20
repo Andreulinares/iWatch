@@ -1,6 +1,6 @@
 <template>
     <section class="mt-5 pt-5">
-        <h1>Suscripciones</h1>
+        <h1>Elige tú plan</h1>
         <div class="row d-flex justify-content-center align-items-center">
             <div v-for="sub in subscriptions" :key="sub.id"  class="container col-xs-12 col-sm-6 col-md-4 col-lg-3 suscripcion p-3">
                 <div class="medal" :class="{ 'bronze-medal': sub.id === 1, 'silver-medal': sub.id === 2, 'gold-medal': sub.id === 3 }" ></div>

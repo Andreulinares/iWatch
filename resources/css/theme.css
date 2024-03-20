@@ -51,9 +51,14 @@ h1, h2, h3{
 /* ESTILOS LOGIN Y REGISTER */
 
 .contenedorInputs{
-    background-color: #12100D;
+    background-color: #12100D !important;
     width: 450px;
     border-radius: 4px;
+    border: solid 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+.registerCard{
+    background-color: #12100D !important;
 }
 
 .accion{
@@ -78,6 +83,10 @@ input.reqInfo::placeholder{
     background-color: red;
     border: none;
     font-weight: 700;
+
+    width: 100%;
+    height: 45px;
+    color: white;
 }
 
 .accion:hover{
@@ -92,10 +101,18 @@ input.reqInfo::placeholder{
     font-weight: 400;
 }
 
+.form-check-label{
+    color: white;
+}
+
 /* estilos secciones inferiores info */
 
 .infoRow{
-    padding: 130px 0;
+    padding: 130px 80px;
+}
+
+.infoRow h1, h2, .infoQuestions h1{
+    font-weight: 900;
 }
 
 /* estilos preguntas frecuentes */

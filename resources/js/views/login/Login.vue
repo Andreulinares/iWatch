@@ -54,7 +54,7 @@
     <section>
     <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
         <div class="container d-flex p-0">
-            <div class="row m-0 infoRow bg-primary">
+            <div class="row m-0 infoRow">
                 <div class="text p-0 col-sm-12 col-md-12 col-lg-6">
                     <h1>DISFRUTA EN TU TELEVISIÓN</h1>
                     <h2>El mejor contenido para Smart TV, Playstation, Xbox, Chromecast, Apple TV, reproductores Blu-ray y muchos más.</h2>
@@ -67,7 +67,7 @@
     </div>
     <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
         <div class="container d-flex p-0">
-            <div class="row m-0 infoRow bg-secondary">
+            <div class="row m-0 infoRow">
                 <div class="marketingImage p-0 col-sm-12 col-md-12 col-lg-6">
                     <p>ooooooooooooooooooooooooooooooooooooo</p>
                 </div>
@@ -80,9 +80,9 @@
     </div>
     <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
         <div class="container p-0">
-            <div class="row m-0 infoQuestions bg-secondary d-flex justify-content-center align-items-center">
+            <div class="row m-0 infoQuestions d-flex justify-content-center align-items-center">
                 <h1>Preguntas frecuentes</h1>
-                <Accordion activeIndex="0" class="w-50">
+                <Accordion activeIndex="0" class="w-50 col-sm-12 col-md-12 col-lg-6">
                     <AccordionTab header="¿Qué es iWatch?">
                         <p class="m-0">Hola</p>
                     </AccordionTab>
@@ -164,7 +164,11 @@ const { loginForm, validationErrors, processing, submitLogin } = useAuth();
 
     /* estilos acordeon */
 
-    .p-accordion{
-        background-color: red !important;
+    .p-accordion .p-accordion-content{
+        background-color: pink;
+    }
+
+    .p-accordion .p-accordion-header {
+        background-color: green !important;
     }
 </style>
