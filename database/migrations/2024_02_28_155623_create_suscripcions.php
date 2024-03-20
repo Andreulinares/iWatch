@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('price');
             $table->time('duration');
+            $table->string('resolution');
+            $table->string('quality');
         });
     }
 
