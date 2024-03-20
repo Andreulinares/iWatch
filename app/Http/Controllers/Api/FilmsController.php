@@ -40,8 +40,10 @@ class FilmsController extends Controller
             $peli->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-films');
         }
         
-        if ($request->hasFile('video')) { return 1;
-            $peli->addMediaFromRequest('video')->preservingOriginal()->toMediaCollection('videos-films');
+        if ($request->hasFile('video')) {
+            $peli->addMediaFromRequest('video')
+                ->preservingOriginal()
+                ->toMediaCollection('videos-films', 'video');
         }
 
         return response()->json(['success' => true, 'data' => $peli]);

@@ -46,13 +46,17 @@
                                     <router-link :to="{ name: 'films.update', params: { id: film.id } }" class="btn btn-warning mr-1">Editar</router-link>
                                     <button class="btn btn-danger" @click="deleteFilm(film.id, index)">Eliminar</button>
                                 </td>
+                                <!--<video controls :src="film.media.length > 0 ? film.media[9].original_url : '/videos/video-prueba.mp4'" :alt="film.name" style="max-height: 100px;"></video>-->
                             </tr>
+                            
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    
+
 </template>
 
 <script setup>
