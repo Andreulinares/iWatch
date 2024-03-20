@@ -197,9 +197,37 @@ input.reqInfo::placeholder{
 
 /* ESTILOS SUSCRIPCIONES */
 
+.filaSubs{
+    max-width: 1440px;
+}
+
+.medal{
+    width: 100%;
+    height: 80px;
+    background-color: red;
+    border-radius: 4px;
+}
+
 .suscripcion{
     background-color: #636363;
     border-radius: 4px;
+}
+
+.infoCampo{
+    padding: 10px 0;
+}
+
+.infoCampo span{
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.suscripcion p{
+    color: white;
+    font-weight: 400;
+    margin: 0;
+    font-size: 16px;
 }
 
 .suscripcion button{
@@ -208,11 +236,4 @@ input.reqInfo::placeholder{
     padding: 15px 25px;
     width: 100%;
     font-weight: 700;
-}
-
-.medal{
-    width: 30px;
-    height: 30px;
-    background-color: red;
-    border-radius: 50px;
 }

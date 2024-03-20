@@ -1,13 +1,25 @@
 <template>
-    <section class="mt-5 pt-5">
-        <h1>Elige tú plan</h1>
-        <div class="row d-flex justify-content-center align-items-center">
-            <div v-for="sub in subscriptions" :key="sub.id"  class="container col-xs-12 col-sm-6 col-md-4 col-lg-3 suscripcion p-3">
+    <section class="container-fluid mt-5 pt-5 d-flex justify-content-center align-items-center">
+        <div class="row d-flex justify-content-center align-items-center filaSubs">
+            <h1>Elige tú plan</h1>
+            <div v-for="sub in subscriptions" :key="sub.id"  class="container col-xs-12 col-sm-6 col-md-4 col-lg-3 suscripcion p-3 m-2">
                 <div class="medal" :class="{ 'bronze-medal': sub.id === 1, 'silver-medal': sub.id === 2, 'gold-medal': sub.id === 3 }" ></div>
-                <h1>{{ sub.name }}</h1>
-                <h2>{{ sub.price }}€ mensuales</h2>
-                <h3>{{ sub.duration }}</h3>
-                <h3>Description</h3>
+                <div class="infoCampo">
+                    <span>Nombre</span>
+                    <p>{{ sub.name }}</p>
+                </div>
+                <div class="infoCampo">
+                    <span>Precio</span>
+                    <p>{{ sub.price }}€ mensuales</p>
+                </div>
+                <div class="infoCampo">
+                    <span>Duración</span>
+                    <p>{{ sub.duration }}</p>    
+                </div>
+                <div class="infoCampo">
+                    <span>Descripción</span>
+                    <p>Description</p>
+                </div>
                 <button @click="comprarSuscripcion(sub.id)">Upgrade plan</button>
             </div>
         </div>
@@ -67,18 +79,18 @@ function cargarSuscripciones() {
 </script>
 
 <style scoped>
-.bronze-medal {
-    background-color: #CD7F32;
-    /* Agrega cualquier otro estilo que desees */
-}
+    .bronze-medal {
+        background-color: #CD7F32;
+        /* Agrega cualquier otro estilo que desees */
+    }
 
-.silver-medal {
-    background-color: #C0C0C0;
-    /* Agrega cualquier otro estilo que desees */
-}
+    .silver-medal {
+        background-color: #C0C0C0;
+        /* Agrega cualquier otro estilo que desees */
+    }
 
-.gold-medal {
-    background-color: #DAA520;
-    /* Agrega cualquier otro estilo que desees */
-}
+    .gold-medal {
+        background-color: #DAA520;
+        /* Agrega cualquier otro estilo que desees */
+    }
 </style>
