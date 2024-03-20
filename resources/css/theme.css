@@ -237,3 +237,9 @@ input.reqInfo::placeholder{
     width: 100%;
     font-weight: 700;
 }
+
+/* ESTILOS PROFILE */
+
+.mainBox{
+    background-color: #12100D !important;
+}
