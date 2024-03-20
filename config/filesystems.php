@@ -56,6 +56,13 @@ return [
             'throw' => false,
         ],
 
+        'video' => [
+            'driver' => 'local',
+            'root' => public_path('videos'), // Ruta donde se guardarán los archivos de video
+            'url' => env('APP_URL').'/videos',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

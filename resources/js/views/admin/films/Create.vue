@@ -91,12 +91,18 @@
                     </div>
                 </div>
                 -->
-
-                <FileUpload v-model="film.video" mode="basic" name="video" accept="video/*"/>
+                
+                <FileUpload v-model="film.video" mode="basic" name="video" accept="video/*" @select="setVideoFile" />
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir película</button>
 
             </form>
+            <div v-if="film.video">
+                <p>URL del video: {{ film.video }}</p>
+            </div>
 
+            <div v-if="film.video && typeof film.video === 'object'">
+                <p>Nombre del video: {{ film.video.name }}</p>
+            </div>
 
         </div>
     </div>
@@ -126,6 +132,10 @@
     const router = useRouter();
     const {categoryList, getCategoryList} = useCategories()
     const videoFile = ref(null);
+
+    const setVideoFile = (event) => {
+        film.value.video = event.files[0];
+    };
 
     const schema = {
         name: 'required',
