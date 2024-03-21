@@ -61,6 +61,8 @@ const HomeNews = () => import('../views/news/index.vue');
 
 const ProfileSettings = () => import('../views/profile/index.vue');
 
+const player = () => import('../views/player/index.vue');
+
 function requireLogin(to, from, next) {
     let isLogin = false;
     isLogin = !!store.state.auth.authenticated;
@@ -188,6 +190,11 @@ export default [
             },
         ]
     },
+    {
+        path: '/player/:id',
+        name: 'player-films',
+        component: player,
+      },
     {
         path: '/admin',
         component: AuthenticatedLayout,
