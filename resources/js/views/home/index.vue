@@ -22,17 +22,16 @@
         <div class="modal-content">
           <div class="modal-body p-0">
             <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal"><i class="pi pi-times" style="color: white"></i></button>
-            {{ film?.media[1]?.original_url }}
             <video :key="film?.media[1]?.original_url" id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted loop>
               <source  :src="film?.media[1]?.original_url" type="video/mp4" />
             </video>
             <div class="pt-4 px-4 pb-4">
               <div class="buttons d-flex">
-                <router-link :to="{name: 'player-films', params: { id: film.id } }" class="watch d-flex justify-content-center align-items-center">
+                <button class="watch d-flex justify-content-center align-items-center">
                   <img src="images\playReproductorWhite.svg" alt="">
                   Reproducir
-                </router-link>
-                <button class="favourite">Mi lista</button>
+                </button>
+                <button @click="sendFavorites(film.id)" class="favourite">Mi lista</button>
               </div>
               <div class="info">
                 <h2>{{ film.name }}</h2>
@@ -55,11 +54,16 @@ import { ref, inject, onMounted } from "vue";
 import useCategories from "@/composables/categories";
 import FilmsCarousel from "@/components/FilmsCarousel.vue";
 
+import { useStore } from 'vuex';
+import { computed } from "vue";
+
 const films = ref([]);
 const film = ref({media:[]});
 const swal = inject('$swal');
 const infoModal = ref(null);
 const { categoryList, getCategoryList } = useCategories();
+const store = useStore();
+const user = computed(() => store.state.auth.user)
 
 // ... Tu lógica existente ...
 
@@ -86,6 +90,20 @@ const getFilmsByCategory = categoryId => {
 const info = (selectedFilm) => {
   console.log(selectedFilm);
   film.value = selectedFilm;
+}
+
+// Funcion para guardar favoritos
+const sendFavorites = (filmId) => {
+  axios.post('/api/favorites', {
+    user_id: store.state.auth.user.id,
+    film_id: filmId
+  })
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error('Error adding favorite:', error);
+  });
 }
 </script>
   

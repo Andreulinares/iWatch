@@ -81,7 +81,8 @@ Route::delete('categorias/{id}',[CategoriasController::class, 'destroy']);
 Route::post('subscriptions/{subscriptionId}', [UserSubscriptionController::class, 'subscribe']);
 
 // Añadir favoritos
-Route::post('favorites/{userId}/{filmId}', [FavoritesController::class, 'store']);
+Route::post('favorites', [FavoritesController::class, 'store']);
+
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);
