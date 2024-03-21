@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\SeriesController;
 use App\Http\Controllers\Api\SuscripcionController;
 use App\Http\Controllers\Api\UserSubscriptionController;
 use App\Http\Controllers\Api\UsuarioSuscripcionesController;
+use App\Http\Controllers\Api\FavoritesController;
 use App\http\Controllers\Api\ReviewsController;
 use App\http\Controllers\Api\MessagesController;
 use App\Http\Controllers\Api\RoomsController;
@@ -78,6 +79,9 @@ Route::delete('categorias/{id}',[CategoriasController::class, 'destroy']);
 
 // Añadir compra de suscripciones
 Route::post('subscriptions/{subscriptionId}', [UserSubscriptionController::class, 'subscribe']);
+
+// Añadir favoritos
+Route::post('favorites/{userId}/{filmId}', [FavoritesController::class, 'store']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);

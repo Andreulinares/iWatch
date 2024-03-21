@@ -22,7 +22,6 @@
         <div class="modal-content">
           <div class="modal-body p-0">
             <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal"><i class="pi pi-times" style="color: white"></i></button>
-            {{ film?.media[1]?.original_url }}
             <video :key="film?.media[1]?.original_url" id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted loop>
               <source  :src="film?.media[1]?.original_url" type="video/mp4" />
             </video>
@@ -55,11 +54,16 @@ import { ref, inject, onMounted } from "vue";
 import useCategories from "@/composables/categories";
 import FilmsCarousel from "@/components/FilmsCarousel.vue";
 
+import { useStore } from 'vuex';
+import { computed } from "vue";
+
 const films = ref([]);
 const film = ref({media:[]});
 const swal = inject('$swal');
 const infoModal = ref(null);
 const { categoryList, getCategoryList } = useCategories();
+const store = useStore();
+const user = computed(() => store.state.auth.user)
 
 // ... Tu lógica existente ...
 
@@ -87,6 +91,18 @@ const info = (selectedFilm) => {
   console.log(selectedFilm);
   film.value = selectedFilm;
 }
+
+// Funcion para guardar favoritos
+// const sendFavorites = () =>{
+//   axios.get('/api/favorites/'+store.state.auth.user.id+"/"+2)
+//     .then(response => {
+//       films.value = response.data;
+//       console.log(response.data);
+//     })
+//     .catch(error => {
+//       console.error('Error fetching films:', error);
+//     });
+// }
 </script>
   
 
