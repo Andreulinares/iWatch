@@ -1,74 +1,84 @@
 <template>
     <div class="card border-0 bg-primary mainBox">
+        
         <div class="card-body">
-            <form @submit.prevent="submitForm">
-                <div class="all d-flex justify-content-center align-items-center flex-wrap">
-                    <div class="mb-3">
-                        <label for="profile_image" class="form-label">Foto de perfil</label>
-                        <input type="file" class="form-control" id="profile_image" @change="onFileChange($event)">
-                        <div class="text-danger mt-1">
-                            {{ errors.profile_image }}
-                        </div>
-                        <div class="text-danger mt-1">
-                            <div v-for="message in validationErrors?.profile_image">
-                                {{ message }}
+            
+            <form @submit.prevent="submitForm" class="d-flex justify-content-center align-items-center">
+                <div class="group">
+                    <h1>Mi perfil</h1>
+                    <div class="all d-flex justify-content-between align-items-center flex-wrap">
+                        <div class="mb-3 profileImageEdit px-2">
+                            <!-- <label for="profile_image" class="form-label">Foto de perfil</label>
+                            <input type="file" class="form-control" id="profile_image" @change="onFileChange($event)">
+                            <div class="text-danger mt-1">
+                                {{ errors.profile_image }}
                             </div>
+                            <div class="text-danger mt-1">
+                                <div v-for="message in validationErrors?.profile_image">
+                                    {{ message }}
+                                </div>
+                            </div> -->
+                            <img src="/images/placeholder.jpg" alt="">
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="mb-3 users d-flex">
-                            <div class="me-3">
-                                <input type="text" v-model="profile.name" class="form-control reqInfo" id="name" placeholder="Nombre">
+                        <div class="mb-3 px-2">
+                            <div class="mb-3 users d-flex">
+                                <div class="me-3">
+                                    <input type="text" v-model="profile.name" class="form-control reqInfo" id="name" placeholder="Nombre">
+                                    <div class="text-danger mt-1">
+                                        {{ errors.name }}
+                                    </div>
+                                    <div class="text-danger mt-1">
+                                        <div v-for="message in validationErrors?.name">
+                                            {{ message }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="text" v-model="profile.apellido" class="form-control reqInfo" id="apellido" placeholder="Apellido">
+                                    <div class="text-danger mt-1">
+                                        {{ errors.apellido }}
+                                    </div>
+                                    <div class="text-danger mt-1">
+                                        <div v-for="message in validationErrors?.apellido">
+                                            {{ message }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" v-model="profile.phone" class="form-control reqInfo" id="phone" placeholder="Teléfono">
                                 <div class="text-danger mt-1">
-                                    {{ errors.name }}
+                                    {{ errors.phone }}
                                 </div>
                                 <div class="text-danger mt-1">
-                                    <div v-for="message in validationErrors?.name">
+                                    <div v-for="message in validationErrors?.phone">
                                         {{ message }}
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <input type="text" v-model="profile.apellido" class="form-control reqInfo" id="apellido" placeholder="Apellido">
+                            <div class="mb-3">
+                                <input type="email" v-model="profile.email" class="form-control reqInfo" id="email" placeholder="Correo electrónico">
                                 <div class="text-danger mt-1">
-                                    {{ errors.apellido }}
+                                    {{ errors.email }}
                                 </div>
                                 <div class="text-danger mt-1">
-                                    <div v-for="message in validationErrors?.apellido">
+                                    <div v-for="message in validationErrors?.email">
                                         {{ message }}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" v-model="profile.phone" class="form-control reqInfo" id="phone" placeholder="Teléfono">
-                            <div class="text-danger mt-1">
-                                {{ errors.phone }}
+                            <div class="mb-3">
+                                <button :disabled="isLoading" class="btn btn-primary accion mb-3">
+                                    <div v-show="isLoading" class=""></div>
+                                    <span v-if="isLoading">Procesando...</span>
+                                    <span v-else>Guardar</span>
+                                </button>
+                                <button :disabled="isLoading" class="btn btn-primary accion deleteAccountAction">
+                                    <div v-show="isLoading" class=""></div>
+                                    <span v-if="isLoading">Procesando...</span>
+                                    <span v-else>Eliminar cuenta</span>
+                                </button>
                             </div>
-                            <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.phone">
-                                    {{ message }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" v-model="profile.email" class="form-control reqInfo" id="email" placeholder="Correo electrónico">
-                            <div class="text-danger mt-1">
-                                {{ errors.email }}
-                            </div>
-                            <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.email">
-                                    {{ message }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <button :disabled="isLoading" class="btn btn-primary accion">
-                                <div v-show="isLoading" class=""></div>
-                                <span v-if="isLoading">Procesando...</span>
-                                <span v-else>Guardar</span>
-                            </button>
-                            <button>Eliminar cuenta</button>
                         </div>
                     </div>
                 </div>

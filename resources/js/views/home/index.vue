@@ -22,8 +22,9 @@
         <div class="modal-content">
           <div class="modal-body p-0">
             <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal"><i class="pi pi-times" style="color: white"></i></button>
-            <video id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted loop>
-              <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+            {{ film?.media[1]?.original_url }}
+            <video :key="film?.media[1]?.original_url" id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted loop>
+              <source  :src="film?.media[1]?.original_url" type="video/mp4" />
             </video>
             <div class="pt-4 px-4 pb-4">
               <div class="buttons d-flex">
@@ -55,7 +56,7 @@ import useCategories from "@/composables/categories";
 import FilmsCarousel from "@/components/FilmsCarousel.vue";
 
 const films = ref([]);
-const film = ref({});
+const film = ref({media:[]});
 const swal = inject('$swal');
 const infoModal = ref(null);
 const { categoryList, getCategoryList } = useCategories();
