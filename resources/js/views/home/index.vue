@@ -17,7 +17,7 @@
     
   </div>
 
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div v-if="film" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div class="modal-content">
           <div class="modal-body p-0">
@@ -27,10 +27,11 @@
             </video>
             <div class="pt-4 px-4 pb-4">
               <div class="buttons d-flex">
-                <button class="watch d-flex justify-content-center align-items-center">
-                  <img src="images\playReproductorWhite.svg" alt="">
-                  Reproducir
-                </button>
+                <router-link v-if="film && film.id" :to="{ name: 'player-films', params: { id: film.id } }" class="watch d-flex justify-content-center align-items-center">
+                    <img src="images\playReproductorWhite.svg" alt="">
+                    Reproducir
+                </router-link>
+
                 <button @click="sendFavorites(film.id)" class="favourite">Mi lista</button>
               </div>
               <div class="info">
@@ -56,6 +57,9 @@ import FilmsCarousel from "@/components/FilmsCarousel.vue";
 
 import { useStore } from 'vuex';
 import { computed } from "vue";
+import { useRouter } from 'vue-router';
+
+const route = useRouter();
 
 const films = ref([]);
 const film = ref({media:[]});
@@ -105,8 +109,12 @@ const sendFavorites = (filmId) => {
     console.error('Error adding favorite:', error);
   });
 }
+
+const playFilm = (id) => {
+  route.push({ name: 'player-films', params: { id: id } });
+}
+
 </script>
-  
 
 
 <style>

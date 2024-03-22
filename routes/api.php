@@ -40,6 +40,7 @@ Route::delete('films/{id}',[FilmsController::class, 'destroy']);
 
 // Mostrar pelicula por ID
 Route::get('films/{idCat}', [FilmsController::class,'getFilmByCat']); 
+Route::get('films/{id}', [FilmsController::class, 'show']);
 
 // Acciones admin series
 Route::get('series', [SeriesController::class,'index']);
