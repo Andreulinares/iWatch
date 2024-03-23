@@ -76,10 +76,17 @@ class FilmsController extends Controller
         return response()->json(['success' => true, 'data' => $film]);
     }
 
-    public function show($id){
-        $selectedFilms = Film::find($id);
-        return response()->json($selectedFilms);
+    public function getFilmById($id) {
+        $film = Film::find($id);
+    
+        if (!$film) {
+            return response()->json(['error' => 'Película no encontrada'], 404);
+        }
+    
+        return $film;
     }
+    
+    
 
     /*
     public function show($id){

@@ -17,7 +17,7 @@
     
   </div>
 
-  <div v-if="film" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div class="modal-content">
           <div class="modal-body p-0">
@@ -108,10 +108,6 @@ const sendFavorites = (filmId) => {
   .catch(error => {
     console.error('Error adding favorite:', error);
   });
-}
-
-const playFilm = (id) => {
-  route.push({ name: 'player-films', params: { id: id } });
 }
 
 </script>
