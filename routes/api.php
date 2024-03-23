@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\FilmsController;
+use App\Http\Controllers\Api\SeasonsController;
 use App\Http\Controllers\Api\SeriesController;
 use App\Http\Controllers\Api\SuscripcionController;
 use App\Http\Controllers\Api\UserSubscriptionController;
@@ -41,6 +42,9 @@ Route::delete('films/{id}',[FilmsController::class, 'destroy']);
 // Mostrar pelicula por ID
 Route::get('films/{id}', [FilmsController::class, 'getFilmById']);
 Route::get('films/{idCat}', [FilmsController::class,'getFilmByCat']); 
+
+// Acciones admin seasons
+Route::get('seasons', [SeasonsController::class,'index']);
 
 // Acciones admin series
 Route::get('series', [SeriesController::class,'index']);
