@@ -263,3 +263,17 @@ input.reqInfo::placeholder{
     border: solid 1px white;
     color: black;
 }
+
+/* ESTILOS VISTA PELIS */
+
+.cont-principal{
+    padding-top: 70px;
+}
+
+.film-card{
+    max-width: 350px;
+}
+
+.miniature img{
+    width: 100%;
+}

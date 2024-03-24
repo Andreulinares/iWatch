@@ -19,6 +19,20 @@ class FilmsController extends Controller
         $filmByCat = Film::with('media')->where('categoria_id', $id)->get();
         return $filmByCat;
     }
+
+    public function getFilmsByCats($id)
+    {
+        if ($id == 0) {
+            // Si la categoría es 0, mostrar todas las películas
+            $filmByCat = Film::with('media')->get();
+        } else {
+            // Si la categoría es diferente de 0, filtrar por categoría
+            $filmByCat = Film::with('media')->where('categoria_id', $id)->get();
+        }
+    
+        return $filmByCat;
+    }
+
     
     // Crear pelicula
     public function store(Request $request){
