@@ -77,7 +77,7 @@ class FilmsController extends Controller
     }
 
     public function getFilmById($id) {
-        $film = Film::with('media')->find($id);
+        $film = Film::find($id);
     
         if (!$film) {
             return response()->json(['error' => 'Película no encontrada'], 404);
@@ -99,7 +99,7 @@ class FilmsController extends Controller
 
     public function getAllSeriesNames()
     {
-        $series = Film::where('type', 'serie')->orderBy('name')->pluck('name');
+        $series = Film::where('type', 'serie')->orderBy('name')->select('id', 'name')->get();
         return $series;
     }
     
