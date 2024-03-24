@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>REPRODUCTOR</h1>
     <div v-if="isLoading">
       <p>Cargando...</p>
     </div>
@@ -49,3 +48,9 @@ onMounted(() => {
 
 // Observar cambios en la ruta y cargar datos de la película en consecuencia
 </script>
+
+<style scoped>
+  video{
+    width: 100%;
+  }
+</style>
