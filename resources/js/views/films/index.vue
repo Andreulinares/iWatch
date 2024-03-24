@@ -8,7 +8,7 @@
         <div class="container-fluid">
           <div class="row rowFilms d-flex justify-content-center align-items-center">
             <div v-for="(film, index) in films" :key="film.id" class="film-card">
-              <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="miniature">
+              <div class="miniature">
                 <img :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name" style="max-height: 100px;">
               </div>
             </div>
