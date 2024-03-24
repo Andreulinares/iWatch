@@ -4,11 +4,15 @@
     <div v-if="isLoading">
       <p>Cargando...</p>
     </div>
-    <div v-else-if="film && film.media && film.media.length > 0">
-      <video controls :src= "film.media[1].original_url ? film.media[1].original_url : ''" :alt="film.name" style="max-height: 500px;"></video>
-    </div>
     <div v-else>
-      <p>No se encontró ningún video para esta película.</p>
+      <div v-if="film">
+        <div v-if="film.media && film.media.length > 0">
+          <video controls :src="film.media[1].original_url ? film.media[1].original_url : ''" :alt="film.name" style="max-height: 500px;"></video>
+        </div>
+        <div v-else>
+          <p>No se encontró ningún video para esta película.</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,7 +24,7 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 // Utilizamos ref en lugar de valor primitivo
-const film = ref({});
+const film = ref(null);
 const isLoading = ref(false);
 
 // Función para cargar los datos de la película

@@ -77,7 +77,7 @@ class FilmsController extends Controller
     }
 
     public function getFilmById($id) {
-        $film = Film::find($id);
+        $film = Film::with('media')->find($id);
     
         if (!$film) {
             return response()->json(['error' => 'Película no encontrada'], 404);
