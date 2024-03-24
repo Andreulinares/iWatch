@@ -12,4 +12,17 @@ class SeasonsController extends Controller
         $seasons = Season::all()->toArray();
         return $seasons;
     }
+
+    // Crear season
+    public function store(Request $request){
+
+        $request->validate([
+            'season_name' => 'required',
+            'content_id' => 'required',
+        ]);
+        $seasonData = $request->all();
+        $season = Season::create($seasonData);
+
+        return response()->json(['success' => true, 'data' => $season]);
+    }
 }

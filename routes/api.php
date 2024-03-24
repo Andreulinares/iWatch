@@ -43,8 +43,13 @@ Route::delete('films/{id}',[FilmsController::class, 'destroy']);
 Route::get('films/{id}', [FilmsController::class, 'getFilmById']);
 Route::get('films/{idCat}', [FilmsController::class,'getFilmByCat']); 
 
+// Mostrar solo nombre de series
+Route::get('series/names/{id}', [FilmsController::class,'getSeriesNameById']);
+Route::get('seriesAllNames', [FilmsController::class,'getAllSeriesNames']);
+
 // Acciones admin seasons
 Route::get('seasons', [SeasonsController::class,'index']);
+Route::post('seasons/', [SeasonsController::class, 'store']);
 
 // Acciones admin series
 Route::get('series', [SeriesController::class,'index']);

@@ -85,6 +85,23 @@ class FilmsController extends Controller
     
         return $film;
     }
+
+    public static function getSeriesNameById($id)
+    {
+        $serie = Film::find($id);
+
+        if (!$serie) {
+            return response()->json(['error' => 'Película no encontrada'], 404);
+        }
+
+        return response()->json(['name' => $serie->name]);
+    }
+
+    public function getAllSeriesNames()
+    {
+        $series = Film::where('type', 'serie')->orderBy('name')->pluck('name');
+        return $series;
+    }
     
     
 

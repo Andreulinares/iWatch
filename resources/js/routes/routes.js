@@ -27,6 +27,7 @@ const SeriesUpdate = () => import('../views/admin/series/Update.vue');
 
 // Temporadas admin
 const SeasonsList  = ()  => import('../views/admin/seasons/index.vue');
+const SeasonsCreate  = ()  => import('../views/admin/seasons/Create.vue');
 
 // Suscripciones admin
 const SuscripcionesList  = ()  => import('../views/admin/suscripciones/indexSuscripciones.vue');
@@ -304,7 +305,7 @@ export default [
                     {
                         name: 'seasons.create',
                         path: 'createSeason',
-                        component: FilmsCreate,
+                        component: SeasonsCreate,
                         meta: {breadCrumb: 'Crear temporada'}
                     },
                     {
