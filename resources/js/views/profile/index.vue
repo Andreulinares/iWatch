@@ -19,6 +19,7 @@
                                 </div>
                             </div> -->
                             <img src="/images/placeholder.jpg" alt="">
+                            <input type="file" class="form-control" @change="onFileChange">
                         </div>
                         <div class="mb-3 px-2">
                             <div class="mb-3 users d-flex">

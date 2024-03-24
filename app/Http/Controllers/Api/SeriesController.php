@@ -31,7 +31,7 @@ class SeriesController extends Controller
         $serie = Serie::create($serieData);
 
         if ($request->hasFile('thumbnail')) {
-            $serie->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-films');
+            $serie->addMediaFromRequest('thumbnail')->preservingOriginal()->toMediaCollection('images-series');
         }
 
         return response()->json(['success' => true, 'data' => $serie]);

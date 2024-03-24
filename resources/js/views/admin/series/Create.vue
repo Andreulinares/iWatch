@@ -103,18 +103,35 @@ const { value: seasons } = useField('seasons', null, { initialValue: '' });
 const isLoading = ref(false); // Agregar esta línea
 const validationErrors = ref({}); // Agregar esta línea
 
-    function addserie(){
-        axios.post('/api/series', serie.value)
-        .then(response =>{
-            console.log(response);
-            strSuccess.value = response.data.success;
-            strError.value = "";
-        }).catch(error =>{
-            console.log(error);
-            strSuccess.value = "";
-            strError.value = error.response.data.message;
-        });
-    }
+    function addserie() {
+    validate().then((success) => {
+        if (success) {
+            const formData = new FormData();
+            formData.append('name', serie.value.name);
+            formData.append('synopsis', serie.value.synopsis);
+            formData.append('director', serie.value.director);
+            formData.append('duration', serie.value.duration);
+            formData.append('episodes', serie.value.episodes);
+            formData.append('seasons', serie.value.seasons);
+            formData.append('thumbnail', serie.value.thumbnail);
+
+            axios.post('/api/series', formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }).then(response => {
+                console.log(response);
+                strSuccess.value = response.data.success;
+                strError.value = "";
+                router.push({ name: 'series.indexSeries' }); 
+            }).catch(error => {
+                console.log(error);
+                strSuccess.value = "";
+                strError.value = error.response.data.message;
+            });
+        }
+    });
+}
 
     const storeSerie = async (serie) => {
         if (isLoading.value) return;
