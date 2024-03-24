@@ -16,6 +16,13 @@
                   <p>TEMPORADAS: {{ season }}</p>
                   <p>SERIES: {{ series }}</p>
             <form @submit.prevent="addSeason">
+
+                <div class="form-group mb-2">
+                    <label>Content ID</label><span class="text-danger"> *</span>
+                    <input v-model="season.content_id" type="text" class="form-control" placeholder="Content ID">
+                </div>
+
+
                 <div class="form-group mb-2">
                     <label>Nombre</label><span class="text-danger"> *</span>
                     <input v-model="season.season_name" type="text" class="form-control" placeholder="Nombre">
