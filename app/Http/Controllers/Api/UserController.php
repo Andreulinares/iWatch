@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -121,5 +123,36 @@ class UserController extends Controller
         $user->delete();
 
         return response()->noContent();
+    }
+
+    public function uploadProfileImage(Request $request)
+{
+    $user = auth()->user();
+
+    if ($request->hasFile('profile_image')) {
+        $imageUrl = $request->file('profile_image')->store('profile-images');
+
+        // Actualiza el campo profile_image en la base de datos
+        $user->profile_image = $imageUrl;
+        $user->save();
+
+        return response()->json(['url' => $imageUrl], 200);
+    }
+
+    return response()->json(['error' => 'No se ha proporcionado ninguna imagen'], 400);
+}
+
+    public function getUserProfileImage()
+    {
+    $user = auth()->user(); // Obtén el usuario actualmente autenticado
+    $profileImage = $user->profile_image; // Obtén la URL de la imagen del perfil del usuario desde la base de datos
+
+    // Verifica si la imagen existe en el sistema de archivos
+    if (Storage::exists($profileImage)) {
+        return response()->file(storage_path('app/' . $profileImage));
+    }
+
+    // Si no se encuentra la imagen, devuelve una imagen de marcador de posición u otra respuesta adecuada
+    return response()->json(['error' => 'No se encontró la imagen del perfil'], 404);
     }
 }
