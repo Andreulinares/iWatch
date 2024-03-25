@@ -1,5 +1,5 @@
 <template>
-    <div class="cont-principal">
+    <!-- <div class="cont-principal">
       <div class="limit">
         <select v-model="selectedFilter" @change="handleCategoryChange" class="w-full md:w-14rem">
           <option v-for="filter in filters" :value="filter.value" :key="filter.value">{{ filter.label }}</option>
@@ -15,7 +15,26 @@
           </div>
         </div>
       </div>
+    </div> -->
+
+    <div class="container-fluid homeFluidCont d-flex justify-content-center">
+      <div class="container m-0 p-0 homeContainer">
+        <select v-model="selectedFilter" @change="handleCategoryChange" class="selector w-full md:w-14rem">
+          <option class="selectorOption" v-for="filter in filters" :value="filter.value" :key="filter.value">{{ filter.label }}</option>
+        </select>
+        <!-- <h1>Categoría seleccionada: {{ selectedFilter }}</h1> -->
+        <div class="container-fluid">
+          <div class="row rowFilms d-flex justify-content-center align-items-center">
+            <div v-for="(film, index) in films" :key="film.id" class="film-card p-0">
+              <div class="border-1 surface-border border-round m-2 p-3 miniature">
+                <img class="image-item" :src="film.media.length > 0 ? film.media[0].original_url : '/images/placeholder.jpg'" :alt="film.name">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
   </template>
   
   <script setup>

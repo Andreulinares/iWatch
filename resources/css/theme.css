@@ -409,3 +409,29 @@ border: 1px solid rgba(255, 255, 255, 0.31);
 .miniature img{
     width: 100%;
 }
+
+/* ESTILOS VIEWS PELICCULAS, SERIES FAVORITOS */
+
+.selector{
+    outline: none;
+    padding: 5px 10px;
+    border: solid 1px rgba(255, 255, 255, 0.5) !important;
+    border-radius: 1vw;
+    background: rgb(20, 20, 16);
+    color: rgba(255, 255, 255, 0.7) !important;
+    border: solid 2px transparent;
+}
+
+option{
+    color: rgba(255, 255, 255, 0.7) !important;
+    border: solid 2px transparent;
+    margin: 0;
+    padding: 7px 14px;
+}
+
+option:hover{
+    color: white !important;
+    background-color: #1d1d1d;
+    border-left: solid 2px white;
+    transition: 0.3s;
+}
