@@ -114,6 +114,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/user', [ProfileController::class, 'user']);
     Route::put('/user', [ProfileController::class, 'update']);
     Route::post('/user', [UserController::class, 'uploadProfileImage']);
+    Route::get('/user/profile-image', [UserController::class, 'getUserProfileImage']);
+
 
     Route::get('abilities', function(Request $request) {
         return $request->user()->roles()->with('permissions')
