@@ -18,7 +18,7 @@
                                     {{ message }}
                                 </div>
                             </div> -->
-                            <img src="/images/placeholder.jpg" alt="">
+                            <img :src="profile.profile_image" alt="Imagen de perfil">
                             <input type="file" class="form-control" @change="onFileChange">
                         </div>
                         <div class="mb-3 px-2">
