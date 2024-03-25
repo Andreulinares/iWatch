@@ -44,7 +44,7 @@
                             <router-link class="nav-link" to="/register">{{ $t('register') }}</router-link>
                         </li>
                     </template>
-                    <li v-if="user?.name" class="nav-item dropdown">
+                    <li v-if="user?.name" class="nav-item dropdown rightMenu">
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <Avatar v-badge.danger="4" class="p-overlay-badge" image="images\Netflix-avatar.png" size="large" />
                         </a>

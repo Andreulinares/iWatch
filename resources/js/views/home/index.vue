@@ -1,44 +1,55 @@
 <template>
-  <div class="container-fluid p-0">
-    <video id="my-video" class="my-video vjs-default-skin" data-setup="{}" autoplay muted loop>
-      <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
-    </video>
+  <div class="container-fluid homeFluidCont d-flex justify-content-center">
+      <div class="container m-0 p-0 homeContainer">
+      <video id="my-video" class="my-video firstVideo vjs-default-skin" data-setup="{}" autoplay muted loop>
+        <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+      </video>
 
-    <div class="row m-0" v-for="category in categoryList" :key="category.id">
-      <h2>{{ category.name }}</h2>
-      <Carousel :value="getFilmsByCategory(category.id)" :numVisible="5" :numScroll="3">
-        <template #item="slotProps">
-          <div class="border-1 surface-border border-round m-2 p-3">
-            <img @click="info(slotProps.data)" class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="350" :src="slotProps.data.media && slotProps.data.media[0]?.original_url ? slotProps.data.media[0].original_url : '/images/placeholder.jpg'" :alt="slotProps.data.name" style="max-height: 100px;">
-          </div>
-        </template>
-      </Carousel>
+      <div class="row m-0" v-for="category in categoryList" :key="category.id">
+        <h2>{{ category.name }}</h2>
+        <Carousel :value="getFilmsByCategory(category.id)" :numVisible="5" :numScroll="3">
+          <template #item="slotProps">
+            <div class="border-1 surface-border border-round m-2 p-3">
+              <img @click="info(slotProps.data)" class="image-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="350" :src="slotProps.data.media && slotProps.data.media[0]?.original_url ? slotProps.data.media[0].original_url : '/images/placeholder.jpg'" :alt="slotProps.data.name">
+            </div>
+          </template>
+        </Carousel>
+      </div>
+      
     </div>
-    
   </div>
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-body p-0">
             <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal"><i class="pi pi-times" style="color: white"></i></button>
-            <video :key="film?.media[1]?.original_url" id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted loop>
-              <source  :src="film?.media[1]?.original_url" type="video/mp4" />
-            </video>
+            <div class="videoCont">
+              <video :key="film?.media[1]?.original_url" id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted loop>
+                <source  :src="film?.media[1]?.original_url" type="video/mp4" />
+              </video>
+              <div class="overlay"></div>
+            </div>
             <div class="pt-4 px-4 pb-4">
-              <div class="buttons d-flex">
+              <div class="info">
+                <div class="firstBlock d-flex justify-content-between">
+                  <h2>{{ film.name }}</h2>
+                  <div>
+                    <p class="m-0">{{ film.duration }}h</p>
+                    <p>{{ film.punctuation }}</p>
+                  </div>
+                </div>
+                <p>{{ film.synopsis }}</p>
+                <p>{{ film.director }}</p>
+              </div>
+              <hr>
+              <div class="buttons d-flex justify-content-between">
                 <router-link v-if="film && film.id" :to="{ name: 'player-films', params: { id: film.id } }" class="watch d-flex justify-content-center align-items-center">
                     <img src="images\playReproductorWhite.svg" alt="">
                     Reproducir
                 </router-link>
 
-                <button @click="sendFavorites(film.id)" class="favourite">Mi lista</button>
-              </div>
-              <div class="info">
-                <h2>{{ film.name }}</h2>
-                <p>{{ film.synopsis }}</p>
-                <hr>
-                <p>{{ film.duration }}h</p>
+                <button @click="sendFavorites(film.id)" class="favourite"><img class="favoriteIcon" src="images\heartIcon.svg" alt=""></button>
               </div>
             </div>
           </div>

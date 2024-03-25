@@ -5,7 +5,7 @@
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom footerSection mb-0">
     <!-- Left -->
     <div class="me-5 d-none d-lg-block">
-      <span>Get connected with us on social networks:</span>
+      <span>Para más información:</span>
     </div>
     <!-- Left -->
 
@@ -50,16 +50,13 @@
             Products
           </h6>
           <p>
-            <a href="#!" class="text-reset">Angular</a>
+            <a href="#!" class="text-reset">Centro de ayuda</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">React</a>
+            <a href="#!" class="text-reset">Empleo</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Vue</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Laravel</a>
+            <a href="#!" class="text-reset">Preferencias de cookies</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -71,16 +68,13 @@
             Useful links
           </h6>
           <p>
-            <a href="#!" class="text-reset">Pricing</a>
+            <a href="#!" class="text-reset">Tarjetas regalo</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Settings</a>
+            <a href="#!" class="text-reset">Términos de uso</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Orders</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Help</a>
+            <a href="#!" class="text-reset">Información corporativa</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -89,13 +83,12 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <p><i class="fas fa-home me-3"></i> Carrer Ntra. Sra. de Lourdes, 34, 08750 Molins de Rei, Barcelona</p>
           <p>
             <i class="fas fa-envelope me-3"></i>
-            info@example.com
+            ies-bernatelferrer@xtec.cat
           </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          <p><i class="fas fa-phone me-3"></i> + 936 683 762</p>
         </div>
         <!-- Grid column -->
       </div>
