@@ -155,8 +155,21 @@ input.reqInfo::placeholder{
     max-width: 1800px !important;
 }
 
+.mainVideo{
+    position: relative;
+}
+
 #my-video{
     border-radius: 1vw !important;
+}
+
+.mainVideo h1{
+    position: absolute;
+    left: 10vh;
+    bottom: 20vh;
+    z-index: 11;
+    font-size: 40px;
+    font-weight: 900;
 }
 
 .firstVideo{
@@ -215,7 +228,19 @@ input.reqInfo::placeholder{
 /* estilo modal */
 
 .modal-content{
-    background-color: #181818 !important;
+    /* background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9px);
+-webkit-backdrop-filter: blur(9px);
+border: 1px solid rgba(255, 255, 255, 0.31); */
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(12.8px);
+-webkit-backdrop-filter: blur(12.8px);
+border: 1px solid rgba(255, 255, 255, 0.31);
     color: white;
     border-radius: 1vw !important;
 }
@@ -248,18 +273,18 @@ input.reqInfo::placeholder{
     position: absolute;
     bottom: 0;
     background: rgb(20,20,20);
-background: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(0,0,0,0) 100%, rgba(20,20,16,1) 141410%);
+    background: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(0,0,0,0) 100%, rgba(20,20,16,1) 141410%);
     height: 20px;
     z-index: 1;
 }
 
 .watch{
     padding: 15px 25px;
-    background-color: red;
+    background: linear-gradient(90deg, #3747f4, #1554f4, #005ef3, #0068f1, #0070ed, #0077e8, #007ee2, #0584dc);
     color: white;
     font-weight: 700;
     border: none;
-    border-radius: 4px;
+    border-radius: 1vw;
     width: 100%;
 }
 
@@ -271,9 +296,10 @@ background: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(0,0,0,0) 100%, rgba(
     background-color: transparent;
     color: white;
     font-weight: 700;
-    border: solid 0.5px #3d3d3d;
+    border: solid 1px rgba(255, 255, 255, 0.5);
     border-radius: 4px;
     padding: 0 25px;
+    border-radius: 1vw;
 }
 
 .favourite:hover{
@@ -281,6 +307,7 @@ background: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(0,0,0,0) 100%, rgba(
     color: black;
     border: white;
     transition: 0.3s;
+    text-decoration: none;
 }
 
 .favoriteIcon{
@@ -309,12 +336,12 @@ background: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(0,0,0,0) 100%, rgba(
     width: 100%;
     height: 80px;
     background-color: red;
-    border-radius: 4px;
+    border-radius: 1vw;
 }
 
 .suscripcion{
-    background-color: #636363;
-    border-radius: 4px;
+    background: linear-gradient(210deg, #283d61, #416697, #5792d1);
+    border-radius: 1vw;
 }
 
 .infoCampo{
@@ -340,6 +367,7 @@ background: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(0,0,0,0) 100%, rgba(
     padding: 15px 25px;
     width: 100%;
     font-weight: 700;
+    border-radius: 1vw;
 }
 
 /* ESTILOS PROFILE */

@@ -1,9 +1,12 @@
 <template>
   <div class="container-fluid homeFluidCont d-flex justify-content-center">
       <div class="container m-0 p-0 homeContainer">
-      <video id="my-video" class="my-video firstVideo vjs-default-skin" data-setup="{}" autoplay muted loop>
-        <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
-      </video>
+      <div class="mainVideo">
+        <video id="my-video" class="my-video firstVideo vjs-default-skin" data-setup="{}" autoplay muted loop>
+          <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+        </video>
+        <h1>TITLE</h1>
+      </div>
 
       <div class="row m-0" v-for="category in categoryList" :key="category.id">
         <h2>{{ category.name }}</h2>
@@ -28,7 +31,6 @@
               <video :key="film?.media[1]?.original_url" id="my-video" class="my-video vjs-default-skin w-100" data-setup="{}" autoplay muted loop>
                 <source  :src="film?.media[1]?.original_url" type="video/mp4" />
               </video>
-              <div class="overlay"></div>
             </div>
             <div class="pt-4 px-4 pb-4">
               <div class="info">
