@@ -76,4 +76,9 @@ class User extends Authenticatable
                 ->height(env('IMAGE_HEIGHT', 300));
         }
     }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Film::class, 'favorites', 'user_id', 'film_id');
+    }
 }
