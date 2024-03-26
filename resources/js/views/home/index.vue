@@ -8,6 +8,10 @@
         <h1>TITLE</h1>
       </div>
 
+      <!-- <h1>{{ favorites }}</h1>
+      <hr>
+      <h1>{{ films }}</h1> -->
+
       <div class="row m-0" v-for="category in categoryList" :key="category.id">
         <h2>{{ category.name }}</h2>
         <Carousel :value="getFilmsByCategory(category.id)" :numVisible="5" :numScroll="3">
@@ -51,7 +55,10 @@
                     Reproducir
                 </router-link>
 
-                <button @click="sendFavorites(film.id)" class="favourite"><img class="favoriteIcon" src="images\heartIcon.svg" alt=""></button>
+                <button @click="sendFavorites(film.id)" class="favourite">
+                  <img v-if="verifyFavorite(film.id)" class="favoriteIcon" src="images\cancel.svg" alt="">
+                  <img v-else class="favoriteIcon" src="images\heartIcon.svg" alt="">
+                </button>
               </div>
             </div>
           </div>
@@ -82,7 +89,7 @@ const { categoryList, getCategoryList } = useCategories();
 const store = useStore();
 const user = computed(() => store.state.auth.user)
 
-// ... Tu lógica existente ...
+const favorites = ref([]);
 
 // Obtener películas
 onMounted(() => {
@@ -93,6 +100,15 @@ onMounted(() => {
     })
     .catch(error => {
       console.error('Error fetching films:', error);
+    });
+
+    axios.get('/api/favoriteFilms')
+    .then(response => {
+      favorites.value = response.data.data;
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error('Error fetching favorites:', error);
     });
   // Obtener categorías
   getCategoryList();
@@ -117,11 +133,26 @@ const sendFavorites = (filmId) => {
   })
   .then(response => {
     console.log(response.data);
+      swal({
+          icon: 'success',
+          title: 'Guardada en favoritos'
+      });
+      favorites.value.push(response.data.data);
   })
   .catch(error => {
     console.error('Error adding favorite:', error);
+    swal({
+          icon: 'Ya en favoritos',
+          title: 'Ya esta en favoritos'
+      });
   });
 }
+
+// Función para verificar si una película con el ID especificado está en la lista de favoritos
+const verifyFavorite = (movieId) => {
+  return favorites.value.some(favorite => favorite.film_id === movieId);
+}
+
 
 </script>
 

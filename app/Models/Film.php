@@ -44,4 +44,9 @@ class Film extends Model implements HasMedia
                 ->height(env('IMAGE_HEIGHT', 300));
         }
     }
+
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'film_id', 'user_id');
+    }
 }

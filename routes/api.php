@@ -92,6 +92,7 @@ Route::delete('categorias/{id}',[CategoriasController::class, 'destroy']);
 Route::post('subscriptions/{subscriptionId}', [UserSubscriptionController::class, 'subscribe']);
 
 // Añadir favoritos
+Route::get('favoriteFilms', [FavoritesController::class,'index']);
 Route::post('favorites', [FavoritesController::class, 'store']);
 
 
