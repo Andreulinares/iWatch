@@ -1,6 +1,7 @@
 
 html {
     font-size: 14px;
+    
 }
 
 body {
@@ -77,7 +78,7 @@ h1, h2, h3{
 .contenedorInputs{
     background-color: #12100D !important;
     width: 450px;
-    border-radius: 4px;
+    border-radius: 1vw;
     border: solid 1px rgba(255, 255, 255, 0.1) !important;
 }
 
@@ -119,10 +120,15 @@ input.reqInfo::placeholder{
     transition: 0.3s;
 }
 
-.frgtPasswd{
+.txtLog{
     text-align: center;
-    color: white;
+    color: rgb(255, 255, 255, 0.3);
     font-weight: 400;
+}
+
+.txtLog:hover{
+    color: white;
+    transition: 0.3s;
 }
 
 .form-check-label{
@@ -130,6 +136,16 @@ input.reqInfo::placeholder{
 }
 
 /* estilos secciones inferiores info */
+
+.downArrow{
+    max-width: 95px;
+}
+
+.downArrow:hover{
+    filter: brightness(2.5);
+    transition: 0.3s;
+    cursor: pointer;
+}
 
 .infoRow{
     padding: 130px 80px;
@@ -139,10 +155,28 @@ input.reqInfo::placeholder{
     font-weight: 900;
 }
 
+.infoImg{
+    max-width: 500px;
+}
+
 /* estilos preguntas frecuentes */
 
 .infoQuestions h1{
     text-align: center;
+}
+
+.p-accordion-content{
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12.8px);
+    -webkit-backdrop-filter: blur(12.8px);
+    border: 1px solid rgba(255, 255, 255, 0.31);
+    color: white;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
 }
 
 /* ESTILOS HOME PAGE */
@@ -340,18 +374,37 @@ border: 1px solid rgba(255, 255, 255, 0.31);
 }
 
 .suscripcion{
-    background: linear-gradient(210deg, #283d61, #416697, #5792d1);
-    border-radius: 1vw;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12.8px);
+    -webkit-backdrop-filter: blur(12.8px);
+    border: 1px solid rgba(255, 255, 255, 0.31);
+    color: white;
+}
+
+.suscripcion:hover{
+    transform: scale(1.03);
+    transition: 0.4s;
 }
 
 .infoCampo{
-    padding: 10px 0;
+    padding: 10px 0 5px 0;
 }
 
 .infoCampo span{
     color: white;
     font-size: 12px;
     font-weight: 700;
+}
+
+.suscripcion hr{
+    margin: 10px 0;
+}
+
+.precio p{
+    font-size: 30px !important;
+    font-weight: 700 !important;
 }
 
 .suscripcion p{
@@ -361,13 +414,23 @@ border: 1px solid rgba(255, 255, 255, 0.31);
     font-size: 16px;
 }
 
-.suscripcion button{
-    color: black;
+.buyBtn{
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.31) !important;
+    color: white;
     border: none;
+    margin-top: 60px;
     padding: 15px 25px;
     width: 100%;
     font-weight: 700;
     border-radius: 1vw;
+}
+
+.buyBtn:hover{
+    background-color: white;
+    border: 1px solid white;
+    color: black;
+    transition: 0.3s;
 }
 
 /* ESTILOS PROFILE */

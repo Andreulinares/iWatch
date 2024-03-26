@@ -4,23 +4,29 @@
             <h1>Elige tú plan</h1>
             <div v-for="sub in subscriptions" :key="sub.id"  class="container col-xs-12 col-sm-6 col-md-4 col-lg-3 suscripcion p-3 m-2">
                 <div class="medal" :class="{ 'bronze-medal': sub.id === 1, 'silver-medal': sub.id === 2, 'gold-medal': sub.id === 3 }" ></div>
-                <div class="infoCampo">
+                <!-- <div class="infoCampo">
                     <span>Nombre</span>
                     <p>{{ sub.name }}</p>
+                </div> -->
+                <div class="infoCampo precio">
+                    <p>{{ sub.price }}€ <span>/month</span> </p>
                 </div>
-                <div class="infoCampo">
-                    <span>Precio</span>
-                    <p>{{ sub.price }}€ mensuales</p>
-                </div>
-                <div class="infoCampo">
+                <p>{{ sub.name }}</p>
+                <hr>
+                <p>{{ sub.resolution }}</p>
+                <hr>
+                <p>{{ sub.duration }}</p>
+                <hr>
+                <p>{{ sub.quality }}</p>
+                <!-- <div class="infoCampo">
                     <span>Duración</span>
                     <p>{{ sub.duration }}</p>    
                 </div>
                 <div class="infoCampo">
                     <span>Descripción</span>
                     <p>Description</p>
-                </div>
-                <button @click="comprarSuscripcion(sub.id)">Upgrade plan</button>
+                </div> -->
+                <button class="buyBtn" @click="comprarSuscripcion(sub.id)">Upgrade plan</button>
             </div>
         </div>
     </section>

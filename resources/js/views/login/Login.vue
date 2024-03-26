@@ -36,8 +36,8 @@
                                         </button>
                                     </div>
                                 </div>
-                                <router-link :to="{name: 'auth.register'}"><p class="frgtPasswd mt-2">Registrate</p></router-link>
-                                <router-link :to="{name: 'auth.forgot-password'}"><p class="frgtPasswd mt-2">{{ $t('forgot_password')}}</p></router-link>
+                                <router-link :to="{name: 'auth.register'}"><p class="txtLog mt-2">Registrate</p></router-link>
+                                <router-link :to="{name: 'auth.forgot-password'}"><p class="txtLog mt-2">{{ $t('forgot_password')}}</p></router-link>
                                 <!-- Remember me -->
                                 <div class="form-check mt-5 pt-5">
                                     <input class="form-check-input" type="checkbox" name="remember" v-model="loginForm.remember" id="flexCheckIndeterminate">
@@ -52,15 +52,24 @@
         </div>
     </section>
     <section>
-    <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
+        <div class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
+        <div class="container d-flex p-0">
+            <div class="row m-0 infoRow d-flex justify-content-center">
+                <a class="d-flex justify-content-center" href="#firstSection">
+                    <img class="downArrow" src="images/linkArrow.svg" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="firstSection" v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
         <div class="container d-flex p-0">
             <div class="row m-0 infoRow">
-                <div class="text p-0 col-sm-12 col-md-12 col-lg-6">
+                <div class="text p-0 col-sm-12 col-md-12 col-lg-6 d-flex flex-column justify-content-center">
                     <h1>DISFRUTA EN TU TELEVISIÓN</h1>
                     <h2>El mejor contenido para Smart TV, Playstation, Xbox, Chromecast, Apple TV, reproductores Blu-ray y muchos más.</h2>
                 </div>
-                <div class="marketingImage p-0 col-sm-12 col-md-12 col-lg-6">
-                    <p>ooooooooooooooooooooooooooooooooooooo</p>
+                <div class="marketingImage p-0 col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center">
+                    <img class="infoImg" src="images/watchContent.svg" alt="">
                 </div>
             </div>
         </div>
@@ -68,10 +77,10 @@
     <div v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }" class="row flex box shadow-4 justify-content-center border-round animation-duration-2000 p-0 m-0">
         <div class="container d-flex p-0">
             <div class="row m-0 infoRow">
-                <div class="marketingImage p-0 col-sm-12 col-md-12 col-lg-6">
-                    <p>ooooooooooooooooooooooooooooooooooooo</p>
+                <div class="marketingImage p-0 col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center">
+                    <img class="infoImg" src="images/robotFilm.svg" alt="">
                 </div>
-                <div class="text p-0 col-sm-12 col-md-12 col-lg-6">
+                <div class="text p-0 col-sm-12 col-md-12 col-lg-6 d-flex flex-column justify-content-center">
                     <h1>USA CUALQUIER DISPOSITIVO</h1>
                     <h2>Ve en streaming todas las películas y series en tu móvil, tableta, ordenador y televisor.</h2>
                 </div>
@@ -84,19 +93,20 @@
                 <h1>Preguntas frecuentes</h1>
                 <Accordion activeIndex="0" class="w-50 col-sm-12 col-md-12 col-lg-6">
                     <AccordionTab header="¿Qué es iWatch?">
-                        <p class="m-0">Hola</p>
+                        <p class="m-0">
+iWatch es una plataforma de transmisión de películas en línea que ofrece a los usuarios acceso a una amplia variedad de contenido audiovisual, desde clásicos atemporales hasta los últimos lanzamientos de Hollywood. Con características innovadoras como perfiles personalizados y recomendaciones basadas en el historial de visualización, iWatch brinda una experiencia de entretenimiento única y conveniente. Su interfaz intuitiva y funciones de navegación fluidas hacen que sea fácil de usar, y su compromiso con la calidad se refleja en su extenso catálogo y actualizaciones periódicas de contenido nuevo. En resumen, iWatch se destaca como una opción líder en el mercado de transmisión de películas, ofreciendo una experiencia completa y satisfactoria para los amantes del cine.</p>
                     </AccordionTab>
                     <AccordionTab header="¿Cuánto cuesta iWatch?">
-                        <p class="m-0">Si</p>
+                        <p class="m-0">Disfruta de iWatch en tu smartphone, tableta, Smart TV, ordenador o dispositivo de streaming, todo por una tarifa mensual fija y a un precio regalado. Planes desde 9,95 € a 19,95 € al mes. Sin cargos adicionales ni contratos.</p>
                     </AccordionTab>
                     <AccordionTab header="¿Dónde puedo ver iWatch?">
-                        <p class="m-0">No</p>
+                        <p class="m-0">iWatch es una plataforma de streaming de películas que puedes disfrutar en línea desde la comodidad de tu hogar. Para acceder a iWatch, simplemente visita su sitio web oficial o descarga la aplicación desde la tienda de aplicaciones de tu dispositivo. Una vez registrado, podrás explorar su extenso catálogo de películas y series, que abarca desde éxitos de taquilla hasta contenido exclusivo y producciones originales. ¡Prepárate para sumergirte en un mundo de entretenimiento cinematográfico sin límites con iWatch!</p>
                     </AccordionTab>
                     <AccordionTab header="¿Cómo cancelo mi suscripción?">
-                        <p class="m-0">No</p>
+                        <p class="m-0"> Cancelar tu suscripción en iWatch es fácil y conveniente. Simplemente inicia sesión en tu cuenta de iWatch desde el sitio web oficial o la aplicación móvil. Dirígete a la sección de configuración o ajustes de tu cuenta, donde encontrarás la opción para administrar tu suscripción. Desde allí, podrás cancelar tu suscripción con unos pocos clics. Una vez cancelada, seguirás disfrutando de iWatch hasta el final del período de facturación actual, y tu acceso se desactivará automáticamente al finalizar ese período. ¡Esperamos verte de vuelta pronto en iWatch!</p>
                     </AccordionTab>
                     <AccordionTab header="¿Qué contenido puedo ver?">
-                        <p class="m-0">No</p>
+                        <p class="m-0">En iWatch, ofrecemos una amplia variedad de contenido para satisfacer todos los gustos y preferencias. Nuestra plataforma cuenta con una extensa biblioteca de películas de diversos géneros, incluyendo acción, aventura, comedia, drama, ciencia ficción, terror, y mucho más. Además, también puedes disfrutar de series de televisión populares, documentales fascinantes y contenido original exclusivo. Con iWatch, siempre tendrás algo emocionante para ver, ya sea solo o en compañía de tus seres queridos.</p>
                     </AccordionTab>
                 </Accordion>
             </div>
