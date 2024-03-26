@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('seasons', function (Blueprint $table) {
             $table->id('season_id');
             $table->string('season_name');
+            $table->integer('order');
             $table->unsignedBigInteger('content_id');
             $table->foreign('content_id')->references('id')->on('films')->onDelete('cascade');
             $table->timestamps();

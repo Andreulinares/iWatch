@@ -12,6 +12,7 @@ class Season extends Model
 
     protected $fillable = [
         "season_name",
+        "order",
         "content_id",
         "categoria_id"
     ];

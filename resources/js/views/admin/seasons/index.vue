@@ -14,6 +14,7 @@
                             <tr>
                                 <th width="50" class="text-center">#</th>
                                 <th>Nombre de la temporada</th>
+                                <th>Temporada</th>
                                 <th>Serie</th>
                             </tr>
                         </thead>
@@ -21,6 +22,7 @@
                             <tr v-for="(season, index) in seasons" :key="season.id">
                                 <td class="text-center">{{ index + 1 }}</td>
                                 <td>{{ season.season_name }}</td>
+                                <td>{{ season.order }}</td>
                                 <td>{{ seriesNames[season.content_id] }}</td>
                             </tr>
                         </tbody>

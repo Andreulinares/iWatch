@@ -126,26 +126,32 @@ class UserController extends Controller
     }
 
     public function uploadProfileImage(Request $request)
-    {
-        $user = auth()->user();
-    
-        if ($request->hasFile('profile_image')) {
-            $imageUrl = $request->file('profile_image')->store('public');
-    
-            // Verifica si la URL de la imagen es válida antes de actualizarla en la base de datos
-            if ($imageUrl) {
-                // Actualiza el campo profile_image en la base de datos
-                $user->profile_image = $imageUrl;
-                $user->save();
-    
-                return response()->json(['url' => asset('storage/' . $imageUrl)], 200);
-            } else {
-                return response()->json(['error' => 'Error al guardar la imagen'], 500);
-            }
+{
+    $user = auth()->user();
+
+    if ($request->hasFile('profile_image')) {
+        $media = $user->addMediaFromRequest('profile_image')
+                      ->toMediaCollection('images-profile');
+
+        // Verifica si la imagen se ha almacenado correctamente
+        if ($media) {
+            // Obtiene la URL de la imagen almacenada
+            $imageUrl = $media->getUrl();
+
+            // Actualiza el campo profile_image en la base de datos
+            $user->profile_image = $imageUrl;
+            $user->save();
+
+            // Devuelve la URL de la imagen
+            return response()->json(['url' => $imageUrl], 200);
+        } else {
+            return response()->json(['error' => 'Error al guardar la imagen'], 500);
         }
-    
-        return response()->json(['error' => 'No se ha proporcionado ninguna imagen'], 400);
     }
+
+    return response()->json(['error' => 'No se ha proporcionado ninguna imagen'], 400);
+}
+
     
 
     public function getUserProfileImage()

@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class User extends Authenticatable
 {
@@ -55,5 +58,22 @@ class User extends Authenticatable
     public function suscripcions()
     {
         return $this->belongsToMany(Suscripcion::class, 'user_subscriptions')->withPivot('start_date', 'end_date');
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('images/profile')
+            ->useFallbackUrl('/images/placeholder.jpg')
+            ->useFallbackPath(public_path('/images/placeholder.jpg'));
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        if (env('RESIZE_IMAGE') === true) {
+
+            $this->addMediaConversion('resized-image')
+                ->width(env('IMAGE_WIDTH', 300))
+                ->height(env('IMAGE_HEIGHT', 300));
+        }
     }
 }

@@ -18,6 +18,7 @@ class SeasonsController extends Controller
 
         $request->validate([
             'season_name' => 'required',
+            'order' => 'required',
             'content_id' => 'required',
         ]);
         $seasonData = $request->all();
