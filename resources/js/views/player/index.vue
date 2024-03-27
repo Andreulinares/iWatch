@@ -95,7 +95,8 @@ onMounted(() => {
 <style scoped>
 
   video{
-    width: 100%;
+    width: 100vw;
+    height: auto;
   }
 
   button {
@@ -105,8 +106,8 @@ onMounted(() => {
     padding: 10px 20px; /* Espaciado interno */
     cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
     position: relative;
-    left: 350px;
-    bottom: 46px;
+    left: 26vw; /* 20% del ancho de la pantalla */
+    bottom: 8vh;
   }
 
   button:hover {
@@ -119,12 +120,18 @@ onMounted(() => {
     position: absolute;
     bottom: 310px;
     left: 130px;
-}
+    background-color: #007bff;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-volver:hover{
+    background-color: #0056b3;
+  }
 
   @media (max-width: 576px) {
-      .button-container {
-        position: relative;
-        right: 350px;
+
+      button{
+        left: 0;
       }
 
       .btn-volver {
