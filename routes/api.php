@@ -94,6 +94,7 @@ Route::post('subscriptions/{subscriptionId}', [UserSubscriptionController::class
 // Añadir favoritos
 Route::get('favoriteFilms', [FavoritesController::class,'index']);
 Route::post('favorites', [FavoritesController::class, 'store']);
+Route::delete('/favorites/{id}', [FavoritesController::class, 'destroy']);
 
 
 Route::group(['middleware' => 'auth:sanctum'], function() {

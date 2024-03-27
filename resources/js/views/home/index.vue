@@ -125,28 +125,51 @@ const info = (selectedFilm) => {
   film.value = selectedFilm;
 }
 
-// Funcion para guardar favoritos
 const sendFavorites = (filmId) => {
-  axios.post('/api/favorites', {
-    user_id: store.state.auth.user.id,
-    film_id: filmId
-  })
-  .then(response => {
-    console.log(response.data);
-      swal({
+  if (verifyFavorite(filmId)) {
+    // Si la película ya está marcada como favorita, eliminarla
+    axios.delete(`/api/favorites/${filmId}`)
+      .then(response => {
+        console.log(response.data);
+        swal({
           icon: 'success',
-          title: 'Guardada en favoritos'
+          title: 'Eliminada de favoritos'
+        });
+        // Actualizar la lista de favoritos eliminando el favorito
+        favorites.value = favorites.value.filter(favorite => favorite.film_id !== filmId);
+      })
+      .catch(error => {
+        console.error('Error removing favorite:', error);
+        swal({
+          icon: 'error',
+          title: 'Error al eliminar de favoritos'
+        });
       });
+  } else {
+    // Si la película no está marcada como favorita, agregarla como favorita
+    axios.post('/api/favorites', {
+      user_id: store.state.auth.user.id,
+      film_id: filmId
+    })
+    .then(response => {
+      console.log(response.data);
+      swal({
+        icon: 'success',
+        title: 'Guardada en favoritos'
+      });
+      // Agregar el favorito a la lista de favoritos
       favorites.value.push(response.data.data);
-  })
-  .catch(error => {
-    console.error('Error adding favorite:', error);
-    swal({
-          icon: 'Ya en favoritos',
-          title: 'Ya esta en favoritos'
+    })
+    .catch(error => {
+      console.error('Error adding favorite:', error);
+      swal({
+        icon: 'error',
+        title: 'Error al guardar en favoritos'
       });
-  });
+    });
+  }
 }
+
 
 // Función para verificar si una película con el ID especificado está en la lista de favoritos
 const verifyFavorite = (movieId) => {

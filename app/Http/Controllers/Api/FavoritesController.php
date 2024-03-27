@@ -61,4 +61,20 @@ class FavoritesController extends Controller
 
         return response()->json(['success' => true, 'data' => $favorite]);
     }
+
+    public function destroy($id)
+    {
+        $userId = auth()->user()->id;
+        $favorite = Favorite::where('user_id', $userId)
+                            ->where('film_id', $id)
+                            ->first();
+
+        if (!$favorite) {
+            return response()->json(['error' => 'El favorito no existe'], 404);
+        }
+
+        $favorite->delete();
+
+        return response()->json(['success' => true, 'message' => 'Favorito eliminado con éxito']);
+    }
 }
