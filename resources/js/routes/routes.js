@@ -20,6 +20,9 @@ const FilmsList  = ()  => import('../views/admin/films/indexFilms.vue');
 const FilmsCreate = ()  => import('../views/admin/films/Create.vue');
 const FilmsUpdate = () => import('../views/admin/films/Update.vue');
 
+// Episodios admin
+const EpisodesList  = ()  => import('../views/admin/episodes/Index.vue');
+
 // Series admin
 const SeriesList  = ()  => import('../views/admin/series/indexSeries.vue');
 const SeriesCreate = ()  => import('../views/admin/series/Create.vue');
@@ -287,6 +290,20 @@ export default [
                         path: 'update/:id',
                         component: FilmsUpdate,
                         meta: {breadCrumb: 'Actualizar pelicula'}
+                    }
+                ]
+            },
+            {
+                name: 'episodes',
+                path: 'episodes',
+                meta: { breadCrumb: 'Episodios'},
+                children: [
+                    {
+                        name: 'episodes.index',
+                        path: '',
+                        component: EpisodesList,
+                        meta: {breadCrumb: 'Listado de episodios'}
+
                     }
                 ]
             },

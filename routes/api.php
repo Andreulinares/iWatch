@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\FilmsController;
+use App\Http\Controllers\Api\EpisodesController;
 use App\Http\Controllers\Api\SeasonsController;
 use App\Http\Controllers\Api\SeriesController;
 use App\Http\Controllers\Api\SuscripcionController;
@@ -38,6 +39,12 @@ Route::get('films', [FilmsController::class,'index']);
 Route::post('films/', [FilmsController::class, 'store']);
 Route::put('films/update/{id}',[FilmsController::class, 'update']);
 Route::delete('films/{id}',[FilmsController::class, 'destroy']);
+
+// Acciones admin peliculas
+Route::get('episodes', [EpisodesController::class,'index']);
+Route::post('episodes/', [EpisodesController::class, 'store']);
+Route::put('episodes/update/{id}',[EpisodesController::class, 'update']);
+Route::delete('episodes/{id}',[EpisodesController::class, 'destroy']);
 
 // Mostrar pelicula por ID
 Route::get('films/{id}', [FilmsController::class, 'getFilmById']);
