@@ -19,7 +19,7 @@
                                 </div>
                             </div> -->
                             <img :src="profile.profile_image" alt="Imagen de perfil">
-                            <input type="file" class="form-control" @change="onFileChange">
+                            <input type="file" v_model="profile.profile_image" class="form-control">
                         </div>
                         <div class="mb-3 px-2">
                             <div class="mb-3 users d-flex">
@@ -185,27 +185,25 @@ defineRule('min', min);
     const { value: email } = useField('email', null, { initialValue: '' });
     const { value: apellido } = useField('apellido', null, { initialValue: '' });
     const { value: phone } = useField('phone', null, { initialValue: '' });
-    const { value: profile_image } = useField('profile_image', '', { initialValue: '' });
     const { profile: profileData, getProfile, updateProfile, validationErrors, isLoading } = useProfile()
     const profile = reactive({
         name,
         email,
         apellido,
         phone,
-        profile_image
     })
     function submitForm() {
         validate().then(form => { if (form.valid) updateProfile(profile) })
     }
     
 
-    function onFileChange(event) {
+    /*function onFileChange(event) {
     const file = event.target.files[0]; // Obtener el archivo seleccionado
     const formData = new FormData();
     formData.append('profile_image', file);
 
     // Envía la imagen al backend utilizando Axios
-    axios.post('/api/user', formData, {
+    axios.put('/api/user/update-profile-image', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
@@ -218,7 +216,7 @@ defineRule('min', min);
     .catch(error => {
         console.error('Error al cargar la imagen:', error);
     });
-}
+}*/
 
     onMounted(() => {
         getProfile()

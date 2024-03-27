@@ -27,30 +27,43 @@ export default function useProfile() {
         isLoading.value = true;
         validationErrors.value = {};
     
-        axios.put('/api/user', profile)
-            .then(response => {
-                if (response.data.success) {
-                    swal({
-                        icon: 'success',
-                        title: 'Perfil actualizado exitosamente'
-                    });
-                }
-            })
-            .catch(error => {
-                if (error.response) {
-                    // Se produjo un error en la respuesta de la API
-                    console.error('Error de respuesta de la API:', error.response.data);
-                } else if (error.request) {
-                    // La solicitud fue realizada pero no se recibió respuesta
-                    console.error('No se recibió respuesta de la API:', error.request);
-                } else {
-                    // Se produjo un error al configurar la solicitud
-                    console.error('Error al configurar la solicitud:', error.message);
-                }
-                validationErrors.value = error.message; // Puedes mostrar este mensaje de error en tu interfaz de usuario si es necesario
-            })
-            .finally(() => isLoading.value = false);
+        const formData = new FormData();
+        // Agregar los campos del perfil al formData
+        formData.append('name', profile.name);
+        formData.append('email', profile.email);
+        formData.append('apellido', profile.apellido);
+        formData.append('phone', profile.phone);
+        // Agregar la imagen de perfil al formData
+        formData.append('profile_image', profile.profile_image);
+        axios.put('/api/user', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data' // Importante establecer este encabezado para enviar archivos
+            }
+        })
+        .then(response => {
+            if (response.data.success) {
+                swal({
+                    icon: 'success',
+                    title: 'Perfil actualizado exitosamente'
+                });
+            }
+        })
+        .catch(error => {
+            if (error.response) {
+                // Se produjo un error en la respuesta de la API
+                console.error('Error de respuesta de la API:', error.response.data);
+            } else if (error.request) {
+                // La solicitud fue realizada pero no se recibió respuesta
+                console.error('No se recibió respuesta de la API:', error.request);
+            } else {
+                // Se produjo un error al configurar la solicitud
+                console.error('Error al configurar la solicitud:', error.message);
+            }
+            validationErrors.value = error.message; // Puedes mostrar este mensaje de error en tu interfaz de usuario si es necesario
+        })
+        .finally(() => isLoading.value = false);
     }
+    
     
     
     return {

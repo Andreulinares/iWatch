@@ -16,6 +16,7 @@
               <button @click="toggleFullScreen">Pantalla Completa</button>
               <button @click="toggleMute">{{ isMuted ? 'Activar Sonido' : 'Desactivar Sonido' }}</button>
             </div>
+            <router-link to="/Home" class="btn btn-primary btn-volver">Volver</router-link>
           </div>
         </div>
         <div v-else>
@@ -71,7 +72,7 @@ const toggleMute = () => {
   videoPlayer.value.muted = !videoPlayer.value.muted;
   isMuted.value = videoPlayer.value.muted;
 };
-
+//Obtener pelicula usando la id pasada por parametro 
 const loadFilmData = async () => {
   try {
     isLoading.value = true;
@@ -112,10 +113,24 @@ onMounted(() => {
     background-color: #0056b3; /* Cambiar color de fondo al pasar sobre el botón */
   }
 
+  .btn-volver{
+    border-radius: 5px;
+    width: 80px;
+    position: absolute;
+    bottom: 310px;
+    left: 130px;
+}
+
   @media (max-width: 576px) {
       .button-container {
         position: relative;
         right: 350px;
+      }
+
+      .btn-volver {
+        top: 450px;
+        left: 30px;
+        height: 35px;
       }
   }
 </style>

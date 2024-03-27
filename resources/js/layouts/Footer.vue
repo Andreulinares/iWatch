@@ -33,8 +33,8 @@
         <!-- Grid column -->
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Company name
+          <h6 class="text-uppercase fw-bold mb-4 t-footer">
+            <i class="fas fa-gem me-3"></i>Iwatch
           </h6>
           <p>
             Here you can use rows and columns to organize your footer content. Lorem ipsum
@@ -46,7 +46,7 @@
         <!-- Grid column -->
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
+          <h6 class="text-uppercase fw-bold mb-4 t-footer">
             Products
           </h6>
           <p>
@@ -64,7 +64,7 @@
         <!-- Grid column -->
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
+          <h6 class="text-uppercase fw-bold mb-4 t-footer">
             Useful links
           </h6>
           <p>
@@ -82,7 +82,7 @@
         <!-- Grid column -->
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <h6 class="text-uppercase fw-bold mb-4 t-footer">Contact</h6>
           <p><i class="fas fa-home me-3"></i> Carrer Ntra. Sra. de Lourdes, 34, 08750 Molins de Rei, Barcelona</p>
           <p>
             <i class="fas fa-envelope me-3"></i>

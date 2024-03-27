@@ -70,6 +70,14 @@ class UserController extends Controller
             if ($role) {
                 $user->assignRole($role);
             }
+
+            if ($request->hasFile('profile_image')) {
+                $media = $user->addMediaFromRequest('profile_image')
+                              ->toMediaCollection('images2/profile');
+                // Si deseas preservar la imagen original y también hacer conversiones, puedes usar el método preservingOriginal()
+                // ->preservingOriginal()
+            }
+
             return new UserResource($user);
         }
     }
@@ -103,6 +111,15 @@ class UserController extends Controller
             $user->password = Hash::make($request->password) ?? $user->password;
         }
 
+        if ($request->hasFile('profile_image')) {
+            // Obtener el archivo de la solicitud
+            $profileImage = $request->file('profile_image');
+            // Guardar el archivo en el almacenamiento
+            $path = $profileImage->store('profile_images');
+            // Asignar la ruta de la imagen al usuario
+            $user->profile_image = $path;
+        }
+
         if ($user->save()) {
             if ($role) {
                 $user->syncRoles($role);
@@ -123,48 +140,5 @@ class UserController extends Controller
         $user->delete();
 
         return response()->noContent();
-    }
-
-    public function uploadProfileImage(Request $request)
-{
-    $user = auth()->user();
-
-    if ($request->hasFile('profile_image')) {
-        $media = $user->addMediaFromRequest('profile_image')
-                      ->toMediaCollection('images-profile');
-
-        // Verifica si la imagen se ha almacenado correctamente
-        if ($media) {
-            // Obtiene la URL de la imagen almacenada
-            $imageUrl = $media->getUrl();
-
-            // Actualiza el campo profile_image en la base de datos
-            $user->profile_image = $imageUrl;
-            $user->save();
-
-            // Devuelve la URL de la imagen
-            return response()->json(['url' => $imageUrl], 200);
-        } else {
-            return response()->json(['error' => 'Error al guardar la imagen'], 500);
-        }
-    }
-
-    return response()->json(['error' => 'No se ha proporcionado ninguna imagen'], 400);
-}
-
-    
-
-    public function getUserProfileImage()
-    {
-    $user = auth()->user(); // Obtén el usuario actualmente autenticado
-    $profileImage = $user->profile_image; // Obtén la URL de la imagen del perfil del usuario desde la base de datos
-
-    // Verifica si la imagen existe en el sistema de archivos
-    if (Storage::exists($profileImage)) {
-        return response()->file(storage_path('app/' . $profileImage));
-    }
-
-    // Si no se encuentra la imagen, devuelve una imagen de marcador de posición u otra respuesta adecuada
-    return response()->json(['error' => 'No se encontró la imagen del perfil'], 404);
     }
 }
